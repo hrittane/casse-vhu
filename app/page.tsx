@@ -320,7 +320,7 @@ export default function CasseVHULanding() {
             {/* Right Column - Truck Image */}
             <div className="relative">
               <div className="relative z-10">
-                <img src="/truck.png" alt="Camion de dépannage Casse-VHU" className="w-full h-auto min-w-[60vw] mx-auto" />
+                <img src="/truck.png" alt="Camion de dépannage Casse-VHU" className="w-full h-auto mx-auto" />
               </div>
               {/* Background decoration */}
               <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-secondary/10 rounded-3xl transform rotate-3 scale-105 -z-10"></div>
