@@ -696,28 +696,15 @@ export default function CasseVHULanding() {
           </div>
 
           <div className="max-w-6xl mx-auto">
-            <div className="grid lg:grid-cols-2 gap-8">
-              {/* Left column - 3 questions */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-15 gap-y-4">
               <div className="space-y-4">
-
                 <Collapsible>
-                  <CollapsibleTrigger className="w-full">
-                    <Card className="p-6 hover:bg-muted/50 hover:border-primary/20 transition-all duration-200 cursor-pointer group">
-                      <CardContent className="pt-6">
-                        <div className="flex items-center justify-between">
-                          <div className="flex items-start space-x-4 text-left">
-                            <div className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0 group-hover:bg-primary/20 transition-colors">
-                              <HelpCircle className="w-5 h-5 text-primary" />
-                            </div>
-                            <h3 className="font-semibold text-md">L'enlèvement d'épave est-il vraiment gratuit ?</h3>
-                          </div>
-                          <ChevronDown className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors" />
-                        </div>
-                      </CardContent>
-                    </Card>
+                  <CollapsibleTrigger className="w-full text-left py-4 flex justify-between items-center border-b-2 border-gray-200 ">
+                    <h3 className="font-semibold text-md ml-3">L'enlèvement d'épave est-il vraiment gratuit ?</h3>
+                    <ChevronDown className="w-5 h-5 text-muted-foreground transition-transform duration-200" />
                   </CollapsibleTrigger>
                   <CollapsibleContent>
-                    <div className="px-6 py-4 bg-muted/30 rounded-b-lg border border-t-0 text-muted-foreground">
+                    <div className="px-6 py-4 border-t-0 text-muted-foreground">
                       Oui, le service est entièrement gratuit partout en France, si votre véhicule est complet avec ses
                       éléments essentiels (moteur, pot catalytique...). Aucun frais caché, aucune surprise.
                     </div>
@@ -725,23 +712,12 @@ export default function CasseVHULanding() {
                 </Collapsible>
 
                 <Collapsible>
-                  <CollapsibleTrigger className="w-full">
-                    <Card className="p-6 hover:bg-muted/50 hover:border-primary/20 transition-all duration-200 cursor-pointer group">
-                      <CardContent className="pt-6">
-                        <div className="flex items-center justify-between">
-                          <div className="flex items-start space-x-4 text-left">
-                            <div className="w-10 h-10 bg-secondary/10 rounded-full flex items-center justify-center flex-shrink-0 group-hover:bg-secondary/20 transition-colors">
-                              <HelpCircle className="w-5 h-5 text-secondary" />
-                            </div>
-                            <h3 className="font-semibold text-md">Quels documents faut-il fournir ?</h3>
-                          </div>
-                          <ChevronDown className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors" />
-                        </div>
-                      </CardContent>
-                    </Card>
+                  <CollapsibleTrigger className="w-full text-left py-4 flex justify-between items-center border-b-2 border-gray-200 ">
+                    <h3 className="font-semibold text-md ml-3">Quels documents faut-il fournir ?</h3>
+                    <ChevronDown className="w-5 h-5 text-muted-foreground transition-transform duration-200" />
                   </CollapsibleTrigger>
                   <CollapsibleContent>
-                    <div className="px-6 py-4 bg-muted/30 rounded-b-lg border border-t-0 text-muted-foreground">
+                    <div className="px-6 py-4 border-t-0 text-muted-foreground">
                       <ul className="space-y-2">
                         <li>• Carte grise du véhicule</li>
                         <li>• Pièce d'identité du propriétaire</li>
@@ -752,50 +728,26 @@ export default function CasseVHULanding() {
                 </Collapsible>
 
                 <Collapsible>
-                  <CollapsibleTrigger className="w-full">
-                    <Card className="p-6 hover:bg-muted/50 hover:border-primary/20 transition-all duration-200 cursor-pointer group">
-                      <CardContent className="pt-6">
-                        <div className="flex items-center justify-between">
-                          <div className="flex items-start space-x-4 text-left">
-                            <div className="w-10 h-10 bg-accent/10 rounded-full flex items-center justify-center flex-shrink-0 group-hover:bg-accent/20 transition-colors">
-                              <HelpCircle className="w-5 h-5 text-accent" />
-                            </div>
-                            <h3 className="font-semibold text-md">Et si je n'ai plus la carte grise ?</h3>
-                          </div>
-                          <ChevronDown className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors" />
-                        </div>
-                      </CardContent>
-                    </Card>
+                  <CollapsibleTrigger className="w-full text-left py-4 flex justify-between items-center border-b-2 border-gray-200 ">
+                    <h3 className="font-semibold text-md ml-3">Et si je n'ai plus la carte grise ?</h3>
+                    <ChevronDown className="w-5 h-5 text-muted-foreground transition-transform duration-200" />
                   </CollapsibleTrigger>
                   <CollapsibleContent>
-                    <div className="px-6 py-4 bg-muted/30 rounded-b-lg border border-t-0 text-muted-foreground">
+                    <div className="px-6 py-4 border-t-0 text-muted-foreground">
                       Nous pouvons intervenir, mais un certificat de non-gage et une déclaration de perte ou de vol
                       seront nécessaires. Nous vous guidons dans ces démarches.
                     </div>
                   </CollapsibleContent>
                 </Collapsible>
               </div>
-
-              {/* Right column - 3 questions */}
               <div className="space-y-4">
                 <Collapsible>
-                  <CollapsibleTrigger className="w-full">
-                    <Card className="p-6 hover:bg-muted/50 hover:border-primary/20 transition-all duration-200 cursor-pointer group">
-                      <CardContent className="pt-6">
-                        <div className="flex items-center justify-between">
-                          <div className="flex items-start space-x-4 text-left">
-                            <div className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0 group-hover:bg-primary/20 transition-colors">
-                              <HelpCircle className="w-5 h-5 text-primary" />
-                            </div>
-                            <h3 className="font-semibold text-md">Que devient mon véhicule après l'enlèvement ?</h3>
-                          </div>
-                          <ChevronDown className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors" />
-                        </div>
-                      </CardContent>
-                    </Card>
+                  <CollapsibleTrigger className="w-full text-left py-4 flex justify-between items-center border-b-2 border-gray-200 ">
+                    <h3 className="font-semibold text-md ml-3">Que devient mon véhicule après l'enlèvement ?</h3>
+                    <ChevronDown className="w-5 h-5 text-muted-foreground transition-transform duration-200" />
                   </CollapsibleTrigger>
                   <CollapsibleContent>
-                    <div className="px-6 py-4 bg-muted/30 rounded-b-lg border border-t-0 text-muted-foreground">
+                    <div className="px-6 py-4 border-t-0 text-muted-foreground">
                       Il est transporté dans un centre agréé VHU pour dépollution, recyclage et destruction légale selon
                       les normes environnementales en vigueur.
                     </div>
@@ -803,23 +755,12 @@ export default function CasseVHULanding() {
                 </Collapsible>
 
                 <Collapsible>
-                  <CollapsibleTrigger className="w-full">
-                    <Card className="p-6 hover:bg-muted/50 hover:border-primary/20 transition-all duration-200 cursor-pointer group">
-                      <CardContent className="pt-6">
-                        <div className="flex items-center justify-between">
-                          <div className="flex items-start space-x-4 text-left">
-                            <div className="w-10 h-10 bg-secondary/10 rounded-full flex items-center justify-center flex-shrink-0 group-hover:bg-secondary/20 transition-colors">
-                              <HelpCircle className="w-5 h-5 text-secondary" />
-                            </div>
-                            <h3 className="font-semibold text-md">Puis-je bénéficier d'une prime à la conversion ?</h3>
-                          </div>
-                          <ChevronDown className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors" />
-                        </div>
-                      </CardContent>
-                    </Card>
+                  <CollapsibleTrigger className="w-full text-left py-4 flex justify-between items-center border-b-2 border-gray-200 ">
+                    <h3 className="font-semibold text-md ml-3">Puis-je bénéficier d'une prime à la conversion ?</h3>
+                    <ChevronDown className="w-5 h-5 text-muted-foreground transition-transform duration-200" />
                   </CollapsibleTrigger>
                   <CollapsibleContent>
-                    <div className="px-6 py-4 bg-muted/30 rounded-b-lg border border-t-0 text-muted-foreground">
+                    <div className="px-6 py-4 border-t-0 text-muted-foreground">
                       Oui, si votre véhicule répond aux critères, nous vous guiderons dans la demande auprès des
                       autorités compétentes pour obtenir votre prime à la conversion.
                     </div>
@@ -827,23 +768,12 @@ export default function CasseVHULanding() {
                 </Collapsible>
 
                 <Collapsible>
-                  <CollapsibleTrigger className="w-full">
-                    <Card className="p-6 hover:bg-muted/50 hover:border-primary/20 transition-all duration-200 cursor-pointer group">
-                      <CardContent className="pt-6">
-                        <div className="flex items-center justify-between">
-                          <div className="flex items-start space-x-4 text-left">
-                            <div className="w-10 h-10 bg-accent/10 rounded-full flex items-center justify-center flex-shrink-0 group-hover:bg-accent/20 transition-colors">
-                              <HelpCircle className="w-5 h-5 text-accent" />
-                            </div>
-                            <h3 className="font-semibold text-md">Intervenez-vous le week-end ?</h3>
-                          </div>
-                          <ChevronDown className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors" />
-                        </div>
-                      </CardContent>
-                    </Card>
+                  <CollapsibleTrigger className="w-full text-left py-4 flex justify-between items-center border-b-2 border-gray-200 ">
+                    <h3 className="font-semibold text-md ml-3">Intervenez-vous le week-end ?</h3>
+                    <ChevronDown className="w-5 h-5 text-muted-foreground transition-transform duration-200" />
                   </CollapsibleTrigger>
                   <CollapsibleContent>
-                    <div className="px-6 py-4 bg-muted/30 rounded-b-lg border border-t-0 text-muted-foreground">
+                    <div className="px-6 py-4 border-t-0 text-muted-foreground">
                       Oui, nous proposons des créneaux le samedi selon les disponibilités. Contactez-nous pour organiser
                       un rendez-vous qui vous convient.
                     </div>
