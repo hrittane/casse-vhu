@@ -17,7 +17,6 @@ import {
   Twitter,
   Car,
   Bike,
-  TruckElectric,
   CarTaxiFront,
   FileText,
   HelpCircle,
@@ -228,7 +227,7 @@ export default function CasseVHULanding() {
               <CardContent className="pt-6">
                 {/* <TruckElectric className="w-12 h-12 text-primary mx-auto mb-4" /> */}
                 <div className="w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <TruckElectric className="w-10 h-10 text-primary" />
+                  <Truck className="w-10 h-10 text-primary" />
                 </div>
                 <h3 className="font-semibold mb-2">Camping-cars et caravanes</h3>
                 <p className="text-sm text-muted-foreground">Véhicules de loisir et de voyage</p>
