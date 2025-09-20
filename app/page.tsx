@@ -59,7 +59,7 @@ export default function CasseVHULanding() {
           <div className="flex items-center space-x-2">
             <img src="/logo.png" alt="Casse-VHU Logo" className="h-10 w-auto" />
           </div>
-          <nav className="hidden md:flex items-center space-x-6">
+          <nav className="hidden lg:flex items-center space-x-6">
             <a href="#services" className="text-muted-foreground hover:text-foreground transition-colors">
               Services
             </a>
@@ -167,13 +167,16 @@ export default function CasseVHULanding() {
                         className="rounded-lg min-h-[80px]"
                       />
                     </div>
-                    <Button size="lg" className="w-full rounded-lg text-lg py-6">
+
+                    <Button size="lg" className="w-full rounded-lg text-xs md:text-lg py-6">
                       <Truck className="w-5 h-5 mr-2" />
                       Demander mon enlèvement gratuit
                     </Button>
+
                     <p className="text-xs text-muted-foreground text-center">
                       En soumettant ce formulaire, vous acceptez d'être contacté par nos services.
                     </p>
+
                   </form>
                 </CardContent>
               </Card>
@@ -365,9 +368,10 @@ export default function CasseVHULanding() {
       </section>
 
 
-      <section id="process" className="py-20">
+      <section id="process" className="pt-20">
         <div className="container mx-auto px-4">
-          <div className="text-center ">
+
+          <div className="text-center mb-16 md:mb-0 ">
             <h2 className="text-3xl lg:text-4xl font-bold text-foreground mb-4">
               Comment se déroule un enlèvement d'épave ?
             </h2>
@@ -382,7 +386,7 @@ export default function CasseVHULanding() {
             <div className="hidden lg:block">
               <div className="relative px-8 py-20">
                 {/* Continuous horizontal line */}
-                <div className="absolute top-1/2 left-8 right-8 h-1 bg-primary transform -translate-y-1/2 z-10"></div>
+                <div className="absolute top-1/2 left-50 right-50 h-1 bg-primary transform -translate-y-1/2 z-10"></div>
 
                 {/* Timeline container with 4 equal sections */}
                 <div className="grid grid-cols-4 gap-0 relative">
@@ -584,6 +588,7 @@ export default function CasseVHULanding() {
 
           {/* Bento Grid Layout */}
           <div className="max-w-7xl mx-auto">
+
             <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-2 sm:gap-4 auto-rows-fr">
               {/* Large featured region - Primary color */}
               <Card className="col-span-2 md:col-span-2 lg:col-span-2 md:row-span-2 p-3 sm:p-6 bg-gradient-to-br from-primary/15 to-primary/25 border-2 border-primary/30 text-primary-foreground">
