@@ -48,7 +48,7 @@ function TopMenu() {
             </div>
 
             {/* main menu */}
-            <header className="border-b bg-card/50 backdrop-blur-sm sticky top-0 z-50">
+            <header className=" bg-card/50 backdrop-blur-sm sticky top-0 z-50">
                 <div className="container mx-auto px-4 py-4 flex items-center justify-between">
                     <div className="flex items-center space-x-2">
                         <img src="/logo.png" alt="Casse-VHU Logo" className="h-10 w-auto" />
@@ -72,7 +72,7 @@ function TopMenu() {
                                     <span className="sr-only">Open Menu</span>
                                 </Button>
                             </SheetTrigger>
-                            <SheetContent side="top" className="w-full">
+                            <SheetContent side="top" className="w-full bg-card/80 backdrop-blur-sm ">
                                 <nav className="flex flex-col items-center space-y-6 pt-12">
                                     {navLinks.map((link) => (
                                         <SheetClose asChild key={link.href}>
