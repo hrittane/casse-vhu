@@ -1,8 +1,22 @@
-import React from 'react'
-import { Phone, Mail, MapPin, Facebook, Instagram, Twitter } from "lucide-react"
-import { Button } from "@/components/ui/button"
+"use client"
+import React, { useState } from 'react';
+import { Phone, Mail, MapPin, Facebook, Instagram, Twitter, Menu, X } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Sheet, SheetContent, SheetTrigger, SheetClose } from "@/components/ui/sheet";
 
 function TopMenu() {
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+    const navLinks = [
+        { href: "#services", text: "Services" },
+        { href: "#vehicles", text: "Véhicules" },
+        { href: "#process", text: "Comment ça marche" },
+        { href: "#zones", text: "Zones d'intervention" },
+        { href: "#faq", text: "FAQ" },
+        { href: "/blog", text: "Blog" },
+        { href: "#contact", text: "Contact" },
+    ];
+
     return (
         <>
             {/* Mini Navbar */}
@@ -34,35 +48,49 @@ function TopMenu() {
             </div>
 
             {/* main menu */}
-            <header className="border-b bg-card/50 backdrop-blur-sm md:sticky top-0 z-50">
+            <header className="border-b bg-card/50 backdrop-blur-sm sticky top-0 z-50">
                 <div className="container mx-auto px-4 py-4 flex items-center justify-between">
                     <div className="flex items-center space-x-2">
                         <img src="/logo.png" alt="Casse-VHU Logo" className="h-10 w-auto" />
                     </div>
+
+                    {/* Desktop Menu */}
                     <nav className="hidden lg:flex items-center space-x-6">
-                        <a href="#services" className="text-muted-foreground hover:text-foreground transition-colors">
-                            Services
-                        </a>
-                        <a href="#vehicles" className="text-muted-foreground hover:text-foreground transition-colors">
-                            Véhicules
-                        </a>
-                        <a href="#process" className="text-muted-foreground hover:text-foreground transition-colors">
-                            Comment ça marche
-                        </a>
-                        <a href="#zones" className="text-muted-foreground hover:text-foreground transition-colors">
-                            Zones d'intervention
-                        </a>
-                        <a href="#faq" className="text-muted-foreground hover:text-foreground transition-colors">
-                            FAQ
-                        </a>
-                        <a href="/blog" className="text-muted-foreground hover:text-foreground transition-colors">
-                            Blog
-                        </a>
-                        <a href="#contact" className="text-muted-foreground hover:text-foreground transition-colors">
-                            Contact
-                        </a>
+                        {navLinks.map((link) => (
+                            <a key={link.href} href={link.href} className="text-muted-foreground hover:text-foreground transition-colors">
+                                {link.text}
+                            </a>
+                        ))}
                     </nav>
-                    <Button className="rounded-full">
+
+                    {/* Mobile Menu */}
+                    <div className="lg:hidden">
+                        <Sheet open={isMenuOpen} onOpenChange={setIsMenuOpen}>
+                            <SheetTrigger asChild>
+                                <Button variant="outline" size="icon">
+                                    <Menu className="h-6 w-6" />
+                                    <span className="sr-only">Open Menu</span>
+                                </Button>
+                            </SheetTrigger>
+                            <SheetContent side="top" className="w-full">
+                                <nav className="flex flex-col items-center space-y-6 pt-12">
+                                    {navLinks.map((link) => (
+                                        <SheetClose asChild key={link.href}>
+                                            <a
+                                                href={link.href}
+                                                className="text-muted-foreground hover:text-foreground transition-colors text-lg"
+                                            >
+                                                {link.text}
+                                            </a>
+                                        </SheetClose>
+                                    ))}
+                                </nav>
+                            </SheetContent>
+                        </Sheet>
+                    </div>
+
+
+                    <Button className="hidden lg:flex rounded-full">
                         <Phone className="w-4 h-4 mr-2" />
                         06 30 30 20 53
                     </Button>
@@ -72,4 +100,4 @@ function TopMenu() {
     )
 }
 
-export default TopMenu
+export default TopMenu;
