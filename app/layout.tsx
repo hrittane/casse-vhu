@@ -4,6 +4,9 @@ import { GeistSans } from "geist/font/sans"
 import { GeistMono } from "geist/font/mono"
 import { Analytics } from "@vercel/analytics/next"
 import { Suspense } from "react"
+import StickyMenu from "@/components/ui/StickyMenu"
+import TopMenu from "@/components/ui/TopMenu"
+
 import "./globals.css"
 
 export const metadata: Metadata = {
@@ -22,7 +25,14 @@ export default function RootLayout({
   return (
     <html lang="fr">
       <body className={`font-sans ${GeistSans.variable} ${GeistMono.variable}`}>
+
+        {/* top menu */}
+        <TopMenu />
+
         <Suspense fallback={null}>{children}</Suspense>
+        {/* sticky cta mobile */}
+        <StickyMenu />
+
         <Analytics />
       </body>
     </html>

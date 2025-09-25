@@ -17,6 +17,7 @@ import {
 import Link from "next/link"
 
 export default function BlogPage() {
+
   const blogPosts = [
     {
       id: 1,
@@ -98,69 +99,8 @@ export default function BlogPage() {
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Mini Navbar */}
-      <div className="bg-primary text-primary-foreground py-2">
-        <div className="container mx-auto px-4 flex items-center justify-between text-sm">
-          <div className="flex items-center space-x-4">
-            <div className="flex items-center">
-              <Phone className="w-4 h-4 mr-2" />
-              <span className="font-medium">06 30 30 20 53</span>
-            </div>
-            <div className="hidden sm:flex items-center">
-              <Mail className="w-4 h-4 mr-2" />
-              <span>contact@casse-vhu.fr</span>
-            </div>
-          </div>
-          <div className="flex items-center space-x-3">
-            <span className="hidden sm:inline text-xs">Suivez-nous:</span>
-            <a href="#" className="hover:opacity-80 transition-opacity">
-              <Facebook className="w-4 h-4" />
-            </a>
-            <a href="#" className="hover:opacity-80 transition-opacity">
-              <Instagram className="w-4 h-4" />
-            </a>
-            <a href="#" className="hover:opacity-80 transition-opacity">
-              <Twitter className="w-4 h-4" />
-            </a>
-          </div>
-        </div>
-      </div>
 
-      {/* Header */}
-      <header className="border-b bg-card/50 backdrop-blur-sm sticky top-0 z-50">
-        <div className="container mx-auto px-4 py-4 flex items-center justify-between">
-          <Link href="/" className="flex items-center space-x-2">
-            <img src="/logo.png" alt="Casse-VHU Logo" className="h-10 w-auto" />
-          </Link>
-          <nav className="hidden md:flex items-center space-x-6">
-            <Link href="/#services" className="text-muted-foreground hover:text-foreground transition-colors">
-              Services
-            </Link>
-            <Link href="/#vehicles" className="text-muted-foreground hover:text-foreground transition-colors">
-              Véhicules
-            </Link>
-            <Link href="/#process" className="text-muted-foreground hover:text-foreground transition-colors">
-              Comment ça marche
-            </Link>
-            <Link href="/#zones" className="text-muted-foreground hover:text-foreground transition-colors">
-              Zones d'intervention
-            </Link>
-            <Link href="/#faq" className="text-muted-foreground hover:text-foreground transition-colors">
-              FAQ
-            </Link>
-            <Link href="/blog" className="text-foreground font-medium">
-              Blog
-            </Link>
-            <Link href="/#contact" className="text-muted-foreground hover:text-foreground transition-colors">
-              Contact
-            </Link>
-          </nav>
-          <Button className="rounded-full">
-            <Phone className="w-4 h-4 mr-2" />
-            06 30 30 20 53
-          </Button>
-        </div>
-      </header>
+
 
       {/* Blog Hero Section */}
       <section className="py-16 bg-gradient-to-br from-primary/10 to-secondary/10">
