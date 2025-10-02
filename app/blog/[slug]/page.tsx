@@ -281,9 +281,9 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
                   <Card className="p-6 bg-primary/5">
                     <h3 className="font-semibold mb-4">Une question ?</h3>
                     <p className="text-sm text-muted-foreground mb-4">Notre équipe est là pour vous accompagner</p>
-                    <Button className="w-full rounded-full">
+                    <Button className="w-full rounded-full ">
                       <Phone className="w-4 h-4 mr-2" />
-                      Nous contacter
+                      appeler
                     </Button>
                   </Card>
                 </div>
