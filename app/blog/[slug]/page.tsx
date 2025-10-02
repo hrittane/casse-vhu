@@ -227,7 +227,7 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
                     <div className="flex flex-col sm:flex-row gap-4 justify-center">
                       <Button size="lg" className="rounded-full">
                         <Phone className="w-4 h-4 mr-2" />
-                        06 30 30 20 53
+                        <a href="tel:0630302053">06 30 30 20 53</a>
                       </Button>
                       <Button size="lg" variant="secondary" className="rounded-full">
                         Demander un devis
@@ -401,7 +401,7 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
               <div className="space-y-3 text-sm text-muted-foreground">
                 <div className="flex items-center">
                   <Phone className="w-4 h-4 mr-2" />
-                  <span>06 30 30 20 53</span>
+                  <a href="tel:0630302053">06 30 30 20 53</a>
                 </div>
                 <div className="flex items-center">
                   <Mail className="w-4 h-4 mr-2" />

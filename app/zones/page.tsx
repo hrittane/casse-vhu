@@ -122,7 +122,7 @@ export default function ZonesPage() {
                         <div className="flex flex-col sm:flex-row gap-4 justify-center">
                             <Button size="lg" className="text-lg px-8 py-6 rounded-full">
                                 <Phone className="w-5 h-5 mr-2" />
-                                06 30 30 20 53
+                                <a href="tel:+33 6 30 30 20 53">06 30 30 20 53</a>
                             </Button>
                             <Button size="lg" variant="outline" className="text-lg px-8 py-6 rounded-full bg-transparent">
                                 <Mail className="w-5 h-5 mr-2" />
@@ -189,7 +189,7 @@ export default function ZonesPage() {
                             <div className="space-y-3 text-sm text-muted-foreground">
                                 <div className="flex items-center">
                                     <Phone className="w-4 h-4 mr-2" />
-                                    <span>06 30 30 20 53</span>
+                                    <a href="tel:0630302053">06 30 30 20 53</a>
                                 </div>
                                 <div className="flex items-center">
                                     <Mail className="w-4 h-4 mr-2" />

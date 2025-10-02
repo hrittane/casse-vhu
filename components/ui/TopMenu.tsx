@@ -26,7 +26,7 @@ function TopMenu() {
                     <div className="flex items-center space-x-4">
                         <div className="flex items-center">
                             <Phone className="w-4 h-4 mr-2" />
-                            <span className="font-medium">06 30 30 20 53</span>
+                            <a href="tel:+33 6 30 30 20 53" className="font-medium">06 30 30 20 53</a>
                         </div>
                         <div className="hidden sm:flex items-center">
                             <Mail className="w-4 h-4 mr-2" />
@@ -96,7 +96,7 @@ function TopMenu() {
 
                     <Button className="hidden lg:flex rounded-full">
                         <Phone className="w-4 h-4 mr-2" />
-                        06 30 30 20 53
+                        <a href="tel:0630302053">06 30 30 20 53</a>
                     </Button>
                 </div>
             </header>

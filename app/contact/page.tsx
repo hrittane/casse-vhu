@@ -100,7 +100,7 @@ export default function ContactPage() {
                                         </div>
                                         <div>
                                             <h3 className="font-semibold mb-1">Téléphone</h3>
-                                            <p className="text-muted-foreground">06 30 30 20 53</p>
+                                            <a href="tel:+33 6 30 30 20 53" className="text-muted-foreground">06 30 30 20 53</a>
                                             <p className="text-sm text-muted-foreground mt-1">Lundi - Samedi : 8h - 19h</p>
                                         </div>
                                     </div>
