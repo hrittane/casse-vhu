@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
+import { ContactForm } from "@/components/ui/ContactForm"
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible"
 import {
   Phone,
@@ -81,48 +82,7 @@ export default function CasseVHULanding() {
             </div>
 
             {/* Right side - Lead capture form */}
-            <div>
-              <Card className="p-6 shadow-xl border-2 bg-white/95 backdrop-blur-sm">
-                <CardContent className="pt-6">
-                  <div className="text-center mb-6">
-                    <h3 className="text-2xl font-bold text-foreground mb-2">Obtenez votre devis gratuit</h3>
-                    <p className="text-muted-foreground">
-                      Remplissez ce formulaire et nous vous contacterons rapidement
-                    </p>
-                  </div>
-                  <form className="space-y-4">
-                    <div>
-                      <Input placeholder="Nom complet *" className="rounded-lg" required />
-                    </div>
-                    <div>
-                      <Input placeholder="Téléphone *" className="rounded-lg" required />
-                    </div>
-                    <div>
-                      <Input type="email" placeholder="Email *" className="rounded-lg" required />
-                    </div>
-                    <div>
-                      <Input placeholder="Ville *" className="rounded-lg" required />
-                    </div>
-                    <div>
-                      <Textarea
-                        placeholder="Marque, modèle, année du véhicule..."
-                        className="rounded-lg min-h-[80px]"
-                      />
-                    </div>
-
-                    <Button size="lg" className="w-full rounded-lg text-xs md:text-lg py-6">
-                      <Truck className="w-5 h-5 mr-2" />
-                      Demander mon enlèvement gratuit
-                    </Button>
-
-                    <p className="text-xs text-muted-foreground text-center">
-                      En soumettant ce formulaire, vous acceptez d'être contacté par nos services.
-                    </p>
-
-                  </form>
-                </CardContent>
-              </Card>
-            </div>
+            <ContactForm />
           </div>
         </div>
       </section>
@@ -829,41 +789,7 @@ export default function CasseVHULanding() {
                 Ne laissez pas une épave encombrer votre espace et polluer l'environnement
               </p>
             </div>
-            <Card className="p-8">
-              <CardContent className="pt-6">
-                <form className="space-y-6">
-                  <div className="grid md:grid-cols-2 gap-6">
-                    <div>
-                      <label className="block text-sm font-medium mb-2">Nom complet</label>
-                      <Input placeholder="Votre nom" className="rounded-lg" />
-                    </div>
-                    <div>
-                      <label className="block text-sm font-medium mb-2">Téléphone</label>
-                      <Input placeholder="Votre numéro de téléphone" className="rounded-lg" />
-                    </div>
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium mb-2">Email</label>
-                    <Input type="email" placeholder="votre@email.com" className="rounded-lg" />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium mb-2">Localisation du véhicule</label>
-                    <Input placeholder="Adresse complète" className="rounded-lg" />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium mb-2">Détails du véhicule</label>
-                    <Textarea
-                      placeholder="Marque, modèle, année, état du véhicule..."
-                      className="rounded-lg min-h-[100px]"
-                    />
-                  </div>
-                  <Button size="lg" className="w-full rounded-lg">
-                    <Truck className="w-5 h-5 mr-2" />
-                    Demander l'enlèvement gratuit
-                  </Button>
-                </form>
-              </CardContent>
-            </Card>
+            <ContactForm />
             <div className="text-center mt-8 space-y-4">
               <div className="flex items-center justify-center space-x-8">
                 <div className="flex items-center">

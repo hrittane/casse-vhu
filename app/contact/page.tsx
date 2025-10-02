@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
+import { ContactForm } from "@/components/ui/ContactForm"
 import { Phone, Mail, MapPin, Clock } from "lucide-react"
 
 export default function ContactPage() {
@@ -30,57 +31,7 @@ export default function ContactPage() {
                 <div className="container mx-auto max-w-6xl">
                     <div className="grid md:grid-cols-2 gap-8 lg:gap-12">
                         {/* Contact Form */}
-                        <Card className="p-6 md:p-8">
-                            <h2 className="text-2xl md:text-3xl font-bold mb-6 text-primary">Envoyez-nous un message</h2>
-                            <form className="space-y-6">
-                                <div className="grid sm:grid-cols-2 gap-4">
-                                    <div className="space-y-2">
-                                        <label htmlFor="firstName" className="text-sm font-medium">
-                                            Prénom *
-                                        </label>
-                                        <Input id="firstName" placeholder="Votre prénom" required />
-                                    </div>
-                                    <div className="space-y-2">
-                                        <label htmlFor="lastName" className="text-sm font-medium">
-                                            Nom *
-                                        </label>
-                                        <Input id="lastName" placeholder="Votre nom" required />
-                                    </div>
-                                </div>
-
-                                <div className="space-y-2">
-                                    <label htmlFor="email" className="text-sm font-medium">
-                                        Email *
-                                    </label>
-                                    <Input id="email" type="email" placeholder="votre.email@exemple.com" required />
-                                </div>
-
-                                <div className="space-y-2">
-                                    <label htmlFor="phone" className="text-sm font-medium">
-                                        Téléphone *
-                                    </label>
-                                    <Input id="phone" type="tel" placeholder="06 30 30 20 53" required />
-                                </div>
-
-                                <div className="space-y-2">
-                                    <label htmlFor="subject" className="text-sm font-medium">
-                                        Sujet
-                                    </label>
-                                    <Input id="subject" placeholder="Objet de votre demande" />
-                                </div>
-
-                                <div className="space-y-2">
-                                    <label htmlFor="message" className="text-sm font-medium">
-                                        Message *
-                                    </label>
-                                    <Textarea id="message" placeholder="Décrivez votre demande..." rows={6} required />
-                                </div>
-
-                                <Button type="submit" size="lg" className="w-full">
-                                    Envoyer le message
-                                </Button>
-                            </form>
-                        </Card>
+                        <ContactForm />
 
                         {/* Contact Information */}
                         <div className="space-y-6">
