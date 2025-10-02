@@ -229,7 +229,7 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
                         <Phone className="w-4 h-4 mr-2" />
                         06 30 30 20 53
                       </Button>
-                      <Button size="lg" variant="outline" className="rounded-full bg-transparent">
+                      <Button size="lg" variant="secondary" className="rounded-full">
                         Demander un devis
                       </Button>
                     </div>

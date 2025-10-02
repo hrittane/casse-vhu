@@ -8,13 +8,14 @@ function TopMenu() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
     const navLinks = [
-        { href: "#services", text: "Services" },
-        { href: "#vehicles", text: "Véhicules" },
-        { href: "#process", text: "Comment ça marche" },
-        { href: "#zones", text: "Zones d'intervention" },
-        { href: "#faq", text: "FAQ" },
+        { href: "/services", text: "Services" },
+        // { href: "#vehicles", text: "Véhicules" },
+        // { href: "#process", text: "Comment ça marche" },
+        { href: "/zones", text: "Zones" },
+        // { href: "#faq", text: "FAQ" },
         { href: "/blog", text: "Blog" },
-        { href: "#contact", text: "Contact" },
+        { href: "/a-propos", text: "À propos" },
+        { href: "/contact", text: "Contact" },
     ];
 
     return (
