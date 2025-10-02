@@ -305,7 +305,7 @@ export default function ZonePage({ params }: { params: { zone: string } }) {
                                 enlèvement gratuit et rapide.
                             </p>
                             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                                <Button size="lg" variant="secondary" className="text-lg px-8 py-6 rounded-full">
+                                <Button size="lg" className="text-lg px-8 py-6 rounded-full bg-white text-primary hover:bg-white/90 ">
                                     <Phone className="w-5 h-5 mr-2" />
                                     06 30 30 20 53
                                 </Button>
