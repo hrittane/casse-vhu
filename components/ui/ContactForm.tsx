@@ -38,10 +38,11 @@ export function ContactForm() {
             onSubmit={handleSubmit}
             className="rounded-lg border bg-card text-card-foreground shadow-sm"
         >
-            <div className="flex flex-col space-y-1.5 p-6">
-                <h3 className="font-semibold leading-none tracking-tight">
-                    Formulaire de contact
-                </h3>
+            <div className="text-center m-6">
+                <h3 className="text-2xl font-bold text-foreground mb-2">Obtenez votre devis gratuit</h3>
+                <p className="text-muted-foreground">
+                    Remplissez ce formulaire et nous vous contacterons rapidement
+                </p>
             </div>
             <div className="p-6 pt-0">
                 <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
