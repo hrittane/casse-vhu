@@ -15,112 +15,15 @@ import {
   ArrowRight,
 } from "lucide-react"
 import Link from "next/link"
+import posts from "@/data/blog/index.json"
 
-// This would typically come from a CMS or database
 const getBlogPost = (slug: string) => {
-  const posts = {
-    "preparer-vehicule-enlevement-epave": {
-      id: 1,
-      title: "Comment bien préparer votre véhicule avant l'enlèvement d'épave",
-      excerpt:
-        "Découvrez les étapes essentielles pour préparer votre véhicule hors d'usage avant l'intervention de nos équipes.",
-      content: `
-        <p>L'enlèvement d'une épave nécessite une préparation minutieuse pour garantir un processus fluide et conforme à la réglementation. Voici notre guide complet pour bien préparer votre véhicule.</p>
-
-        <h2>1. Rassemblez les documents nécessaires</h2>
-        <p>Avant toute intervention, assurez-vous d'avoir en votre possession :</p>
-        <ul>
-          <li><strong>La carte grise du véhicule</strong> : document indispensable prouvant votre propriété</li>
-          <li><strong>Une pièce d'identité valide</strong> : carte d'identité ou passeport</li>
-          <li><strong>Le formulaire Cerfa n°15776*02</strong> : déclaration de cession pour destruction</li>
-        </ul>
-
-        <h2>2. Videz complètement le véhicule</h2>
-        <p>Retirez tous vos effets personnels du véhicule :</p>
-        <ul>
-          <li>Vérifiez la boîte à gants, les vide-poches et le coffre</li>
-          <li>N'oubliez pas les compartiments cachés</li>
-          <li>Retirez les équipements ajoutés (GPS, autoradio personnalisé, etc.)</li>
-        </ul>
-
-        <h2>3. Préparez l'accès au véhicule</h2>
-        <p>Pour faciliter l'intervention de nos équipes :</p>
-        <ul>
-          <li>Dégagez l'accès autour du véhicule</li>
-          <li>Assurez-vous que la dépanneuse puisse s'approcher</li>
-          <li>Signalez tout obstacle ou difficulté d'accès</li>
-        </ul>
-
-        <h2>4. Informez-nous des spécificités</h2>
-        <p>Communiquez-nous toute information importante :</p>
-        <ul>
-          <li>État des pneus et possibilité de rouler</li>
-          <li>Présence de carburant dans le réservoir</li>
-          <li>Problèmes mécaniques particuliers</li>
-          <li>Modifications apportées au véhicule</li>
-        </ul>
-
-        <h2>Que faire si des documents manquent ?</h2>
-        <p>Si vous ne possédez plus certains documents, ne vous inquiétez pas. Nous pouvons vous accompagner dans les démarches de régularisation. Un certificat de non-gage peut parfois suffire selon les situations.</p>
-
-        <h2>Le jour de l'enlèvement</h2>
-        <p>Le jour J, nos équipes se chargeront de :</p>
-        <ul>
-          <li>Vérifier les documents</li>
-          <li>Procéder à l'enlèvement sécurisé</li>
-          <li>Vous remettre le certificat de destruction</li>
-          <li>Effectuer les démarches administratives</li>
-        </ul>
-
-        <p>En suivant ces étapes simples, vous garantissez un enlèvement d'épave rapide et sans complications. Notre équipe reste à votre disposition pour toute question.</p>
-      `,
-      date: "15 Janvier 2024",
-      readTime: "5 min",
-      category: "Guide pratique",
-      image: "/car-preparation-for-recycling.jpg",
-      author: "Équipe Casse-VHU",
-    },
-  }
-
-  return posts[slug as keyof typeof posts] || null
+  return posts.find((post) => post.slug === slug)
 }
-
-const getRelatedPosts = () => [
-  {
-    id: 2,
-    title: "Les nouvelles réglementations VHU 2024 : ce qui change",
-    excerpt: "Tour d'horizon des nouvelles réglementations concernant les véhicules hors d'usage en 2024.",
-    date: "8 Janvier 2024",
-    readTime: "7 min",
-    category: "Réglementation",
-    image: "/placeholder.svg?key=ex43w",
-    slug: "nouvelles-reglementations-vhu-2024",
-  },
-  {
-    id: 5,
-    title: "Que faire si vous n'avez plus la carte grise de votre épave ?",
-    excerpt: "Solutions et démarches à suivre lorsque vous avez perdu la carte grise de votre véhicule hors d'usage.",
-    date: "20 Décembre 2023",
-    readTime: "4 min",
-    category: "Démarches",
-    image: "/administrative-documents-paperwork.jpg",
-    slug: "que-faire-sans-carte-grise-epave",
-  },
-  {
-    id: 4,
-    title: "Prime à la conversion 2024 : conditions et démarches",
-    excerpt: "Tout savoir sur la prime à la conversion en 2024. Conditions d'éligibilité, montants et démarches.",
-    date: "28 Décembre 2023",
-    readTime: "8 min",
-    category: "Aides financières",
-    image: "/money-financial-aid-government-bonus.jpg",
-    slug: "prime-conversion-2024-conditions-demarches",
-  },
-]
 
 export default function BlogPostPage({ params }: { params: { slug: string } }) {
   const post = getBlogPost(params.slug)
-  const relatedPosts = getRelatedPosts()
+  const relatedPosts = posts.filter((p) => p.slug !== params.slug).slice(0, 3)
 
   if (!post) {
     return (
@@ -178,10 +81,6 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
               <div className="flex items-center justify-between flex-wrap gap-4">
                 <div className="flex items-center space-x-6 text-sm text-muted-foreground">
                   <div className="flex items-center">
-                    <User className="w-4 h-4 mr-2" />
-                    <span>{post.author}</span>
-                  </div>
-                  <div className="flex items-center">
                     <Calendar className="w-4 h-4 mr-2" />
                     <span>{post.date}</span>
                   </div>
@@ -214,8 +113,9 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
               <div className="lg:col-span-3">
                 <div
                   className="prose prose-lg max-w-none prose-headings:text-foreground prose-p:text-muted-foreground prose-strong:text-foreground prose-ul:text-muted-foreground prose-li:text-muted-foreground"
-                  dangerouslySetInnerHTML={{ __html: post.content }}
-                />
+                >
+                  <p>{post.content}</p>
+                </div>
 
                 {/* Call to Action */}
                 <Card className="mt-12 p-8 bg-gradient-to-br from-primary/5 to-secondary/5 border-2">

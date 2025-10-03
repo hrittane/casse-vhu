@@ -15,77 +15,9 @@ import {
   Tag,
 } from "lucide-react"
 import Link from "next/link"
+import blogPosts from "@/data/blog/index.json"
 
 export default function BlogPage() {
-
-  const blogPosts = [
-    {
-      id: 1,
-      title: "Comment bien préparer votre véhicule avant l'enlèvement d'épave",
-      excerpt:
-        "Découvrez les étapes essentielles pour préparer votre véhicule hors d'usage avant l'intervention de nos équipes. Un guide complet pour un enlèvement sans problème.",
-      date: "15 Janvier 2024",
-      readTime: "5 min",
-      category: "Guide pratique",
-      image: "/car-preparation-for-recycling.jpg",
-      slug: "preparer-vehicule-enlevement-epave",
-    },
-    {
-      id: 2,
-      title: "Les nouvelles réglementations VHU 2024 : ce qui change",
-      excerpt:
-        "Tour d'horizon des nouvelles réglementations concernant les véhicules hors d'usage en 2024. Impact sur les propriétaires et les centres agréés.",
-      date: "8 Janvier 2024",
-      readTime: "7 min",
-      category: "Réglementation",
-      image: "/placeholder-wwlbt.png",
-      slug: "nouvelles-reglementations-vhu-2024",
-    },
-    {
-      id: 3,
-      title: "Recyclage automobile : l'impact environnemental positif",
-      excerpt:
-        "Comprendre l'importance du recyclage automobile pour l'environnement. Chiffres clés et bénéfices écologiques de la filière VHU.",
-      date: "2 Janvier 2024",
-      readTime: "6 min",
-      category: "Environnement",
-      image: "/placeholder-1ugkb.png",
-      slug: "recyclage-automobile-impact-environnemental",
-    },
-    {
-      id: 4,
-      title: "Prime à la conversion 2024 : conditions et démarches",
-      excerpt:
-        "Tout savoir sur la prime à la conversion en 2024. Conditions d'éligibilité, montants et démarches pour bénéficier de cette aide gouvernementale.",
-      date: "28 Décembre 2023",
-      readTime: "8 min",
-      category: "Aides financières",
-      image: "/money-financial-aid-government-bonus.jpg",
-      slug: "prime-conversion-2024-conditions-demarches",
-    },
-    {
-      id: 5,
-      title: "Que faire si vous n'avez plus la carte grise de votre épave ?",
-      excerpt:
-        "Solutions et démarches à suivre lorsque vous avez perdu la carte grise de votre véhicule hors d'usage. Procédures administratives simplifiées.",
-      date: "20 Décembre 2023",
-      readTime: "4 min",
-      category: "Démarches",
-      image: "/administrative-documents-paperwork.jpg",
-      slug: "que-faire-sans-carte-grise-epave",
-    },
-    {
-      id: 6,
-      title: "Les pièces détachées d'occasion : une seconde vie pour votre auto",
-      excerpt:
-        "Comment les pièces de votre ancien véhicule peuvent servir à d'autres automobilistes. Le marché de la pièce détachée d'occasion expliqué.",
-      date: "15 Décembre 2023",
-      readTime: "5 min",
-      category: "Recyclage",
-      image: "/car-parts-spare-parts-automotive.jpg",
-      slug: "pieces-detachees-occasion-seconde-vie",
-    },
-  ]
 
   const categories = [
     "Tous",
