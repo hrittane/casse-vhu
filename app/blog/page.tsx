@@ -78,11 +78,11 @@ export default function BlogPage() {
             {blogPosts.map((post) => (
               <Card
                 key={post.id}
-                className="group hover:shadow-lg transition-all duration-300 border-2 hover:border-primary/20"
+                className="py-0 group hover:shadow-lg transition-all duration-300 border-2 hover:border-primary/20"
               >
                 <div className="aspect-video overflow-hidden rounded-t-lg">
                   <img
-                    src={post.image || "/placeholder.svg"}
+                    src={`/posts${post.image || "placeholder.svg"}`}
                     alt={post.title}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                   />

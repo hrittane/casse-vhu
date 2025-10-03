@@ -98,7 +98,7 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
 
             {/* Featured Image */}
             <div className="aspect-video overflow-hidden rounded-lg mb-8">
-              <img src={post.image || "/placeholder.svg"} alt={post.title} className="w-full h-full object-cover" />
+              <img src={`/posts${post.image || "placeholder.svg"}`} alt={post.title} className="w-full h-full object-cover" />
             </div>
           </div>
         </div>

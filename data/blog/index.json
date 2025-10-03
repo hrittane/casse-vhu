@@ -7,7 +7,7 @@
         "date": "15 Janvier 2024",
         "readTime": "5 min",
         "category": "Guide pratique",
-        "image": "/car-preparation-for-recycling.jpg",
+        "image": "/car-preparation-for-recycling.png",
         "author": "Équipe Casse-VHU",
         "slug": "comment-bien-preparer-votre-vehicule-avant-enlevement"
     },
@@ -19,7 +19,7 @@
         "date": "8 Janvier 2024",
         "readTime": "7 min",
         "category": "Réglementation",
-        "image": "/placeholder-wwlbt.png",
+        "image": "/réglementations.png",
         "slug": "nouvelles-reglementations-vhu-2024"
     },
     {
@@ -30,7 +30,7 @@
         "date": "2 Janvier 2024",
         "readTime": "6 min",
         "category": "Environnement",
-        "image": "/placeholder-1ugkb.png",
+        "image": "/Recyclage.png",
         "slug": "recyclage-automobile-impact-environnemental"
     },
     {
@@ -41,7 +41,7 @@
         "date": "28 Décembre 2023",
         "readTime": "8 min",
         "category": "Aides financières",
-        "image": "/money-financial-aid-government-bonus.jpg",
+        "image": "/Prime.png",
         "slug": "prime-conversion-2024-conditions-demarches"
     },
     {
@@ -52,7 +52,7 @@
         "date": "20 Décembre 2023",
         "readTime": "4 min",
         "category": "Démarches",
-        "image": "/administrative-documents-paperwork.jpg",
+        "image": "/cartegrise.png",
         "slug": "que-faire-sans-carte-grise-epave"
     },
     {
@@ -63,7 +63,7 @@
         "date": "15 Décembre 2023",
         "readTime": "5 min",
         "category": "Recyclage",
-        "image": "/car-parts-spare-parts-automotive.jpg",
+        "image": "/occasion.png",
         "slug": "pieces-detachees-occasion-seconde-vie"
     }
 ]
