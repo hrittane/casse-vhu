@@ -114,7 +114,8 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
                 <div
                   className="prose prose-lg max-w-none prose-headings:text-foreground prose-p:text-muted-foreground prose-strong:text-foreground prose-ul:text-muted-foreground prose-li:text-muted-foreground"
                 >
-                  <p>{post.content}</p>
+                  {/* <p>{post.content}</p> */}
+                  <div dangerouslySetInnerHTML={{ __html: post.content }} />
                 </div>
 
                 {/* Call to Action */}
