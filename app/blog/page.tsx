@@ -1,3 +1,6 @@
+"use client"
+
+import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
@@ -18,6 +21,8 @@ import Link from "next/link"
 import blogPosts from "@/data/blog/index.json"
 
 export default function BlogPage() {
+  const [searchTerm, setSearchTerm] = useState("")
+  const [selectedCategory, setSelectedCategory] = useState("Tous")
 
   const categories = [
     "Tous",
@@ -28,6 +33,16 @@ export default function BlogPage() {
     "Démarches",
     "Recyclage",
   ]
+
+  const filteredBlogPosts = blogPosts.filter((post) => {
+    const term = searchTerm.toLowerCase()
+    const categoryMatch =
+      selectedCategory === "Tous" || post.category === selectedCategory
+    const searchMatch =
+      post.title.toLowerCase().includes(term) ||
+      post.excerpt.toLowerCase().includes(term)
+    return categoryMatch && searchMatch
+  })
 
   return (
     <div className="min-h-screen bg-background">
@@ -45,7 +60,12 @@ export default function BlogPage() {
             <div className="max-w-md mx-auto">
               <div className="relative">
                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-4 h-4" />
-                <Input placeholder="Rechercher un article..." className="pl-10 rounded-full bg-card border" />
+                <Input
+                  placeholder="Rechercher un article..."
+                  className="pl-10 rounded-full bg-card border"
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                />
               </div>
             </div>
           </div>
@@ -59,9 +79,10 @@ export default function BlogPage() {
             {categories.map((category) => (
               <Button
                 key={category}
-                variant={category === "Tous" ? "default" : "outline"}
+                variant={selectedCategory === category ? "default" : "outline"}
                 size="sm"
                 className="rounded-full"
+                onClick={() => setSelectedCategory(category)}
               >
                 <Tag className="w-3 h-3 mr-2" />
                 {category}
@@ -75,7 +96,7 @@ export default function BlogPage() {
       <section className="py-16">
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
-            {blogPosts.map((post) => (
+            {filteredBlogPosts.map((post) => (
               <Card
                 key={post.id}
                 className="py-0 group hover:shadow-lg transition-all duration-300 border-2 hover:border-primary/20"
