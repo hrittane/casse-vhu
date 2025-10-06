@@ -15,15 +15,31 @@ import {
   ArrowRight,
 } from "lucide-react"
 import Link from "next/link"
-import posts from "@/data/blog/index.json"
+import postsData from "@/data/blog/index.json"
 
-const getBlogPost = (slug: string) => {
-  return posts.find((post) => post.slug === slug)
+interface Post {
+  id: number
+  title: string
+  excerpt: string
+  content: string
+  date: string
+  readTime: string
+  category: string
+  image: string
+  author: string
+  slug: string
+  tableOfContent: string[]
+}
+
+const posts: Post[] = postsData as Post[]
+
+const getBlogPost = (slug: string): Post | undefined => {
+  return posts.find((post: Post) => post.slug === slug)
 }
 
 export default function BlogPostPage({ params }: { params: { slug: string } }) {
   const post = getBlogPost(params.slug)
-  const relatedPosts = posts.filter((p) => p.slug !== params.slug).slice(0, 3)
+  const relatedPosts = posts.filter((p: Post) => p.slug !== params.slug).slice(0, 3)
 
   if (!post) {
     return (
@@ -115,7 +131,17 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
                   className="prose prose-lg max-w-none prose-headings:text-foreground prose-p:text-muted-foreground prose-strong:text-foreground prose-ul:text-muted-foreground prose-li:text-muted-foreground"
                 >
                   {/* <p>{post.content}</p> */}
-                  <div dangerouslySetInnerHTML={{ __html: post.content }} />
+                  <div
+                    dangerouslySetInnerHTML={{
+                      __html: post.content.replace(/<h2>(.*?)<\/h2>/g, (match: string, p1: string) => {
+                        const slug = p1
+                          .toLowerCase()
+                          .replace(/ /g, "-")
+                          .replace(/[^\w-]+/g, "")
+                        return `<h2 id="${slug}">${p1}</h2>`
+                      }),
+                    }}
+                  />
                 </div>
 
                 {/* Call to Action */}
@@ -142,41 +168,26 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
               <div className="lg:col-span-1">
                 <div className="sticky top-24 space-y-8">
                   {/* Table of Contents */}
-                  <Card className="p-6">
-                    <h3 className="font-semibold mb-4">Sommaire</h3>
-                    <ul className="space-y-2 text-sm">
-                      <li>
-                        <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
-                          1. Documents nécessaires
-                        </a>
-                      </li>
-                      <li>
-                        <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
-                          2. Vider le véhicule
-                        </a>
-                      </li>
-                      <li>
-                        <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
-                          3. Préparer l'accès
-                        </a>
-                      </li>
-                      <li>
-                        <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
-                          4. Informer les spécificités
-                        </a>
-                      </li>
-                      <li>
-                        <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
-                          Documents manquants
-                        </a>
-                      </li>
-                      <li>
-                        <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
-                          Le jour de l'enlèvement
-                        </a>
-                      </li>
-                    </ul>
-                  </Card>
+                  {post.tableOfContent && post.tableOfContent.length > 0 && (
+                    <Card className="p-6">
+                      <h3 className="font-semibold mb-4">Sommaire</h3>
+                      <ul className="space-y-2 text-sm">
+                        {post.tableOfContent.map((item: string, index: number) => {
+                          const slug = item
+                            .toLowerCase()
+                            .replace(/ /g, "-")
+                            .replace(/[^\w-]+/g, "")
+                          return (
+                            <li key={index}>
+                              <a href={`#${slug}`} className="text-muted-foreground hover:text-primary transition-colors">
+                                {item}
+                              </a>
+                            </li>
+                          )
+                        })}
+                      </ul>
+                    </Card>
+                  )}
 
                   {/* Contact Card */}
                   <Card className="p-6 bg-primary/5">
@@ -200,7 +211,7 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
           <div className="max-w-6xl mx-auto">
             <h2 className="text-3xl font-bold text-foreground mb-8 text-center">Articles similaires</h2>
             <div className="grid md:grid-cols-3 gap-8">
-              {relatedPosts.map((relatedPost) => (
+              {relatedPosts.map((relatedPost: Post) => (
                 <Card
                   key={relatedPost.id}
                   className="group hover:shadow-lg transition-all duration-300 border-2 hover:border-primary/20 py-0 "
