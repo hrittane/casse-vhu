@@ -203,11 +203,11 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
               {relatedPosts.map((relatedPost) => (
                 <Card
                   key={relatedPost.id}
-                  className="group hover:shadow-lg transition-all duration-300 border-2 hover:border-primary/20"
+                  className="group hover:shadow-lg transition-all duration-300 border-2 hover:border-primary/20 py-0 "
                 >
                   <div className="aspect-video overflow-hidden rounded-t-lg">
                     <img
-                      src={relatedPost.image || "/placeholder.svg"}
+                      src={`/posts${relatedPost.image || "placeholder.svg"}`}
                       alt={relatedPost.title}
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                     />
