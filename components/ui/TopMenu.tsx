@@ -1,11 +1,13 @@
 "use client"
 import React, { useState } from 'react';
+import { usePathname } from 'next/navigation';
 import { Phone, Mail, MapPin, Facebook, Instagram, Twitter, Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger, SheetClose } from "@/components/ui/sheet";
 
 function TopMenu() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const pathname = usePathname();
 
     const navLinks = [
         { href: "/services", text: "Services" },
@@ -60,11 +62,14 @@ function TopMenu() {
 
                     {/* Desktop Menu */}
                     <nav className="hidden lg:flex items-center space-x-6">
-                        {navLinks.map((link) => (
-                            <a key={link.href} href={link.href} className="text-muted-foreground hover:text-foreground transition-colors">
-                                {link.text}
-                            </a>
-                        ))}
+                        {navLinks.map((link) => {
+                            const isActive = pathname === link.href;
+                            return (
+                                <a key={link.href} href={link.href} className={`transition-colors hover:text-foreground ${isActive ? 'text-foreground font-medium' : 'text-muted-foreground'}`}>
+                                    {link.text}
+                                </a>
+                            );
+                        })}
                     </nav>
 
                     {/* Mobile Menu */}
@@ -78,16 +83,19 @@ function TopMenu() {
                             </SheetTrigger>
                             <SheetContent side="top" className="w-full bg-card/80 backdrop-blur-sm ">
                                 <nav className="flex flex-col items-center space-y-6 pt-12">
-                                    {navLinks.map((link) => (
-                                        <SheetClose asChild key={link.href}>
-                                            <a
-                                                href={link.href}
-                                                className="text-muted-foreground hover:text-foreground transition-colors text-lg"
-                                            >
-                                                {link.text}
-                                            </a>
-                                        </SheetClose>
-                                    ))}
+                                    {navLinks.map((link) => {
+                                        const isActive = pathname === link.href;
+                                        return (
+                                            <SheetClose asChild key={link.href}>
+                                                <a
+                                                    href={link.href}
+                                                    className={`transition-colors hover:text-foreground text-lg ${isActive ? 'text-foreground font-medium' : 'text-muted-foreground'}`}
+                                                >
+                                                    {link.text}
+                                                </a>
+                                            </SheetClose>
+                                        );
+                                    })}
                                 </nav>
                             </SheetContent>
                         </Sheet>
