@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import { CheckCircle } from 'lucide-react';
 
 export function ContactForm() {
     const [name, setName] = useState("");
@@ -14,6 +15,7 @@ export function ContactForm() {
     const [carteGrise, setCarteGrise] = useState("Statut de la carte grise");
     const [etat, setEtat] = useState("Etat du véhicule");
     const [comment, setComment] = useState("");
+    const [submitted, setSubmitted] = useState(false);
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -31,7 +33,25 @@ export function ContactForm() {
                 comment,
             }),
         });
+        setSubmitted(true);
     };
+
+    if (submitted) {
+        return (
+            <div className="rounded-lg border bg-card text-card-foreground shadow-sm text-center p-6">
+                <CheckCircle className="w-16 h-16 mx-auto text-green-500" />
+                <h3 className="text-2xl font-bold text-foreground my-4">
+                    Merci pour votre soumission!
+                </h3>
+                <p className="text-muted-foreground mb-4">
+                    Nous vous contacterons dès que possible.
+                </p>
+                <Button onClick={() => setSubmitted(false)}>
+                    Envoyer un autre message
+                </Button>
+            </div>
+        );
+    }
 
     return (
         <form
