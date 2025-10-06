@@ -45,7 +45,7 @@ export default function BlogPage() {
             <div className="max-w-md mx-auto">
               <div className="relative">
                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-4 h-4" />
-                <Input placeholder="Rechercher un article..." className="pl-10 rounded-full" />
+                <Input placeholder="Rechercher un article..." className="pl-10 rounded-full bg-card border" />
               </div>
             </div>
           </div>
