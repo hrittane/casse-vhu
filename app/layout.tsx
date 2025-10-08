@@ -6,6 +6,7 @@ import { Analytics } from "@vercel/analytics/next"
 import { Suspense } from "react"
 import StickyMenu from "@/components/ui/StickyMenu"
 import TopMenu from "@/components/ui/TopMenu"
+import Footer from "@/components/ui/Footer"
 
 import "./globals.css"
 
@@ -33,6 +34,7 @@ export default function RootLayout({
         {/* sticky cta mobile */}
         <StickyMenu />
 
+        <Footer />
         <Analytics />
       </body>
     </html>
