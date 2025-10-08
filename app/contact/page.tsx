@@ -30,8 +30,19 @@ export default function ContactPage() {
             <section className="py-16 px-4">
                 <div className="container mx-auto max-w-6xl">
                     <div className="grid md:grid-cols-2 gap-8 lg:gap-12">
+
                         {/* Contact Form */}
-                        <ContactForm />
+                        <div className="h-full flex flex-col justify-between">
+                            <ContactForm />
+                            <Card className="p-6 bg-primary/5 border-primary/20">
+                                <h3 className="font-semibold text-primary">Intervention rapide</h3>
+                                <p className="text-sm text-muted-foreground">
+                                    Nous intervenons dans un délai de 24 à 48h maximum après votre demande. Service d'enlèvement gratuit
+                                    avec certificat de destruction officiel.
+                                </p>
+                            </Card>
+                        </div>
+
 
                         {/* Contact Information */}
                         <div className="space-y-6">
@@ -100,13 +111,7 @@ export default function ContactPage() {
                                 </Card>
                             </div>
 
-                            <Card className="p-6 bg-primary/5 border-primary/20">
-                                <h3 className="font-semibold mb-2 text-primary">Intervention rapide</h3>
-                                <p className="text-sm text-muted-foreground">
-                                    Nous intervenons dans un délai de 24 à 48h maximum après votre demande. Service d'enlèvement gratuit
-                                    avec certificat de destruction officiel.
-                                </p>
-                            </Card>
+
                         </div>
 
                     </div>
