@@ -25,7 +25,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="fr">
-      <body className={`font-sans ${GeistSans.variable} ${GeistMono.variable}`}>
+      <body className={`font-sans ${GeistSans.variable} ${GeistMono.variable}`} suppressHydrationWarning>
 
         {/* top menu */}
         <TopMenu />
@@ -34,6 +34,7 @@ export default function RootLayout({
         {/* sticky cta mobile */}
         <StickyMenu />
 
+        {/* footer */}
         <Footer />
         <Analytics />
       </body>
