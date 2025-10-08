@@ -16,24 +16,62 @@ export function ContactForm() {
     const [etat, setEtat] = useState("Etat du véhicule");
     const [comment, setComment] = useState("");
     const [submitted, setSubmitted] = useState(false);
+    const [errors, setErrors] = useState({ name: '', phone: '' });
+
+    const clearForm = () => {
+        setName("");
+        setPhone("");
+        setEmail("");
+        setLocation("");
+        setRegistration("");
+        setModel("");
+        setCarteGrise("Statut de la carte grise");
+        setEtat("Etat du véhicule");
+        setComment("");
+        setErrors({ name: '', phone: '' });
+    };
+
+    const validate = () => {
+        const newErrors = { name: '', phone: '' };
+        let isValid = true;
+
+        if (!name) {
+            newErrors.name = "Le nom et prénom sont obligatoires.";
+            isValid = false;
+        }
+
+        const phoneRegex = /^(?:(?:\+|00)33[\s.-]{0,3}(?:\(0\)[\s.-]{0,3})?|0)[1-9](?:(?:[\s.-]?\d{2}){4}|\d{2}(?:[\s.-]?\d{3}){2})$/;
+        if (!phone) {
+            newErrors.phone = "Le numéro de téléphone est obligatoire.";
+            isValid = false;
+        } else if (!phoneRegex.test(phone)) {
+            newErrors.phone = "Le format du numéro de téléphone est invalide.";
+            isValid = false;
+        }
+
+        setErrors(newErrors);
+        return isValid;
+    };
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        await fetch("/api/send", {
-            method: "POST",
-            body: JSON.stringify({
-                name,
-                phone,
-                email,
-                location,
-                registration,
-                model,
-                carteGrise,
-                etat,
-                comment,
-            }),
-        });
-        setSubmitted(true);
+        if (validate()) {
+            await fetch("/api/send", {
+                method: "POST",
+                body: JSON.stringify({
+                    name,
+                    phone,
+                    email,
+                    location,
+                    registration,
+                    model,
+                    carteGrise,
+                    etat,
+                    comment,
+                }),
+            });
+            setSubmitted(true);
+        }
     };
 
     if (submitted) {
@@ -46,7 +84,10 @@ export function ContactForm() {
                 <p className="text-muted-foreground mb-4">
                     Nous vous contacterons dès que possible.
                 </p>
-                <Button onClick={() => setSubmitted(false)}>
+                <Button onClick={() => {
+                    setSubmitted(false);
+                    clearForm();
+                }}>
                     Envoyer un autre message
                 </Button>
             </div>
@@ -66,16 +107,23 @@ export function ContactForm() {
             </div>
             <div className="p-6 pt-0">
                 <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-                    <Input
-                        placeholder="Nom & Prénom"
-                        value={name}
-                        onChange={(e) => setName(e.target.value)}
-                    />
-                    <Input
-                        placeholder="Numéro de téléphone"
-                        value={phone}
-                        onChange={(e) => setPhone(e.target.value)}
-                    />
+                    <div>
+                        <Input
+                            placeholder="Nom & Prénom"
+                            value={name}
+                            onChange={(e) => setName(e.target.value)}
+                        />
+                        {errors.name && <p className="text-red-500 text-sm mt-1">{errors.name}</p>}
+                    </div>
+                    <div>
+                        <Input
+                            placeholder="Numéro de téléphone"
+                            value={phone}
+                            onChange={(e) => setPhone(e.target.value)}
+                            type="tel"
+                        />
+                        {errors.phone && <p className="text-red-500 text-sm mt-1">{errors.phone}</p>}
+                    </div>
                     <Input
                         placeholder="Adresse Mail"
                         className="md:col-span-2"
