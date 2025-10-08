@@ -36,16 +36,15 @@ export async function POST(request: Request) {
         });
 
         if (error) {
+            console.error("Error sending email:", error);
             return NextResponse.json({ error });
         }
 
-        console.log("Form submitted");
+        console.log("Form submitted successfully:", data);
 
         return NextResponse.json({ data });
-
-
-
     } catch (error) {
+        console.error("Caught an exception:", error);
         return NextResponse.json({ error });
     }
 }
