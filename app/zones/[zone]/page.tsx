@@ -345,7 +345,7 @@ export default function ZonePage({ params }: { params: { zone: string } }) {
                                         <Mail className="w-5 h-5 text-primary flex-shrink-0" />
                                         <div>
                                             <p className="text-xs text-muted-foreground">Email</p>
-                                            <p className="font-semibold text-foreground text-sm">contact@casse-vhu.fr</p>
+                                            <a href="mailto:contact@casse-vhu.fr" className="font-semibold text-foreground text-sm">contact@casse-vhu.fr</a>
                                         </div>
                                     </div>
                                     <div className="flex items-center gap-3 p-3 bg-muted/30 rounded-lg">
@@ -456,7 +456,7 @@ export default function ZonePage({ params }: { params: { zone: string } }) {
                                 </div>
                                 <div className="flex items-center">
                                     <Mail className="w-4 h-4 mr-2" />
-                                    <span>contact@casse-vhu.fr</span>
+                                    <a href="mailto:contact@casse-vhu.fr">contact@casse-vhu.fr</a>
                                 </div>
                                 <div className="flex items-center">
                                     <MapPin className="w-4 h-4 mr-2" />

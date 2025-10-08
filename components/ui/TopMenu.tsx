@@ -32,7 +32,7 @@ function TopMenu() {
                         </div>
                         <div className="hidden sm:flex items-center">
                             <Mail className="w-4 h-4 mr-2" />
-                            <span>contact@casse-vhu.fr</span>
+                            <a href="mailto:contact@casse-vhu.fr">contact@casse-vhu.fr</a>
                         </div>
                     </div>
                     <div className="flex items-center space-x-3">

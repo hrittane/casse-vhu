@@ -798,7 +798,7 @@ export default function CasseVHULanding() {
                 </div>
                 <div className="flex items-center">
                   <Mail className="w-5 h-5 text-primary mr-2" />
-                  <span>contact@casse-vhu.fr</span>
+                  <a href="mailto:contact@casse-vhu.fr">contact@casse-vhu.fr</a>
                 </div>
               </div>
               <p className="text-muted-foreground">📍 Intervention sous 24 à 48h – Service professionnel garanti</p>
@@ -867,7 +867,7 @@ export default function CasseVHULanding() {
                 </div>
                 <div className="flex items-center">
                   <Mail className="w-4 h-4 mr-2" />
-                  <span>contact@casse-vhu.fr</span>
+                  <a href="mailto:contact@casse-vhu.fr">contact@casse-vhu.fr</a>
                 </div>
                 <div className="flex items-center">
                   <MapPin className="w-4 h-4 mr-2" />

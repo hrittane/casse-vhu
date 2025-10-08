@@ -225,7 +225,7 @@ export default function BlogPage() {
                 </div>
                 <div className="flex items-center">
                   <Mail className="w-4 h-4 mr-2" />
-                  <span>contact@casse-vhu.fr</span>
+                  <a href="mailto:contact@casse-vhu.fr">contact@casse-vhu.fr</a>
                 </div>
                 <div className="flex items-center">
                   <MapPin className="w-4 h-4 mr-2" />

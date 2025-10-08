@@ -64,7 +64,7 @@ export default function ContactPage() {
                                         </div>
                                         <div>
                                             <h3 className="font-semibold mb-1">Email</h3>
-                                            <p className="text-muted-foreground">contact@casse-vhu.fr</p>
+                                            <a href="mailto:contact@casse-vhu.fr" className="text-muted-foreground">contact@casse-vhu.fr</a>
                                             <p className="text-sm text-muted-foreground mt-1">Réponse sous 24h</p>
                                         </div>
                                     </div>
