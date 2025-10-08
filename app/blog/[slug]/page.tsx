@@ -152,9 +152,11 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
                       Contactez-nous dès maintenant pour un service gratuit et rapide partout en France
                     </p>
                     <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                      <Button size="lg" className="rounded-full">
-                        <Phone className="w-4 h-4 mr-2" />
-                        <a href="tel:+33 6 30 30 20 53">06 30 30 20 53</a>
+                      <Button size="lg" className="rounded-full" asChild>
+                        <a href="tel:+33 6 30 30 20 53">
+                          <Phone className="w-4 h-4 mr-2" />
+                          06 30 30 20 53
+                        </a>
                       </Button>
                       <Button size="lg" variant="secondary" className="rounded-full">
                         Demander un devis
@@ -193,9 +195,11 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
                   <Card className="p-6 bg-primary/5">
                     <h3 className="font-semibold mb-4">Une question ?</h3>
                     <p className="text-sm text-muted-foreground mb-4">Notre équipe est là pour vous accompagner</p>
-                    <Button className="w-full rounded-full ">
-                      <Phone className="w-4 h-4 mr-2" />
-                      appeler
+                    <Button className="w-full rounded-full " asChild>
+                      <a href="tel:+33 6 30 30 20 53">
+                        <Phone className="w-4 h-4 mr-2" />
+                        Appeler
+                      </a>
                     </Button>
                   </Card>
                 </div>

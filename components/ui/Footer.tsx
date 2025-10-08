@@ -20,7 +20,7 @@ export default function Footer() {
                     <div>
                         <h3 className="font-semibold mb-4">Services</h3>
                         <ul className="space-y-2 text-sm text-muted-foreground">
-                            <li>Enlèvement gratuit VHUUUUU</li>
+                            <li>Enlèvement gratuit VHU</li>
                             <li>Recyclage automobile</li>
                             <li>Dépollution véhicules</li>
                             <li>Certificat de destruction</li>

@@ -357,9 +357,11 @@ export default function ZonePage({ params }: { params: { zone: string } }) {
                                     </div>
                                 </div>
 
-                                <Button className="w-full rounded-full" size="lg">
-                                    <Phone className="w-4 h-4 mr-2" />
-                                    Appeler maintenant
+                                <Button className="w-full rounded-full" size="lg" asChild>
+                                    <a href="tel:+33 6 30 30 20 53">
+                                        <Phone className="w-4 h-4 mr-2" />
+                                        Appeler maintenant
+                                    </a>
                                 </Button>
 
                                 <div className="mt-6 pt-6 border-t">
