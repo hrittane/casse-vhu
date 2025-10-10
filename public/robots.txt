@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://www.casse-vuh.com
+
+# Sitemaps
+Sitemap: https://www.casse-vuh.com/sitemap.xml

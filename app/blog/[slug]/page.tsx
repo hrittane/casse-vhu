@@ -155,7 +155,7 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
                       <Button size="lg" className="rounded-full" asChild>
                         <a href="tel:+33 6 30 30 20 53">
                           <Phone className="w-4 h-4 mr-2" />
-                          06 30 30 20 53
+                          <a href="tel:+33630302053">06 30 30 20 53</a>
                         </a>
                       </Button>
                       <Button size="lg" variant="secondary" className="rounded-full">
@@ -225,6 +225,7 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
                       src={`/posts${relatedPost.image || "placeholder.svg"}`}
                       alt={relatedPost.title}
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                      loading="lazy"
                     />
                   </div>
                   <CardContent className="p-6">

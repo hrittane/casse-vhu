@@ -36,9 +36,60 @@ export default function ZonePage({ params }: { params: { zone: string } }) {
         notFound()
     }
 
+    const faqData = [
+        {
+            question: `Quels types de véhicules sont pris en charge à ${zoneName} ?`,
+            answer: `Nous prenons en charge tous types de véhicules à ${zoneName} : voitures, utilitaires, motos, scooters, camping-cars, etc., quel que soit leur état.`
+        },
+        {
+            question: `L'enlèvement d'épave est-il vraiment gratuit à ${zoneName} ?`,
+            answer: `Oui, notre service d'enlèvement d'épave à ${zoneName} est 100% gratuit, sans frais cachés.`
+        },
+        {
+            question: `Quels documents dois-je fournir pour l'enlèvement de mon véhicule à ${zoneName} ?`,
+            answer: `Vous devrez fournir la carte grise du véhicule, une pièce d'identité et un certificat de non-gage.`
+        }
+    ];
+
+    const schema = {
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        "name": `Casse-VHU ${zoneName}`,
+        "description": `Service d'enlèvement d'épaves gratuit à ${zoneName}.`,
+        "address": {
+            "@type": "PostalAddress",
+            "addressLocality": zoneName,
+            "addressCountry": "FR"
+        },
+        "provider": {
+            "@type": "Organization",
+            "name": "Casse-VHU"
+        }
+    };
+
+    const faqSchema = {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": faqData.map(faq => ({
+            "@type": "Question",
+            "name": faq.question,
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": faq.answer
+            }
+        }))
+    };
+
     return (
         <div className="min-h-screen bg-background">
-
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+            />
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+            />
             {/* Hero Section */}
             <section className="relative py-20 bg-gradient-to-br from-primary/10 to-secondary/10">
                 <div className="container mx-auto px-4">
@@ -297,6 +348,33 @@ export default function ZonePage({ params }: { params: { zone: string } }) {
                             </div>
                         </section>
 
+                        {/* Neighborhoods Section */}
+                        <section>
+                            <h2 className="text-3xl font-bold text-foreground mb-6">Quartiers et Villes Desservis à {zoneName}</h2>
+                            <div className="grid grid-cols-2 md:grid-cols-3 gap-2 text-sm text-muted-foreground">
+                                {/* This should be dynamically populated based on the zone */}
+                                <p>Centre-ville</p>
+                                <p>Quartier Nord</p>
+                                <p>Quartier Sud</p>
+                                <p>Zone Industrielle</p>
+                                <p>La périphérie</p>
+                                <p>Les communes voisines</p>
+                            </div>
+                        </section>
+
+                        {/* FAQ Section */}
+                        <section>
+                            <h2 className="text-3xl font-bold text-foreground mb-6">Questions Fréquentes à {zoneName}</h2>
+                            <div className="space-y-4">
+                                {faqData.map((faq, index) => (
+                                    <div key={index} className="border p-4 rounded-lg">
+                                        <h3 className="font-semibold">{faq.question}</h3>
+                                        <p className="text-muted-foreground">{faq.answer}</p>
+                                    </div>
+                                ))}
+                            </div>
+                        </section>
+
                         {/* CTA Section */}
                         <section className="bg-gradient-to-br from-primary to-primary/80 text-primary-foreground rounded-2xl p-8 text-center">
                             <h2 className="text-3xl font-bold mb-4">Contactez Casse-VHU.fr à {zoneName}</h2>
@@ -307,7 +385,7 @@ export default function ZonePage({ params }: { params: { zone: string } }) {
                             <div className="flex flex-col sm:flex-row gap-4 justify-center">
                                 <Button size="lg" className="text-lg px-8 py-6 rounded-full bg-white text-primary hover:bg-white/90 ">
                                     <Phone className="w-5 h-5 mr-2" />
-                                    <a href="tel:+33 6 30 30 20 53">06 30 30 20 53</a>
+                                    <a href="tel:+33630302053">06 30 30 20 53</a>
                                 </Button>
                                 <Button
                                     size="lg"
@@ -338,7 +416,7 @@ export default function ZonePage({ params }: { params: { zone: string } }) {
                                         <Phone className="w-5 h-5 text-primary flex-shrink-0" />
                                         <div>
                                             <p className="text-xs text-muted-foreground">Téléphone</p>
-                                            <a href="tel:0630302053" className="font-semibold text-foreground">06 30 30 20 53</a>
+                                            <a href="tel:+33630302053" className="font-semibold text-foreground">06 30 30 20 53</a>
                                         </div>
                                     </div>
                                     <div className="flex items-center gap-3 p-3 bg-muted/30 rounded-lg">
@@ -398,80 +476,6 @@ export default function ZonePage({ params }: { params: { zone: string } }) {
                 </div>
             </div>
 
-            {/* Footer */}
-            <footer className="bg-card border-t py-12">
-                <div className="container mx-auto px-4">
-                    <div className="grid md:grid-cols-4 gap-8">
-                        <div>
-                            <div className="flex items-center space-x-2 mb-4">
-                                <img src="/logo.png" alt="Casse-VHU Logo" className="h-8 w-auto" />
-                            </div>
-                            <p className="text-muted-foreground text-sm">
-                                Spécialiste du recyclage automobile écologique et responsable depuis 2010.
-                            </p>
-                        </div>
-                        <div>
-                            <h3 className="font-semibold mb-4">Services</h3>
-                            <ul className="space-y-2 text-sm text-muted-foreground">
-                                <li>Enlèvement gratuit VHU</li>
-                                <li>Recyclage automobile</li>
-                                <li>Dépollution véhicules</li>
-                                <li>Certificat de destruction</li>
-                            </ul>
-                        </div>
-                        <div>
-                            <h3 className="font-semibold mb-4">Liens rapides</h3>
-                            <ul className="space-y-2 text-sm text-muted-foreground">
-                                <li>
-                                    <a href="/services" className="hover:text-foreground transition-colors">
-                                        Services
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="/zones" className="hover:text-foreground transition-colors">
-                                        Zones
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="/blog" className="hover:text-foreground transition-colors">
-                                        Blog
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="/a-propos" className="hover:text-foreground transition-colors">
-                                        À propos
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="/contact" className="hover:text-foreground transition-colors">
-                                        Contact
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div>
-                            <h3 className="font-semibold mb-4">Contact</h3>
-                            <div className="space-y-3 text-sm text-muted-foreground">
-                                <div className="flex items-center">
-                                    <Phone className="w-4 h-4 mr-2" />
-                                    <a href="tel:0630302053">06 30 30 20 53</a>
-                                </div>
-                                <div className="flex items-center">
-                                    <Mail className="w-4 h-4 mr-2" />
-                                    <a href="mailto:contact@casse-vhu.fr">contact@casse-vhu.fr</a>
-                                </div>
-                                <div className="flex items-center">
-                                    <MapPin className="w-4 h-4 mr-2" />
-                                    <span>Partout en France</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="border-t mt-8 pt-8 text-center text-sm text-muted-foreground">
-                        <p>&copy; 2025 Casse-VHU. Tous droits réservés. | Centre VHU agréé préfecture</p>
-                    </div>
-                </div>
-            </footer>
         </div>
     )
 }

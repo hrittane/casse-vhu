@@ -265,7 +265,7 @@ export default function AProposPage() {
                     <div className="flex flex-col sm:flex-row gap-4 justify-center">
                         <Button size="lg" variant="secondary" className="text-lg px-8 py-6 rounded-full">
                             <Phone className="w-5 h-5 mr-2" />
-                            <a href="tel:+33 6 30 30 20 53">06 30 30 20 53</a>
+                            <a href="tel:+33630302053">06 30 30 20 53</a>
                         </Button>
                         <Button
                             size="lg"

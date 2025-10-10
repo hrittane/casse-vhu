@@ -117,5 +117,23 @@
             "Section 4 : Qualité, Garantie et Cadre Légal : Ce que Vous Devez Savoir",
             "Conclusion : Un Choix Intelligent pour une Réparation Durable"
         ]
+    },
+    {
+        "id": 7,
+        "title": "Que faire de sa vieille voiture ? Le guide complet",
+        "excerpt": "Votre vieille voiture prend la poussière dans votre garage ? Découvrez toutes les options qui s'offrent à vous, de la vente à la mise à la casse.",
+        "content": "## Introduction\n\nVous avez une vieille voiture qui ne vous sert plus ? Qu'elle soit en état de rouler ou non, plusieurs solutions s'offrent à vous. Ce guide complet vous aidera à y voir plus clair et à choisir la meilleure option pour vous et pour l'environnement.\n\n## Option 1 : La vente\n\nSi votre voiture est encore en état de rouler et que sa valeur est supérieure à 1000€, la vente peut être une option intéressante.\n\n### Vente à un particulier\n\nC'est souvent la solution la plus rentable, mais aussi la plus contraignante. Vous devrez vous occuper des annonces, des visites, et des démarches administratives.\n\n### Vente à un professionnel\n\nPlus simple et plus rapide, la vente à un professionnel de l'automobile vous décharge de nombreuses responsabilités. Cependant, le prix de rachat sera généralement inférieur à celui d'une vente à un particulier.\n\n## Option 2 : La mise à la casse\n\nSi votre voiture est trop vieille, en mauvais état, ou que sa valeur est trop faible, la mise à la casse est la solution la plus simple et la plus écologique.\n\n### Pourquoi mettre sa voiture à la casse ?\n\n*   **C'est une obligation légale :** Vous ne pouvez pas abandonner votre véhicule sur la voie publique.\n*   **C'est un geste pour l'environnement :** Les centres VHU (Véhicules Hors d'Usage) agréés s'occupent de la dépollution et du recyclage de votre voiture.\n*   **C'est souvent gratuit :** De nombreux professionnels, comme Casse-VHU, proposent un service d'enlèvement gratuit.\n\n### Comment se déroule la mise à la casse ?\n\n1.  **Prise de contact :** Vous contactez un centre VHU agréé.\n2.  **Enlèvement du véhicule :** Le professionnel vient chercher votre voiture gratuitement.\n3.  **Démarches administratives :** Le centre VHU s'occupe de toutes les formalités et vous remet un certificat de destruction.\n\n## Conclusion\n\nQuelle que soit l'option que vous choisissez, ne laissez pas votre vieille voiture à l'abandon. En optant pour la mise à la casse avec un professionnel agréé, vous faites un geste pour la planète tout en vous simplifiant la vie.",
+        "date": "22 Juillet 2024",
+        "readTime": "8 min",
+        "category": "Guide pratique",
+        "image": "/oldCar.png",
+        "author": "L'équipe Casse-VHU",
+        "slug": "que-faire-de-sa-vieille-voiture",
+        "tableOfContent": [
+            "Introduction",
+            "Option 1 : La vente",
+            "Option 2 : La mise à la casse",
+            "Conclusion"
+        ]
     }
 ]

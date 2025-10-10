@@ -26,6 +26,46 @@ export default function RootLayout({
   return (
     <html lang="fr">
       <body className={`font-sans ${GeistSans.variable} ${GeistMono.variable}`} suppressHydrationWarning>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "AutomotiveBusiness",
+              "name": "Casse-VHU",
+              "description": "Service gratuit d'enlèvement et recyclage de véhicules hors d'usage. Casse auto écologique et certifiée.",
+              "url": "https://www.casse-vuh.com",
+              "logo": "https://www.casse-vuh.com/logo.png",
+              "telephone": "+33-630-302-053",
+              "serviceArea": [
+                {
+                  "@type": "Place",
+                  "name": "Nouvelle-Aquitaine"
+                },
+                {
+                  "@type": "Place",
+                  "name": "Bretagne"
+                },
+                {
+                  "@type": "Place",
+                  "name": "Hauts-de-France"
+                },
+                {
+                  "@type": "Place",
+                  "name": "Auvergne-Rhône-Alpes"
+                },
+                {
+                  "@type": "Place",
+                  "name": "Provence-Alpes-Côte d'Azur"
+                },
+                {
+                  "@type": "Place",
+                  "name": "Pays de la Loire"
+                }
+              ]
+            })
+          }}
+        />
 
         {/* top menu */}
         <TopMenu />

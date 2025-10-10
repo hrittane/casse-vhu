@@ -16,9 +16,52 @@ import {
 } from "lucide-react"
 
 export default function ServicesPage() {
+    const services = [
+        {
+            "@type": "Service",
+            "name": "Enlèvement Gratuit",
+            "description": "Service rapide sous 24-48h partout en France, sans frais cachés.",
+            "provider": {
+                "@type": "AutomotiveBusiness",
+                "name": "Casse-VHU"
+            }
+        },
+        {
+            "@type": "Service",
+            "name": "Démarches Administratives",
+            "description": "Toutes les formalités sont prises en charge : certificat de destruction, déclaration en préfecture.",
+            "provider": {
+                "@type": "AutomotiveBusiness",
+                "name": "Casse-VHU"
+            }
+        },
+        {
+            "@type": "Service",
+            "name": "Centre Agréé VHU",
+            "description": "Recyclage et dépollution dans un centre VHU agréé.",
+            "provider": {
+                "@type": "AutomotiveBusiness",
+                "name": "Casse-VHU"
+            }
+        }
+    ];
+
+    const schema = {
+        "@context": "https://schema.org",
+        "@type": "ItemList",
+        "itemListElement": services.map((service, index) => ({
+            "@type": "ListItem",
+            "position": index + 1,
+            "item": service
+        }))
+    };
+
     return (
         <div className="min-h-screen bg-background">
-
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+            />
             {/* Hero Section */}
             <section className="relative py-20 bg-gradient-to-br from-primary/10 to-secondary/10">
                 <div className="container mx-auto px-4">
@@ -78,6 +121,35 @@ export default function ServicesPage() {
 
                         {/* Detailed Services */}
                         <div className="space-y-12">
+                            <div className="bg-muted/30 p-8 rounded-lg">
+                                <h2 className="text-3xl font-bold text-foreground mb-6">Ce qui est inclus dans notre service gratuit</h2>
+                                <div className="grid md:grid-cols-2 gap-4">
+                                    <div className="flex items-start gap-3">
+                                        <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-1" />
+                                        <p className="text-muted-foreground">Prise de rendez-vous flexible</p>
+                                    </div>
+                                    <div className="flex items-start gap-3">
+                                        <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-1" />
+                                        <p className="text-muted-foreground">Enlèvement du véhicule sur le lieu de votre choix</p>
+                                    </div>
+                                    <div className="flex items-start gap-3">
+                                        <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-1" />
+                                        <p className="text-muted-foreground">Gestion de toutes les démarches administratives</p>
+                                    </div>
+                                    <div className="flex items-start gap-3">
+                                        <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-1" />
+                                        <p className="text-muted-foreground">Remise du certificat de destruction</p>
+                                    </div>
+                                    <div className="flex items-start gap-3">
+                                        <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-1" />
+                                        <p className="text-muted-foreground">Transport vers un centre VHU agréé</p>
+                                    </div>
+                                    <div className="flex items-start gap-3">
+                                        <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-1" />
+                                        <p className="text-muted-foreground">Dépollution et recyclage du véhicule</p>
+                                    </div>
+                                </div>
+                            </div>
                             <div>
                                 <h2 className="text-3xl font-bold text-foreground mb-6">Pourquoi faire appel à Casse-VHU.fr ?</h2>
                                 <div className="grid md:grid-cols-2 gap-6">
@@ -250,6 +322,61 @@ export default function ServicesPage() {
                                 </div>
                             </div>
                         </div>
+                        <div className="bg-gradient-to-br from-primary/5 to-secondary/5 rounded-2xl p-8">
+                            <h2 className="text-3xl font-bold text-foreground mb-6">Notre promesse client</h2>
+                            <div className="space-y-4">
+                                <div className="flex items-start gap-4">
+                                    <CheckCircle className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
+                                    <div>
+                                        <h3 className="font-semibold text-foreground mb-2">Transparence totale</h3>
+                                        <p className="text-sm text-muted-foreground">
+                                            Aucun frais caché, notre service est 100% gratuit.
+                                        </p>
+                                    </div>
+                                </div>
+                                <div className="flex items-start gap-4">
+                                    <CheckCircle className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
+                                    <div>
+                                        <h3 className="font-semibold text-foreground mb-2">Respect de l'environnement</h3>
+                                        <p className="text-sm text-muted-foreground">
+                                            Nous nous engageons à recycler votre véhicule dans le respect des normes environnementales les plus strictes.
+                                        </p>
+                                    </div>
+                                </div>
+                                <div className="flex items-start gap-4">
+                                    <CheckCircle className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
+                                    <div>
+                                        <h3 className="font-semibold text-foreground mb-2">Accompagnement personnalisé</h3>
+                                        <p className="text-sm text-muted-foreground">
+                                            Notre équipe est à votre écoute pour répondre à toutes vos questions et vous accompagner à chaque étape.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            {/* FAQ Section */}
+            <section className="py-20">
+                <div className="container mx-auto px-4">
+                    <div className="max-w-4xl mx-auto">
+                        <h2 className="text-3xl font-bold text-foreground mb-6 text-center">Questions Fréquentes</h2>
+                        <div className="space-y-4">
+                            <div className="border p-4 rounded-lg">
+                                <h3 className="font-semibold">Quels types de véhicules prenez-vous en charge ?</h3>
+                                <p className="text-muted-foreground">Nous prenons en charge tous types de véhicules : voitures, utilitaires, motos, scooters, camping-cars, etc., quel que soit leur état.</p>
+                            </div>
+                            <div className="border p-4 rounded-lg">
+                                <h3 className="font-semibold">Mon véhicule ne roule plus, pouvez-vous quand même l'enlever ?</h3>
+                                <p className="text-muted-foreground">Oui, nous sommes équipés pour enlever les véhicules non-roulants.</p>
+                            </div>
+                            <div className="border p-4 rounded-lg">
+                                <h3 className="font-semibold">Que se passe-t-il si je n'ai pas la carte grise ?</h3>
+                                <p className="text-muted-foreground">Dans la plupart des cas, nous pouvons vous aider à trouver une solution. Contactez-nous pour en discuter.</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -264,7 +391,7 @@ export default function ServicesPage() {
                     <div className="flex flex-col sm:flex-row gap-4 justify-center">
                         <Button size="lg" className="text-lg px-8 py-6 rounded-full bg-white text-primary hover:bg-white/90">
                             <Phone className="w-5 h-5 mr-2" />
-                            <a href="tel:+33 6 30 30 20 53">06 30 30 20 53</a>
+                            <a href="tel:+33630302053">06 30 30 20 53</a>
                         </Button>
                         <Button
                             size="lg"

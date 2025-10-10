@@ -62,7 +62,7 @@ export default function CasseVHULanding() {
                   className="text-lg px-8 py-6 rounded-full bg-transparent border-white text-white hover:bg-white hover:text-primary"
                 >
                   <Phone className="w-5 h-5 mr-2" />
-                  <a href="tel:+33 6 30 30 20 53">06 30 30 20 53</a>
+                  <a href="tel:+33630302053">06 30 30 20 53</a>
                 </Button>
               </div>
               <div className="mt-8 flex items-center space-x-6 text-sm text-white/90">
@@ -302,7 +302,7 @@ export default function CasseVHULanding() {
                         </div>
                         <h3 className="font-semibold mb-3 text-center text-foreground">Contactez-nous</h3>
                         <p className="text-sm text-muted-foreground mb-3 text-center leading-relaxed">
-                          Par téléphone au <a href="tel:0630302053">06 30 30 20 53</a> ou via notre formulaire en ligne.
+                          Par téléphone au <a href="tel:+33630302053">06 30 30 20 53</a> ou via notre formulaire en ligne.
                         </p>
                         <div className="text-sm text-primary font-medium text-center">⏱️ 5 minutes</div>
                       </CardContent>
@@ -794,7 +794,7 @@ export default function CasseVHULanding() {
               <div className="flex items-center justify-center space-x-8">
                 <div className="flex items-center">
                   <Phone className="w-5 h-5 text-primary mr-2" />
-                  <a href="tel:0630302053" className="font-semibold">06 30 30 20 53</a>
+                  <a href="tel:+33630302053" className="font-semibold">06 30 30 20 53</a>
                 </div>
                 <div className="flex items-center">
                   <Mail className="w-5 h-5 text-primary mr-2" />

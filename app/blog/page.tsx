@@ -106,6 +106,7 @@ export default function BlogPage() {
                     src={`/posts${post.image || "placeholder.svg"}`}
                     alt={post.title}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                    loading="lazy"
                   />
                 </div>
                 <CardContent className="p-6">

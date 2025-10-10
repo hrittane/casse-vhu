@@ -25,7 +25,7 @@ function TopMenu() {
                     <div className="flex items-center space-x-4">
                         <div className="flex items-center">
                             <Phone className="w-4 h-4 mr-2" />
-                            <a href="tel:+33 6 30 30 20 53" className="font-medium">06 30 30 20 53</a>
+                            <a href="tel:+33630302053" className="font-medium">06 30 30 20 53</a>
                         </div>
                         <div className="hidden sm:flex items-center">
                             <Mail className="w-4 h-4 mr-2" />
@@ -79,20 +79,28 @@ function TopMenu() {
                                 </Button>
                             </SheetTrigger>
                             <SheetContent side="top" className="w-full bg-card/80 backdrop-blur-sm ">
-                                <nav className="flex flex-col items-center space-y-6 pt-12">
+                                <nav className="flex flex-col items-center space-y-2 pt-12">
                                     {navLinks.map((link) => {
                                         const isActive = pathname === link.href;
                                         return (
                                             <SheetClose asChild key={link.href}>
                                                 <a
                                                     href={link.href}
-                                                    className={`transition-colors hover:text-foreground text-lg ${isActive ? 'text-foreground font-medium' : 'text-muted-foreground'}`}
+                                                    className={`transition-colors hover:text-foreground text-lg py-3 w-full text-center ${isActive ? 'text-foreground font-medium' : 'text-muted-foreground'}`}
                                                 >
                                                     {link.text}
                                                 </a>
                                             </SheetClose>
                                         );
                                     })}
+                                    <div className="pt-6 w-full px-8">
+                                        <Button className="w-full rounded-full" asChild>
+                                            <a href="/contact">
+                                                <Mail className="w-4 h-4 mr-2" />
+                                                Contactez-nous
+                                            </a>
+                                        </Button>
+                                    </div>
                                 </nav>
                             </SheetContent>
                         </Sheet>
@@ -101,7 +109,7 @@ function TopMenu() {
 
                     <Button className="hidden lg:flex rounded-full">
                         <Phone className="w-4 h-4 mr-2" />
-                        <a href="tel:0630302053">06 30 30 20 53</a>
+                        <a href="tel:+33630302053">06 30 30 20 53</a>
                     </Button>
                 </div>
             </header>
