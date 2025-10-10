@@ -3,7 +3,7 @@ User-agent: *
 Allow: /
 
 # Host
-Host: https://www.casse-vuh.com
+Host: https://www.casse-vhu.fr
 
 # Sitemaps
-Sitemap: https://www.casse-vuh.com/sitemap.xml
+Sitemap: https://www.casse-vhu.fr/sitemap.xml

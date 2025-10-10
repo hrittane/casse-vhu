@@ -34,8 +34,8 @@ export default function RootLayout({
               "@type": "AutomotiveBusiness",
               "name": "Casse-VHU",
               "description": "Service gratuit d'enlèvement et recyclage de véhicules hors d'usage. Casse auto écologique et certifiée.",
-              "url": "https://www.casse-vuh.com",
-              "logo": "https://www.casse-vuh.com/logo.png",
+              "url": "https://www.casse-vhu.fr",
+              "logo": "https://www.casse-vhu.fr/logo.png",
               "telephone": "+33-630-302-053",
               "serviceArea": [
                 {

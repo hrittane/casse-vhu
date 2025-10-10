@@ -9,7 +9,7 @@ export default function GuidePage() {
         "@type": "Article",
         "mainEntityOfPage": {
             "@type": "WebPage",
-            "@id": "https://www.casse-vuh.com/recyclage-guide"
+            "@id": "https://www.casse-vhu.fr/recyclage-guide"
         },
         "headline": "Le Guide Complet du Recyclage Automobile en France",
         "description": "Tout ce que vous devez savoir sur la mise à la casse de votre véhicule et le recyclage automobile.",
@@ -22,7 +22,7 @@ export default function GuidePage() {
             "name": "Casse-VHU",
             "logo": {
                 "@type": "ImageObject",
-                "url": "https://www.casse-vuh.com/logo.png"
+                "url": "https://www.casse-vhu.fr/logo.png"
             }
         },
         "datePublished": new Date().toISOString()
