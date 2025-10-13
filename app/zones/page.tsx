@@ -1,3 +1,8 @@
+import { Metadata } from "next"
+
+export const metadata: Metadata = {
+    title: "Zones d'intervention",
+}
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Phone, Mail, MapPin, Facebook, Instagram, Twitter } from "lucide-react"

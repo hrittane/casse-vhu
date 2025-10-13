@@ -1,6 +1,4 @@
-"use client"
-
-import { useState } from "react"
+import { Metadata } from "next"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
@@ -19,10 +17,21 @@ import {
 } from "lucide-react"
 import Link from "next/link"
 import blogPosts from "@/data/blog/index.json"
+import { BlogSearch } from "@/components/ui/BlogSearch"
 
-export default function BlogPage() {
-  const [searchTerm, setSearchTerm] = useState("")
-  const [selectedCategory, setSelectedCategory] = useState("Tous")
+export const metadata: Metadata = {
+  title: "Blog",
+}
+
+export default function BlogPage({
+  searchParams,
+}: {
+  searchParams: { [key: string]: string | string[] | undefined }
+}) {
+  const searchTerm =
+    typeof searchParams.search === "string" ? searchParams.search : ""
+  const selectedCategory =
+    typeof searchParams.category === "string" ? searchParams.category : "Tous"
 
   const categories = [
     "Tous",
@@ -46,27 +55,19 @@ export default function BlogPage() {
 
   return (
     <div className="min-h-screen bg-background">
-
-
-
       {/* Blog Hero Section */}
       <section className="py-16 bg-gradient-to-br from-primary/10 to-secondary/10">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
-            <h1 className="text-4xl lg:text-5xl font-bold text-foreground mb-6 text-balance">Blog Casse-VHU</h1>
+            <h1 className="text-4xl lg:text-5xl font-bold text-foreground mb-6 text-balance">
+              Blog Casse-VHU
+            </h1>
             <p className="text-xl text-muted-foreground mb-8 text-pretty">
-              Conseils, actualités et guides pratiques sur l'enlèvement d'épaves et le recyclage automobile
+              Conseils, actualités et guides pratiques sur l'enlèvement
+              d'épaves et le recyclage automobile
             </p>
             <div className="max-w-md mx-auto">
-              <div className="relative">
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-4 h-4" />
-                <Input
-                  placeholder="Rechercher un article..."
-                  className="pl-10 rounded-full bg-card border"
-                  value={searchTerm}
-                  onChange={(e) => setSearchTerm(e.target.value)}
-                />
-              </div>
+              <BlogSearch placeholder="Rechercher un article..." />
             </div>
           </div>
         </div>
@@ -77,16 +78,19 @@ export default function BlogPage() {
         <div className="container mx-auto px-4">
           <div className="flex flex-wrap gap-2 justify-center">
             {categories.map((category) => (
-              <Button
+              <Link
                 key={category}
-                variant={selectedCategory === category ? "default" : "outline"}
-                size="sm"
-                className="rounded-full"
-                onClick={() => setSelectedCategory(category)}
+                href={category === "Tous" ? "/blog" : `/blog?category=${category}`}
               >
-                <Tag className="w-3 h-3 mr-2" />
-                {category}
-              </Button>
+                <Button
+                  variant={selectedCategory === category ? "default" : "outline"}
+                  size="sm"
+                  className="rounded-full"
+                >
+                  <Tag className="w-3 h-3 mr-2" />
+                  {category}
+                </Button>
+              </Link>
             ))}
           </div>
         </div>

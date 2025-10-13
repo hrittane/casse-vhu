@@ -1,3 +1,4 @@
+import { Metadata } from "next"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import {
@@ -25,6 +26,20 @@ export async function generateStaticParams() {
     return allZones.map((zone) => ({
         zone: zone.toLowerCase().replace(/[^a-z0-9]+/g, "-"),
     }))
+}
+export async function generateMetadata({ params }: { params: { zone: string } }): Promise<Metadata> {
+    const allZones = [...zonesData.Région, ...zonesData.Département, ...zonesData["Grandes communes"]]
+    const zoneName = allZones.find((z) => z.toLowerCase().replace(/[^a-z0-9]+/g, "-") === params.zone)
+
+    if (!zoneName) {
+        return {
+            title: "Zone non trouvée",
+        }
+    }
+
+    return {
+        title: `Enlèvement d'épaves à ${zoneName}`,
+    }
 }
 
 export default function ZonePage({ params }: { params: { zone: string } }) {

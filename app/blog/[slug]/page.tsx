@@ -1,3 +1,4 @@
+import { Metadata } from "next"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import {
@@ -35,6 +36,17 @@ const posts: Post[] = postsData as Post[]
 
 const getBlogPost = (slug: string): Post | undefined => {
   return posts.find((post: Post) => post.slug === slug)
+}
+export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
+  const post = getBlogPost(params.slug)
+  if (!post) {
+    return {
+      title: "Article non trouvé",
+    }
+  }
+  return {
+    title: post.title,
+  }
 }
 
 export default function BlogPostPage({ params }: { params: { slug: string } }) {

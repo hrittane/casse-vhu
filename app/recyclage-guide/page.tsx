@@ -1,3 +1,8 @@
+import { Metadata } from "next"
+
+export const metadata: Metadata = {
+    title: "Guide du Recyclage",
+}
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Phone, Mail, Recycle, Truck, CheckCircle, FileText } from "lucide-react"

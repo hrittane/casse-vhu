@@ -11,7 +11,10 @@ import Footer from "@/components/ui/Footer"
 import "./globals.css"
 
 export const metadata: Metadata = {
-  title: "Casse-VHU - Recyclage Automobile Gratuit | Enlèvement VHU",
+  title: {
+    default: "Casse-VHU - Recyclage Automobile Gratuit | Enlèvement VHU",
+    template: "%s | Casse-VHU",
+  },
   description:
     "Service gratuit d'enlèvement et recyclage de véhicules hors d'usage. Casse auto écologique et certifiée. Demandez votre enlèvement gratuit.",
   keywords: "casse auto, recyclage voiture, enlèvement gratuit VHU, véhicule hors usage, recyclage automobile",
