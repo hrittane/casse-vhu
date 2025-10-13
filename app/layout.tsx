@@ -11,6 +11,7 @@ import Footer from "@/components/ui/Footer"
 import "./globals.css"
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://www.casse-vhu.fr"),
   title: {
     default: "Casse-VHU - Recyclage Automobile Gratuit | Enlèvement VHU",
     template: "%s | Casse-VHU",
@@ -18,6 +19,27 @@ export const metadata: Metadata = {
   description:
     "Service gratuit d'enlèvement et recyclage de véhicules hors d'usage. Casse auto écologique et certifiée. Demandez votre enlèvement gratuit.",
   keywords: "casse auto, recyclage voiture, enlèvement gratuit VHU, véhicule hors usage, recyclage automobile",
+  openGraph: {
+    title: "Casse-VHU - Recyclage Automobile Gratuit | Enlèvement VHU",
+    description: "Service gratuit d'enlèvement et recyclage de véhicules hors d'usage. Casse auto écologique et certifiée.",
+    url: "https://www.casse-vhu.fr",
+    siteName: "Casse-VHU",
+    images: [
+      {
+        url: "/logo.png",
+        width: 1200,
+        height: 630,
+      },
+    ],
+    locale: "fr_FR",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Casse-VHU - Recyclage Automobile Gratuit | Enlèvement VHU",
+    description: "Service gratuit d'enlèvement et recyclage de véhicules hors d'usage. Casse auto écologique et certifiée.",
+    images: ["/og-image.png"],
+  },
 }
 
 export default function RootLayout({

@@ -39,6 +39,25 @@ export async function generateMetadata({ params }: { params: { zone: string } })
 
     return {
         title: `Enlèvement d'épaves à ${zoneName}`,
+        description: `Service d'enlèvement d'épaves gratuit à ${zoneName}. Casse auto écologique et certifiée. Demandez votre enlèvement gratuit.`,
+        openGraph: {
+            title: `Enlèvement d'épaves à ${zoneName}`,
+            description: `Service d'enlèvement d'épaves gratuit à ${zoneName}.`,
+            url: `https://www.casse-vhu.fr/zones/${params.zone}`,
+            images: [
+                {
+                    url: "/logo.png",
+                    width: 1200,
+                    height: 630,
+                },
+            ],
+        },
+        twitter: {
+            card: "summary_large_image",
+            title: `Enlèvement d'épaves à ${zoneName}`,
+            description: `Service d'enlèvement d'épaves gratuit à ${zoneName}.`,
+            images: ["/og-image.png"],
+        },
     }
 }
 
