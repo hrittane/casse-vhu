@@ -15,7 +15,6 @@ export const metadata: Metadata = {
   description:
     "Service gratuit d'enlèvement et recyclage de véhicules hors d'usage. Casse auto écologique et certifiée. Demandez votre enlèvement gratuit.",
   keywords: "casse auto, recyclage voiture, enlèvement gratuit VHU, véhicule hors usage, recyclage automobile",
-  generator: "v0.app",
 }
 
 export default function RootLayout({
