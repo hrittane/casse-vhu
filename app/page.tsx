@@ -1,4 +1,5 @@
 import { Metadata } from "next"
+import Image from "next/image"
 
 export const metadata: Metadata = {
   title: "Accueil",
@@ -229,7 +230,7 @@ export default function CasseVHULanding() {
             {/* Right Column - Truck Image */}
             <div className="relative">
               <div className="relative z-10">
-                <img src="/logoVhu.png" alt="Camion de dépannage Casse-VHU" className="w-full h-auto mx-auto" />
+                <Image src="/logoVhu.png" alt="Camion de dépannage Casse-VHU" width={500} height={500} className="w-full h-auto mx-auto" />
               </div>
               {/* Background decoration */}
               <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-secondary/10 rounded-3xl transform rotate-3 scale-105 -z-10"></div>

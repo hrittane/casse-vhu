@@ -1,4 +1,5 @@
 import { Metadata } from "next"
+import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
@@ -106,11 +107,12 @@ export default function BlogPage({
                 className="py-0 group hover:shadow-lg transition-all duration-300 border-2 hover:border-primary/20"
               >
                 <div className="aspect-video overflow-hidden rounded-t-lg">
-                  <img
-                    src={`/posts${post.image || "placeholder.svg"}`}
+                  <Image
+                    src={`/posts${post.image || "/placeholder.svg"}`}
                     alt={post.title}
+                    width={400}
+                    height={225}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                    loading="lazy"
                   />
                 </div>
                 <CardContent className="p-6">

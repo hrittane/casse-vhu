@@ -1,4 +1,5 @@
 import { Metadata } from "next"
+import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import {
@@ -145,7 +146,7 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
 
             {/* Featured Image */}
             <div className="aspect-video overflow-hidden rounded-lg mb-8">
-              <img src={`/posts${post.image || "placeholder.svg"}`} alt={post.title} className="w-full h-full object-cover" />
+              <Image src={`/posts${post.image || "/placeholder.svg"}`} alt={post.title} width={1200} height={630} className="w-full h-full object-cover" />
             </div>
           </div>
         </div>
@@ -252,11 +253,12 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
                   className="group hover:shadow-lg transition-all duration-300 border-2 hover:border-primary/20 py-0 "
                 >
                   <div className="aspect-video overflow-hidden rounded-t-lg">
-                    <img
-                      src={`/posts${relatedPost.image || "placeholder.svg"}`}
+                    <Image
+                      src={`/posts${relatedPost.image || "/placeholder.svg"}`}
                       alt={relatedPost.title}
+                      width={400}
+                      height={225}
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                      loading="lazy"
                     />
                   </div>
                   <CardContent className="p-6">

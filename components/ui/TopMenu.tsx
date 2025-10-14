@@ -1,6 +1,7 @@
 "use client"
 import React, { useState } from 'react';
 import { usePathname } from 'next/navigation';
+import Image from 'next/image';
 import { Phone, Mail, MapPin, Facebook, Instagram, Twitter, Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger, SheetClose } from "@/components/ui/sheet";
@@ -52,7 +53,7 @@ function TopMenu() {
                 <div className="container mx-auto px-4 py-4 flex items-center justify-between">
                     <div className="flex items-center space-x-2">
                         <a href="/">
-                            <img src="/logo.png" alt="Casse-VHU Logo" className="h-8 w-auto" />
+                            <Image src="/logo.png" alt="Casse-VHU Logo" width={160} height={32} className="h-8 w-auto" />
                         </a>
                         {/* <img src="/logo.png" alt="Casse-VHU Logo" className="h-10 w-auto" /> */}
                     </div>
