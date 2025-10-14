@@ -9,14 +9,7 @@ export default function Footer() {
         <footer className="bg-card border-t py-12">
             <div className="container mx-auto px-4">
                 <div className="grid md:grid-cols-4 gap-8">
-                    <div>
-                        <div className="flex items-center space-x-2 mb-4">
-                            <img src="/logo.png" alt="Casse-VHU Logo" className="h-8 w-auto" />
-                        </div>
-                        <p className="text-muted-foreground text-sm">
-                            Spécialiste du recyclage automobile écologique et responsable depuis 2010.
-                        </p>
-                    </div>
+
                     <div>
                         <h3 className="font-semibold mb-4">Services</h3>
                         <ul className="space-y-2 text-sm text-muted-foreground">
@@ -51,6 +44,11 @@ export default function Footer() {
                             <li>
                                 <a href="/contact" className="hover:text-foreground transition-colors">
                                     Contact
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/recyclage-guide" className="hover:text-foreground transition-colors">
+                                    guide de recyclage
                                 </a>
                             </li>
                         </ul>
