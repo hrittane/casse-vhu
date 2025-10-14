@@ -7,6 +7,7 @@ import { Suspense } from "react"
 import StickyMenu from "@/components/ui/StickyMenu"
 import TopMenu from "@/components/ui/TopMenu"
 import Footer from "@/components/ui/Footer"
+import GoogleAnalytics from "@/components/ui/GoogleAnalytics"
 
 import "./globals.css"
 
@@ -153,6 +154,7 @@ export default function RootLayout({
         {/* footer */}
         <Footer />
         <Analytics />
+        <GoogleAnalytics gaId="G-46SWS5NH8F" />
       </body>
     </html>
   )
