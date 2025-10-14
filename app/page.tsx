@@ -40,7 +40,7 @@ export default function CasseVHULanding() {
 
       {/* Hero Section - Preserved as requested */}
       <section className="relative py-20 lg:py-32 overflow-hidden">
-        <div className="absolute inset-0 bg-[url('/car-scrape.jpg')] bg-cover bg-center"></div>
+        <div className="absolute inset-0 bg-[url('/car-scrape.webp')] bg-cover bg-center"></div>
         <div className="absolute inset-0 bg-black/60"></div>
         <div className="absolute inset-0 bg-gradient-to-br from-primary/70 to-secondary/70"></div>
         <div className="container mx-auto px-4 relative z-10">
@@ -244,7 +244,7 @@ export default function CasseVHULanding() {
         <div
           className="absolute inset-0 bg-cover bg-center bg-fixed"
           style={{
-            backgroundImage: "url(/car-scrape.jpg)",
+            backgroundImage: "url(/car-scrape.webp)",
           }}
         >
           <div className="absolute inset-0 bg-primary/80"></div>
