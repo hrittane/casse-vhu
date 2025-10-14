@@ -40,7 +40,13 @@ export default function CasseVHULanding() {
 
       {/* Hero Section - Preserved as requested */}
       <section className="relative py-20 lg:py-32 overflow-hidden">
-        <div className="absolute inset-0 bg-[url('/car-scrape.webp')] bg-cover bg-center"></div>
+        <Image
+          src="/car-scrape.webp"
+          alt="Enlèvement d'épaves gratuit"
+          fill
+          className="absolute inset-0 object-cover"
+          priority
+        />
         <div className="absolute inset-0 bg-black/60"></div>
         <div className="absolute inset-0 bg-gradient-to-br from-primary/70 to-secondary/70"></div>
         <div className="container mx-auto px-4 relative z-10">
@@ -242,11 +248,14 @@ export default function CasseVHULanding() {
       {/* Parallax Section */}
       <section className="relative h-[500px] md:h-96 overflow-hidden">
         <div
-          className="absolute inset-0 bg-cover bg-center bg-fixed"
-          style={{
-            backgroundImage: "url(/car-scrape.webp)",
-          }}
+          className="absolute inset-0"
         >
+          <Image
+            src="/car-scrape.webp"
+            alt="Recyclage automobile"
+            fill
+            className="object-cover"
+          />
           <div className="absolute inset-0 bg-primary/80"></div>
         </div>
         <div className="relative z-10 h-full flex items-center justify-center">
