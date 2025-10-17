@@ -5,12 +5,10 @@ import Script from "next/script";
 const GoogleAnalytics = ({ gaId }: { gaId: string }) => (
     <>
         <Script
-            strategy="worker"
             src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`}
         />
         <Script
             id="google-analytics"
-            strategy="worker"
             dangerouslySetInnerHTML={{
                 __html: `
           window.dataLayer = window.dataLayer || [];
