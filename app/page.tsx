@@ -733,7 +733,7 @@ export default function CasseVHULanding() {
                     <span className="text-white font-semibold text-sm">MR</span>
                   </div>
                   <div>
-                    <p className="font-semibold">Marie Rousseau</p>
+                    <p className="font-semibold">Raymond ROTFARB</p>
                     <p className="text-sm text-muted-foreground">Paris</p>
                   </div>
                 </div>
@@ -757,7 +757,7 @@ export default function CasseVHULanding() {
                     <span className="text-white font-semibold text-sm">JD</span>
                   </div>
                   <div>
-                    <p className="font-semibold">Jean Dupont</p>
+                    <p className="font-semibold">David MIEZAN</p>
                     <p className="text-sm text-muted-foreground">Lyon</p>
                   </div>
                 </div>
@@ -782,7 +782,7 @@ export default function CasseVHULanding() {
                     <span className="text-white font-semibold text-sm">SL</span>
                   </div>
                   <div>
-                    <p className="font-semibold">Sophie Leroy</p>
+                    <p className="font-semibold">Denis RONZIE</p>
                     <p className="text-sm text-muted-foreground">Marseille</p>
                   </div>
                 </div>

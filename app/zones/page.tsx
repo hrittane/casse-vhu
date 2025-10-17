@@ -1,5 +1,6 @@
 import { Metadata } from "next"
 
+
 export const metadata: Metadata = {
     title: "Zones d'intervention",
 }
@@ -7,6 +8,7 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Phone, Mail, MapPin, Facebook, Instagram, Twitter } from "lucide-react"
 import zonesData from "@/data/zones.json"
+import Link from "next/link"
 
 export default function ZonesPage() {
     return (
@@ -129,10 +131,20 @@ export default function ZonesPage() {
                                 <Phone className="w-5 h-5 mr-2" />
                                 <a href="tel:+33630302053">06 30 30 20 53</a>
                             </Button>
-                            <Button size="lg" variant="outline" className="text-lg px-8 py-6 rounded-full bg-transparent">
-                                <Mail className="w-5 h-5 mr-2" />
-                                Demander un devis
-                            </Button>
+                            <Link href="/contact">
+                                <Button
+                                    size="lg"
+                                    variant="outline"
+                                    className="text-lg px-8 py-6 rounded-full bg-transparent"
+                                    asChild
+                                >
+                                    <div>
+                                        <Mail className="w-5 h-5 mr-2" />
+                                        Demander un devis
+                                    </div>
+                                </Button>
+                            </Link>
+
                         </div>
                     </div>
                 </div>

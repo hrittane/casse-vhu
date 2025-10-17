@@ -190,9 +190,11 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
                           <a href="tel:+33630302053">06 30 30 20 53</a>
                         </a>
                       </Button>
-                      <Button size="lg" variant="secondary" className="rounded-full">
-                        Demander un devis
-                      </Button>
+                      <Link href="/contact">
+                        <Button size="lg" variant="secondary" className="rounded-full" asChild>
+                          <div>Demander un devis</div>
+                        </Button>
+                      </Link>
                     </div>
                   </CardContent>
                 </Card>

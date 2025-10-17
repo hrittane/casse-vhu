@@ -19,6 +19,7 @@ import {
 } from "lucide-react"
 import { notFound } from "next/navigation"
 import zonesData from "@/data/zones.json"
+import Link from "next/link"
 
 export async function generateStaticParams() {
     const allZones = [...zonesData.Région, ...zonesData.Département, ...zonesData["Grandes communes"]]
@@ -421,14 +422,19 @@ export default function ZonePage({ params }: { params: { zone: string } }) {
                                     <Phone className="w-5 h-5 mr-2" />
                                     <a href="tel:+33630302053">06 30 30 20 53</a>
                                 </Button>
-                                <Button
-                                    size="lg"
-                                    variant="outline"
-                                    className="text-lg px-8 py-6 rounded-full bg-transparent border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-primary"
-                                >
-                                    <Mail className="w-5 h-5 mr-2" />
-                                    Demander un devis
-                                </Button>
+                                <Link href="/contact">
+                                    <Button
+                                        size="lg"
+                                        variant="outline"
+                                        className="text-lg px-8 py-6 rounded-full bg-transparent border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-primary"
+                                        asChild
+                                    >
+                                        <div>
+                                            <Mail className="w-5 h-5 mr-2" />
+                                            Demander un devis
+                                        </div>
+                                    </Button>
+                                </Link>
                             </div>
                         </section>
                     </div>

@@ -1,32 +1,32 @@
 {
     "Région": [
-        "Nouvelle-Aquitaine",
+        "Nouvelle Aquitaine",
         "Bretagne",
-        "Hauts-de-France",
-        "Hauts-de-France",
-        "Auvergne-Rhône-Alpes",
-        "Provence-Alpes-Côte d'Azur",
-        "Pays de la Loire",
-        "Pays de la Loire"
+        "le Nord",
+        "Pas de Calais",
+        "Auvergne Rhône Alpes",
+        "Provence Alpes Côte d'Azur",
+        "Vendée",
+        "Loire Atlantique"
     ],
-        "Département": [
-            "Gironde (33)",
-            "Ille-et-Vilaine (35)",
-            "Nord (59)",
-            "Pas-de-Calais (62)",
-            "Isère (38)",
-            "Bouches-du-Rhône (13)",
-            "Vendée (85)",
-            "Loire-Atlantique (44)"
-        ],
-            "Grandes communes": [
-                "Bordeaux, Mérignac, Pessac, Talence, Bègles, Villenave-d'Ornon",
-                "Rennes, Saint-Malo, Fougères, Vitré, Cesson-Sévigné",
-                "Lille, Roubaix, Tourcoing, Dunkerque, Valenciennes, Maubeuge",
-                "Calais, Boulogne-sur-Mer, Arras, Lens, Béthune, Saint-Omer",
-                "Grenoble, Échirolles, Voiron, Vienne, Bourgoin-Jallieu",
-                "Marseille, Aix-en-Provence, Arles, Martigues, Istres, Salon-de-Provence",
-                "La Roche-sur-Yon, Les Sables-d'Olonne, Challans, Fontenay-le-Comte, Les Herbiers",
-                "Nantes, Saint-Nazaire, Rezé, Saint-Herblain, Orvault"
-            ]
+    "Département": [
+        "Gironde (33)",
+        "Ille-et-Vilaine (35)",
+        "Nord (59)",
+        "Pas-de-Calais (62)",
+        "Isère (38)",
+        "Bouches-du-Rhône (13)",
+        "Vendée (85)",
+        "Loire-Atlantique (44)"
+    ],
+    "Grandes communes": [
+        "Bordeaux, Mérignac, Pessac, Talence, Bègles, Villenave-d'Ornon",
+        "Rennes, Saint-Malo, Fougères, Vitré, Cesson-Sévigné",
+        "Lille, Roubaix, Tourcoing, Dunkerque, Valenciennes, Maubeuge",
+        "Calais, Boulogne-sur-Mer, Arras, Lens, Béthune, Saint-Omer",
+        "Grenoble, Échirolles, Voiron, Vienne, Bourgoin-Jallieu",
+        "Marseille, Aix-en-Provence, Arles, Martigues, Istres, Salon-de-Provence",
+        "La Roche-sur-Yon, Les Sables-d'Olonne, Challans, Fontenay-le-Comte, Les Herbiers",
+        "Nantes, Saint-Nazaire, Rezé, Saint-Herblain, Orvault"
+    ]
 }

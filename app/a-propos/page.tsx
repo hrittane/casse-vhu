@@ -20,6 +20,7 @@ import {
     Users,
     Clock,
 } from "lucide-react"
+import Link from "next/link"
 
 export default function AProposPage() {
     return (
@@ -272,14 +273,19 @@ export default function AProposPage() {
                             <Phone className="w-5 h-5 mr-2" />
                             <a href="tel:+33630302053">06 30 30 20 53</a>
                         </Button>
-                        <Button
-                            size="lg"
-                            variant="outline"
-                            className="text-lg px-8 py-6 rounded-full bg-transparent border-white text-white hover:bg-white hover:text-primary"
-                        >
-                            <Mail className="w-5 h-5 mr-2" />
-                            Demander un devis
-                        </Button>
+                        <Link href="/contact">
+                            <Button
+                                size="lg"
+                                variant="outline"
+                                className="text-lg px-8 py-6 rounded-full bg-transparent border-white text-white hover:bg-white hover:text-primary"
+                                asChild
+                            >
+                                <div>
+                                    <Mail className="w-5 h-5 mr-2" />
+                                    Demander un devis
+                                </div>
+                            </Button>
+                        </Link>
                     </div>
                 </div>
             </section>
