@@ -43,7 +43,7 @@ export default function ZonesPage() {
                                 {zonesData.Région.map((region, index) => {
                                     const slug = region.toLowerCase().replace(/[^a-z0-9]+/g, "-")
                                     return (
-                                        <a key={index} href={`/zones/${slug}`}>
+                                        <a key={index} href={`/epaviste/${slug}`}>
                                             <Card className="p-6 hover:shadow-lg transition-all hover:border-primary/50 bg-gradient-to-br from-primary/5 to-primary/10 cursor-pointer h-full">
                                                 <CardContent className="pt-6">
                                                     <div className="flex items-start gap-3">
@@ -70,7 +70,7 @@ export default function ZonesPage() {
                                 {zonesData.Département.map((departement, index) => {
                                     const slug = departement.toLowerCase().replace(/[^a-z0-9]+/g, "-")
                                     return (
-                                        <a key={index} href={`/zones/${slug}`}>
+                                        <a key={index} href={`/epaviste/${slug}`}>
                                             <Card className="p-6 hover:shadow-lg transition-all hover:border-secondary/50 bg-gradient-to-br from-secondary/5 to-secondary/10 cursor-pointer h-full">
                                                 <CardContent className="pt-6">
                                                     <div className="flex items-start gap-3">
@@ -97,7 +97,7 @@ export default function ZonesPage() {
                                 {zonesData["Grandes communes"].map((communes, index) => {
                                     const slug = communes.toLowerCase().replace(/[^a-z0-9]+/g, "-")
                                     return (
-                                        <a key={index} href={`/zones/${slug}`}>
+                                        <a key={index} href={`/epaviste/${slug}`}>
                                             <Card className="p-6 hover:shadow-lg transition-all hover:border-accent/50 bg-gradient-to-br from-accent/5 to-accent/10 cursor-pointer h-full">
                                                 <CardContent className="pt-6">
                                                     <div className="flex items-start gap-3">

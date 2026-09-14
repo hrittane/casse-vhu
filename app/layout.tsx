@@ -12,7 +12,7 @@ import GoogleAnalytics from "@/components/ui/GoogleAnalytics"
 import "./globals.css"
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://www.casse-vhu.fr"),
+  metadataBase: new URL("https://casse-vhu.fr"),
   title: {
     default: "Casse-VHU - Recyclage Automobile Gratuit | Enlèvement VHU",
     template: "%s | Casse-VHU",
@@ -23,7 +23,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Casse-VHU - Recyclage Automobile Gratuit | Enlèvement VHU",
     description: "Service gratuit d'enlèvement et recyclage de véhicules hors d'usage. Casse auto écologique et certifiée.",
-    url: "https://www.casse-vhu.fr",
+    url: "https://casse-vhu.fr",
     siteName: "Casse-VHU",
     images: [
       {
@@ -59,9 +59,10 @@ export default function RootLayout({
               "@type": "AutomotiveBusiness",
               "name": "Casse-VHU",
               "description": "Service gratuit d'enlèvement et recyclage de véhicules hors d'usage. Casse auto écologique et certifiée.",
-              "url": "https://www.casse-vhu.fr",
-              "logo": "https://www.casse-vhu.fr/logo.png",
+              "url": "https://casse-vhu.fr",
+              "logo": "https://casse-vhu.fr/logo.png",
               "telephone": "+33-630-302-053",
+              "priceRange": "0€",
               "serviceArea": [
                 {
                   "@type": "Place",

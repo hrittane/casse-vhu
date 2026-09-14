@@ -22,10 +22,10 @@ export default function Footer() {
                     <div>
                         <h3 className="font-semibold mb-4">Zones d'intervention</h3>
                         <ul className="space-y-2 text-sm text-muted-foreground">
-                            <li><a href="/zones/nouvelle-aquitaine" className="hover:text-foreground transition-colors">Nouvelle-Aquitaine</a></li>
-                            <li><a href="/zones/bretagne" className="hover:text-foreground transition-colors">Bretagne</a></li>
-                            <li><a href="/zones/hauts-de-france" className="hover:text-foreground transition-colors">Hauts-de-France</a></li>
-                            <li><a href="/zones/auvergne-rhone-alpes" className="hover:text-foreground transition-colors">Auvergne-Rhône-Alpes</a></li>
+                            <li><a href="/epaviste/nouvelle-aquitaine" className="hover:text-foreground transition-colors">Nouvelle-Aquitaine</a></li>
+                            <li><a href="/epaviste/bretagne" className="hover:text-foreground transition-colors">Bretagne</a></li>
+                            <li><a href="/epaviste/hauts-de-france" className="hover:text-foreground transition-colors">Hauts-de-France</a></li>
+                            <li><a href="/epaviste/auvergne-rhone-alpes" className="hover:text-foreground transition-colors">Auvergne-Rhône-Alpes</a></li>
                         </ul>
                     </div>
                     <div>

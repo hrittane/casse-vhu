@@ -44,7 +44,7 @@ export async function generateMetadata({ params }: { params: { zone: string } })
         openGraph: {
             title: `Enlèvement d'épaves à ${zoneName}`,
             description: `Service d'enlèvement d'épaves gratuit à ${zoneName}.`,
-            url: `https://www.casse-vhu.fr/zones/${params.zone}`,
+            url: `https://casse-vhu.fr/epaviste/${params.zone}`,
             images: [
                 {
                     url: "/logo.png",
@@ -394,6 +394,24 @@ export default function ZonePage({ params }: { params: { zone: string } }) {
                                 <p>Zone Industrielle</p>
                                 <p>La périphérie</p>
                                 <p>Les communes voisines</p>
+                            </div>
+                        </section>
+
+                        {/* Localized Map Section */}
+                        <section>
+                            <h2 className="text-3xl font-bold text-foreground mb-6">Zone d'intervention : {zoneName}</h2>
+                            <div className="w-full h-[400px] rounded-2xl overflow-hidden border">
+                                <iframe
+                                    src={`https://maps.google.com/maps?q=${encodeURIComponent(zoneName + ', France')}&t=&z=10&ie=UTF8&iwloc=&output=embed`}
+                                    width="100%"
+                                    height="100%"
+                                    frameBorder="0"
+                                    style={{ border: 0 }}
+                                    allowFullScreen
+                                    aria-hidden="false"
+                                    tabIndex={0}
+                                    title={`Carte de la zone d'intervention ${zoneName}`}
+                                ></iframe>
                             </div>
                         </section>
 
