@@ -1,16 +1,23 @@
 import { Metadata } from "next"
 
-
 export const metadata: Metadata = {
-    title: "Zones d'intervention",
+    title: "Épaviste par ville et région : nos zones d'intervention",
+    description: "Épaviste agréé et enlèvement d'épave gratuit par ville, région et département en France. Centre VHU agréé proche de chez vous, intervention sous 24h.",
+    alternates: {
+        canonical: "/epaviste",
+    },
 }
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Phone, Mail, MapPin, Facebook, Instagram, Twitter } from "lucide-react"
-import zonesData from "@/data/zones.json"
+import { getZones } from "@/lib/zones"
 import Link from "next/link"
 
 export default function ZonesPage() {
+    const regions = getZones().filter((z) => z.type === "Région")
+    const departments = getZones().filter((z) => z.type === "Département")
+    const communes = getZones().filter((z) => z.type === "Grandes communes")
+
     return (
         <div className="min-h-screen bg-background">
 
@@ -40,21 +47,19 @@ export default function ZonesPage() {
                                 <p className="text-muted-foreground">Nous intervenons dans toutes les grandes régions de France</p>
                             </div>
                             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                                {zonesData.Région.map((region, index) => {
-                                    const slug = region.toLowerCase().replace(/[^a-z0-9]+/g, "-")
+                                {regions.map((region) => {
                                     return (
-                                        <a key={index} href={`/epaviste/${slug}`}>
-                                            <Card className="p-6 hover:shadow-lg transition-all hover:border-primary/50 bg-gradient-to-br from-primary/5 to-primary/10 cursor-pointer h-full">
+                                        <Link key={region.slug} href={`/epaviste/${region.slug}`}>                                            <Card className="p-6 hover:shadow-lg transition-all hover:border-primary/50 bg-gradient-to-br from-primary/5 to-primary/10 cursor-pointer h-full">
                                                 <CardContent className="pt-6">
                                                     <div className="flex items-start gap-3">
                                                         <MapPin className="w-5 h-5 text-primary flex-shrink-0 mt-1" />
                                                         <div>
-                                                            <h3 className="font-semibold text-foreground">{region}</h3>
+                                                            <h3 className="font-semibold text-foreground">{region.name}</h3>
                                                         </div>
                                                     </div>
                                                 </CardContent>
                                             </Card>
-                                        </a>
+                                        </Link>
                                     )
                                 })}
                             </div>
@@ -67,21 +72,19 @@ export default function ZonesPage() {
                                 <p className="text-muted-foreground">Service disponible dans les départements suivants</p>
                             </div>
                             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                                {zonesData.Département.map((departement, index) => {
-                                    const slug = departement.toLowerCase().replace(/[^a-z0-9]+/g, "-")
+                                {departments.map((departement) => {
                                     return (
-                                        <a key={index} href={`/epaviste/${slug}`}>
-                                            <Card className="p-6 hover:shadow-lg transition-all hover:border-secondary/50 bg-gradient-to-br from-secondary/5 to-secondary/10 cursor-pointer h-full">
+                                        <Link key={departement.slug} href={`/epaviste/${departement.slug}`}>                                            <Card className="p-6 hover:shadow-lg transition-all hover:border-secondary/50 bg-gradient-to-br from-secondary/5 to-secondary/10 cursor-pointer h-full">
                                                 <CardContent className="pt-6">
                                                     <div className="flex items-start gap-3">
                                                         <MapPin className="w-5 h-5 text-secondary flex-shrink-0 mt-1" />
                                                         <div>
-                                                            <h3 className="font-semibold text-foreground">{departement}</h3>
+                                                            <h3 className="font-semibold text-foreground">{departement.name}</h3>
                                                         </div>
                                                     </div>
                                                 </CardContent>
                                             </Card>
-                                        </a>
+                                        </Link>
                                     )
                                 })}
                             </div>
@@ -94,21 +97,19 @@ export default function ZonesPage() {
                                 <p className="text-muted-foreground">Principales villes et communes desservies</p>
                             </div>
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                {zonesData["Grandes communes"].map((communes, index) => {
-                                    const slug = communes.toLowerCase().replace(/[^a-z0-9]+/g, "-")
+                                {communes.map((commune) => {
                                     return (
-                                        <a key={index} href={`/epaviste/${slug}`}>
-                                            <Card className="p-6 hover:shadow-lg transition-all hover:border-accent/50 bg-gradient-to-br from-accent/5 to-accent/10 cursor-pointer h-full">
+                                        <Link key={commune.slug} href={`/epaviste/${commune.slug}`}>                                            <Card className="p-6 hover:shadow-lg transition-all hover:border-accent/50 bg-gradient-to-br from-accent/5 to-accent/10 cursor-pointer h-full">
                                                 <CardContent className="pt-6">
                                                     <div className="flex items-start gap-3">
                                                         <MapPin className="w-5 h-5 text-accent flex-shrink-0 mt-1" />
                                                         <div>
-                                                            <p className="text-muted-foreground">{communes}</p>
+                                                            <p className="text-muted-foreground">{commune.name}</p>
                                                         </div>
                                                     </div>
                                                 </CardContent>
                                             </Card>
-                                        </a>
+                                        </Link>
                                     )
                                 })}
                             </div>

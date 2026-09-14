@@ -12,7 +12,7 @@ function TopMenu() {
 
     const navLinks = [
         { href: "/services", text: "Services" },
-        { href: "/zones", text: "Zones" },
+        { href: "/epaviste", text: "Zones" },
         { href: "/blog", text: "Blog" },
         { href: "/a-propos", text: "À propos" },
         { href: "/contact", text: "Contact" },

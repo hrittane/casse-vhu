@@ -1,7 +1,11 @@
 import { Metadata } from "next"
 
 export const metadata: Metadata = {
-    title: "Guide du Recyclage",
+    title: "Guide du recyclage automobile : comment recycler son véhicule ?",
+    description: "Guide complet du recyclage automobile et de la mise à la casse d'un véhicule hors d'usage : centre VHU agréé, dépollution, certificat de destruction.",
+    alternates: {
+        canonical: "/recyclage-guide",
+    },
 }
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
@@ -14,7 +18,7 @@ export default function GuidePage() {
         "@type": "Article",
         "mainEntityOfPage": {
             "@type": "WebPage",
-            "@id": "https://www.casse-vhu.fr/recyclage-guide"
+            "@id": "https://casse-vhu.fr/recyclage-guide"
         },
         "headline": "Le Guide Complet du Recyclage Automobile en France",
         "description": "Tout ce que vous devez savoir sur la mise à la casse de votre véhicule et le recyclage automobile.",
@@ -88,7 +92,7 @@ export default function GuidePage() {
                             </ol>
                             <h2>Comment mettre sa voiture à la casse ?</h2>
                             <p>
-                                Si vous possédez un véhicule hors d'usage, vous devez le confier à un centre VHU agréé. La procédure est généralement gratuite. Vous devrez fournir la carte grise du véhicule, un certificat de non-gage et une pièce d'identité. Pour en savoir plus sur nos services, consultez notre <Link href="/services">page services</Link> ou <Link href="/contact">contactez-nous</Link> directement.
+                                Si vous possédez un véhicule hors d'usage, vous devez le confier à un centre VHU agréé. La procédure est généralement gratuite. Vous devrez fournir la carte grise du véhicule, un certificat de non-gage et une pièce d'identité. Découvrez ce qu'est un <Link href="/centre-vhu-agree">centre VHU agréé</Link>, comment se déroule notre service d'<Link href="/enlevement-epave">enlèvement d'épave gratuit</Link>, ou consultez notre <Link href="/services">page services</Link> et <Link href="/blog">le blog</Link>. Vous pouvez aussi <Link href="/contact">nous contacter</Link> directement.
                             </p>
                         </div>
                     </div>

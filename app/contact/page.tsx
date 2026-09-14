@@ -1,7 +1,12 @@
 import { Metadata } from "next"
+import Image from "next/image"
 
 export const metadata: Metadata = {
     title: "Contact",
+    description: "Contactez Casse-VHU pour un enlèvement d'épave gratuit sous 24h partout en France. Épaviste agréé, certificat de destruction fourni. 06 30 30 20 53.",
+    alternates: {
+        canonical: "/contact",
+    },
 }
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
@@ -15,14 +20,16 @@ export default function ContactPage() {
         <div className="min-h-screen">
             {/* Hero Section with Background Image */}
             <section className="relative h-[400px] flex items-center justify-center">
-                <div
-                    className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-                    style={{
-                        backgroundImage: "url('/car-recycling-yard-with-stacked-cars-industrial-ba.jpg')",
-                    }}
-                >
-                    <div className="absolute inset-0 bg-gradient-to-r from-primary/90 to-primary/70" />
-                </div>
+                <Image
+                    src="/car-scrape.webp"
+                    alt="Enlèvement d'épave gratuit"
+                    fill
+                    sizes="100vw"
+                    priority
+                    quality={80}
+                    className="object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-r from-primary/90 to-primary/70" />
                 <div className="relative z-10 text-center text-white px-4">
                     <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 text-balance">Contactez-nous</h1>
                     <p className="text-lg md:text-xl max-w-2xl mx-auto text-balance">
@@ -93,7 +100,7 @@ export default function ContactPage() {
                                         </div>
                                         <div>
                                             <h3 className="font-semibold mb-1">Zone d'intervention</h3>
-                                            <p className="text-muted-foreground">Île-de-France et régions limitrophes</p>
+                                            <p className="text-muted-foreground">Partout en France</p>
                                             <p className="text-sm text-muted-foreground mt-1">Déplacement gratuit</p>
                                         </div>
                                     </div>

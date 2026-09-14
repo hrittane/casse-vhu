@@ -5,9 +5,6 @@ import {
     Phone,
     Mail,
     MapPin,
-    Facebook,
-    Instagram,
-    Twitter,
     CheckCircle,
     Clock,
     FileText,
@@ -16,35 +13,41 @@ import {
     Truck,
     Bike,
     Home,
+    ArrowRight,
 } from "lucide-react"
 import { notFound } from "next/navigation"
-import zonesData from "@/data/zones.json"
+import { getZones, findZoneBySlug } from "@/lib/zones"
 import Link from "next/link"
 
 export async function generateStaticParams() {
-    const allZones = [...zonesData.Région, ...zonesData.Département, ...zonesData["Grandes communes"]]
-
-    return allZones.map((zone) => ({
-        zone: zone.toLowerCase().replace(/[^a-z0-9]+/g, "-"),
-    }))
+    return getZones().map((zone) => ({ zone: zone.slug }))
 }
-export async function generateMetadata({ params }: { params: { zone: string } }): Promise<Metadata> {
-    const allZones = [...zonesData.Région, ...zonesData.Département, ...zonesData["Grandes communes"]]
-    const zoneName = allZones.find((z) => z.toLowerCase().replace(/[^a-z0-9]+/g, "-") === params.zone)
 
-    if (!zoneName) {
+export async function generateMetadata({ params }: { params: { zone: string } }): Promise<Metadata> {
+    const zone = findZoneBySlug(params.zone)
+
+    if (!zone) {
         return {
             title: "Zone non trouvée",
         }
     }
 
+    const title = `Épaviste agréé & enlèvement d'épaves gratuit à ${zone.name}`
+    const description = `Enlèvement d'épave 100% gratuit à ${zone.name} sous 24h. Épaviste agréé VHU, certificat de destruction fourni sur place. Appelez le 06 30 30 20 53.`
+
     return {
-        title: `Enlèvement d'épaves à ${zoneName}`,
-        description: `Service d'enlèvement d'épaves gratuit à ${zoneName}. Casse auto écologique et certifiée. Demandez votre enlèvement gratuit.`,
+        title,
+        description,
+        alternates: {
+            canonical: `/epaviste/${zone.slug}`,
+        },
         openGraph: {
-            title: `Enlèvement d'épaves à ${zoneName}`,
-            description: `Service d'enlèvement d'épaves gratuit à ${zoneName}.`,
-            url: `https://casse-vhu.fr/epaviste/${params.zone}`,
+            title,
+            description,
+            url: `https://casse-vhu.fr/epaviste/${zone.slug}`,
+            siteName: "Casse-VHU",
+            locale: "fr_FR",
+            type: "website",
             images: [
                 {
                     url: "/logo.png",
@@ -55,21 +58,21 @@ export async function generateMetadata({ params }: { params: { zone: string } })
         },
         twitter: {
             card: "summary_large_image",
-            title: `Enlèvement d'épaves à ${zoneName}`,
-            description: `Service d'enlèvement d'épaves gratuit à ${zoneName}.`,
+            title,
+            description,
             images: ["/og-image.png"],
         },
     }
 }
 
 export default function ZonePage({ params }: { params: { zone: string } }) {
-    const allZones = [...zonesData.Région, ...zonesData.Département, ...zonesData["Grandes communes"]]
+    const zone = findZoneBySlug(params.zone)
 
-    const zoneName = allZones.find((z) => z.toLowerCase().replace(/[^a-z0-9]+/g, "-") === params.zone)
-
-    if (!zoneName) {
+    if (!zone) {
         notFound()
     }
+
+    const zoneName = zone.name
 
     const faqData = [
         {
@@ -78,27 +81,35 @@ export default function ZonePage({ params }: { params: { zone: string } }) {
         },
         {
             question: `L'enlèvement d'épave est-il vraiment gratuit à ${zoneName} ?`,
-            answer: `Oui, notre service d'enlèvement d'épave à ${zoneName} est 100% gratuit, sans frais cachés.`
+            answer: `Oui, notre service d'enlèvement d'épave à ${zoneName} est 100% gratuit, sans frais cachés, avec intervention sous 24 à 48h.`
         },
         {
             question: `Quels documents dois-je fournir pour l'enlèvement de mon véhicule à ${zoneName} ?`,
-            answer: `Vous devrez fournir la carte grise du véhicule, une pièce d'identité et un certificat de non-gage.`
+            answer: `Vous devrez fournir la carte grise du véhicule, une pièce d'identité et un certificat de non-gage. Sans carte grise, nous vous guidons dans les démarches.`
+        },
+        {
+            question: `Est-ce un épaviste agréé et un centre VHU certifié qui opère à ${zoneName} ?`,
+            answer: `Oui, Casse-VHU est un service d'épaviste agréé : votre véhicule est dépollué et détruit dans un centre VHU agréé par la préfecture, avec remise d'un certificat de destruction.`
         }
     ];
 
     const schema = {
         "@context": "https://schema.org",
-        "@type": "LocalBusiness",
+        "@type": "AutomotiveBusiness",
         "name": `Casse-VHU ${zoneName}`,
         "description": `Service d'enlèvement d'épaves gratuit à ${zoneName}.`,
+        "url": `https://casse-vhu.fr/epaviste/${zone.slug}`,
+        "logo": "https://casse-vhu.fr/logo.png",
+        "telephone": "+33-630-302-053",
+        "priceRange": "0€",
+        "areaServed": {
+            "@type": "Place",
+            "name": zoneName
+        },
         "address": {
             "@type": "PostalAddress",
             "addressLocality": zoneName,
             "addressCountry": "FR"
-        },
-        "provider": {
-            "@type": "Organization",
-            "name": "Casse-VHU"
         }
     };
 
@@ -139,6 +150,27 @@ export default function ZonePage({ params }: { params: { zone: string } }) {
                         <p className="text-xl text-muted-foreground mb-8">
                             Votre épaviste agréé VHU pour un service rapide, gratuit et 100% conforme à {zoneName}
                         </p>
+                        <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                            <Button size="lg" className="text-lg px-8 py-6 rounded-full" asChild>
+                                <a href="tel:+33630302053">
+                                    <Phone className="w-5 h-5 mr-2" />
+                                    06 30 30 20 53
+                                </a>
+                            </Button>
+                            <Link href="/contact">
+                                <Button
+                                    size="lg"
+                                    variant="outline"
+                                    className="text-lg px-8 py-6 rounded-full bg-transparent"
+                                    asChild
+                                >
+                                    <span>
+                                        Demander un devis gratuit
+                                        <ArrowRight className="w-5 h-5 ml-2" />
+                                    </span>
+                                </Button>
+                            </Link>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -406,6 +438,7 @@ export default function ZonePage({ params }: { params: { zone: string } }) {
                                     width="100%"
                                     height="100%"
                                     frameBorder="0"
+                                    loading="lazy"
                                     style={{ border: 0 }}
                                     allowFullScreen
                                     aria-hidden="false"
@@ -428,6 +461,37 @@ export default function ZonePage({ params }: { params: { zone: string } }) {
                             </div>
                         </section>
 
+                        {/* Internal linking */}
+                        <section className="bg-muted/30 rounded-2xl p-8">
+                            <h2 className="text-2xl font-bold text-foreground mb-4">Pour aller plus loin</h2>
+                            <ul className="space-y-3 text-muted-foreground">
+                                <li>
+                                    <Link href="/centre-vhu-agree" className="inline-flex items-center text-primary font-medium hover:underline">
+                                        Qu'est-ce qu'un centre VHU agréé ?
+                                        <ArrowRight className="w-4 h-4 ml-1" />
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Link href="/enlevement-epave" className="inline-flex items-center text-primary font-medium hover:underline">
+                                        Tout savoir sur l'enlèvement d'épave gratuit
+                                        <ArrowRight className="w-4 h-4 ml-1" />
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Link href="/epaviste-agree" className="inline-flex items-center text-primary font-medium hover:underline">
+                                        Le rôle et les missions d'un épaviste agréé
+                                        <ArrowRight className="w-4 h-4 ml-1" />
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Link href="/blog" className="inline-flex items-center text-primary font-medium hover:underline">
+                                        Guides et conseils sur le recyclage automobile
+                                        <ArrowRight className="w-4 h-4 ml-1" />
+                                    </Link>
+                                </li>
+                            </ul>
+                        </section>
+
                         {/* CTA Section */}
                         <section className="bg-gradient-to-br from-primary to-primary/80 text-primary-foreground rounded-2xl p-8 text-center">
                             <h2 className="text-3xl font-bold mb-4">Contactez Casse-VHU.fr à {zoneName}</h2>
@@ -436,9 +500,11 @@ export default function ZonePage({ params }: { params: { zone: string } }) {
                                 enlèvement gratuit et rapide.
                             </p>
                             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                                <Button size="lg" className="text-lg px-8 py-6 rounded-full bg-white text-primary hover:bg-white/90 ">
-                                    <Phone className="w-5 h-5 mr-2" />
-                                    <a href="tel:+33630302053">06 30 30 20 53</a>
+                                <Button size="lg" className="text-lg px-8 py-6 rounded-full bg-white text-primary hover:bg-white/90 " asChild>
+                                    <a href="tel:+33630302053">
+                                        <Phone className="w-5 h-5 mr-2" />
+                                        06 30 30 20 53
+                                    </a>
                                 </Button>
                                 <Link href="/contact">
                                     <Button
@@ -447,10 +513,10 @@ export default function ZonePage({ params }: { params: { zone: string } }) {
                                         className="text-lg px-8 py-6 rounded-full bg-transparent border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-primary"
                                         asChild
                                     >
-                                        <div>
+                                        <span>
                                             <Mail className="w-5 h-5 mr-2" />
                                             Demander un devis
-                                        </div>
+                                        </span>
                                     </Button>
                                 </Link>
                             </div>

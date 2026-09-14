@@ -1,8 +1,13 @@
 import { Metadata } from "next"
 import Image from "next/image"
+import Link from "next/link"
 
 export const metadata: Metadata = {
-  title: "Accueil",
+  title: "Casse Auto & Épaviste Agréé VHU | Enlèvement Gratuit sous 24h",
+  description: "Épaviste agréé VHU : enlèvement d'épave 100% gratuit, intervention sous 24h, certificat de destruction fourni sur place. Centre VHU agréé préfecture, service partout en France. Appelez le 06 30 30 20 53.",
+  alternates: {
+    canonical: "/",
+  },
 }
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
@@ -44,8 +49,10 @@ export default function CasseVHULanding() {
           src="/car-scrape.webp"
           alt="Enlèvement d'épaves gratuit"
           fill
-          className="absolute inset-0 object-cover"
+          sizes="100vw"
           priority
+          quality={80}
+          className="absolute inset-0 object-cover"
         />
         <div className="absolute inset-0 bg-black/60"></div>
         <div className="absolute inset-0 bg-gradient-to-br from-primary/70 to-secondary/70"></div>
@@ -61,13 +68,18 @@ export default function CasseVHULanding() {
                 charge complète des démarches administratives, la dépollution et le recyclage.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
-                <Button
-                  size="lg"
-                  className="text-lg px-8 py-6 rounded-full shadow-lg hover:shadow-xl transition-all bg-white text-primary hover:bg-white/90"
-                >
-                  <Truck className="w-5 h-5 mr-2" />
-                  Demander un enlèvement
-                </Button>
+                <Link href="/contact">
+                  <Button
+                    size="lg"
+                    className="text-lg px-8 py-6 rounded-full shadow-lg hover:shadow-xl transition-all bg-white text-primary hover:bg-white/90 w-full sm:w-auto"
+                    asChild
+                  >
+                    <span>
+                      <Truck className="w-5 h-5 mr-2" />
+                      Demander un enlèvement
+                    </span>
+                  </Button>
+                </Link>
                 <Button
                   variant="outline"
                   size="lg"
@@ -102,9 +114,9 @@ export default function CasseVHULanding() {
       <section id="vehicles" className="py-20 bg-muted">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
-            <h2 className="text-3xl lg:text-4xl font-bold text-foreground mb-4">Quels véhicules récupérons-nous ?</h2>
+            <h2 className="text-3xl lg:text-4xl font-bold text-foreground mb-4">Casse auto agréée VHU : quels véhicules récupérons-nous ?</h2>
             <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-              Nos services s'appliquent à tous types de véhicules hors d'usage, quel que soit leur état
+              Notre centre VHU agréé prend en charge tous types de véhicules hors d'usage, quel que soit leur état. Épaviste professionnel, nous assurons l'enlèvement d'épave gratuit partout en France.
             </p>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
@@ -182,12 +194,10 @@ export default function CasseVHULanding() {
               <div>
                 <p className="text-secondary font-medium mb-2">Bienvenue chez Casse-VHU</p>
                 <h2 className="text-3xl lg:text-4xl font-bold text-foreground mb-4">
-                  Un Service de Recyclage Automobile de Confiance
+                  Votre Épaviste Agréé et Centre VHU de Confiance
                 </h2>
                 <p className="text-lg text-muted-foreground">
-                  Chez Casse-VHU, nous savons à quel point vous valorisez votre temps et l'environnement. Nos
-                  professionnels arrivent toujours à l'heure. Nous connaissons la France comme notre poche. C'est
-                  pourquoi vous devriez nous choisir :
+                  Chez Casse-VHU, votre centre VHU agréé, nous savons à quel point vous valorisez votre temps et l'environnement. Nos épavistes professionnels arrivent toujours à l'heure pour l'enlèvement de votre épave. Nous intervenons partout en France. C'est pourquoi vous devriez nous choisir :
                 </p>
               </div>
 
@@ -254,6 +264,8 @@ export default function CasseVHULanding() {
             src="/car-scrape.webp"
             alt="Recyclage automobile"
             fill
+            sizes="100vw"
+            quality={80}
             className="object-cover"
           />
           <div className="absolute inset-0 bg-primary/80"></div>
@@ -290,10 +302,10 @@ export default function CasseVHULanding() {
 
           <div className="text-center mb-16 md:mb-0 ">
             <h2 className="text-3xl lg:text-4xl font-bold text-foreground mb-4">
-              Comment se déroule un enlèvement d'épave ?
+              Enlèvement d'épave gratuit : comment ça marche ?
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Un processus simple en 4 étapes pour recycler votre véhicule de manière écologique
+              Un processus simple en 4 étapes pour faire enlever votre épave gratuitement par un épaviste agréé. Certificat de destruction fourni sur place.
             </p>
           </div>
 
@@ -499,8 +511,8 @@ export default function CasseVHULanding() {
       <section id="zones" className="py-20 bg-muted/30">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
-            <h2 className="text-3xl lg:text-4xl font-bold text-foreground mb-4">Zones d'intervention</h2>
-            <p className="text-lg text-muted-foreground">Enlèvement d'épaves gratuit dans toute la France</p>
+            <h2 className="text-3xl lg:text-4xl font-bold text-foreground mb-4">Épaviste autour de moi : nos zones d'intervention</h2>
+            <p className="text-lg text-muted-foreground">Trouvez un centre VHU agréé et un épaviste gratuit près de chez vous, partout en France</p>
           </div>
 
           {/* Bento Grid Layout */}
@@ -543,23 +555,27 @@ export default function CasseVHULanding() {
               </Card>
 
               {/* Highlighted region with secondary gradient */}
-              <Card className="col-span-1 md:col-span-2 lg:col-span-2 p-3 sm:p-6 bg-gradient-to-br from-secondary/15 to-secondary/25 border-2 border-secondary/30">
-                <CardContent className="pt-3 sm:pt-6">
-                  <h3 className="text-sm sm:text-lg font-bold mb-2 sm:mb-3 text-foreground">PACA & Occitanie</h3>
-                  <p className="text-xs sm:text-sm text-muted-foreground mb-2 sm:mb-3">
-                    Marseille, Nice, Toulon, Toulouse...
-                  </p>
-                  <div className="text-xs text-secondary font-medium">Sud de la France</div>
-                </CardContent>
-              </Card>
+              <Link href="/epaviste/provence-alpes-cote-d-azur" className="group">
+                <Card className="col-span-1 md:col-span-2 lg:col-span-2 p-3 sm:p-6 bg-gradient-to-br from-secondary/15 to-secondary/25 border-2 border-secondary/30 h-full">
+                  <CardContent className="pt-3 sm:pt-6">
+                    <h3 className="text-sm sm:text-lg font-bold mb-2 sm:mb-3 text-foreground group-hover:underline">PACA & Occitanie</h3>
+                    <p className="text-xs sm:text-sm text-muted-foreground mb-2 sm:mb-3">
+                      Marseille, Nice, Toulon, Toulouse...
+                    </p>
+                    <div className="text-xs text-secondary font-medium">Sud de la France</div>
+                  </CardContent>
+                </Card>
+              </Link>
 
               {/* Regular regions with alternating colors */}
-              <Card className="col-span-1 p-2 sm:p-4 bg-gradient-to-br from-accent/8 to-accent/15 border-2 border-accent/20 hover:border-accent/30 transition-colors">
-                <CardContent className="pt-2 sm:pt-4">
-                  <h3 className="text-sm font-semibold mb-1 sm:mb-2 text-foreground">Bretagne</h3>
-                  <p className="text-xs sm:text-sm text-muted-foreground">Rennes, Brest...</p>
-                </CardContent>
-              </Card>
+              <Link href="/epaviste/bretagne" className="group">
+                <Card className="col-span-1 p-2 sm:p-4 bg-gradient-to-br from-accent/8 to-accent/15 border-2 border-accent/20 hover:border-accent/30 transition-colors">
+                  <CardContent className="pt-2 sm:pt-4">
+                    <h3 className="text-sm font-semibold mb-1 sm:mb-2 text-foreground group-hover:underline">Bretagne</h3>
+                    <p className="text-xs sm:text-sm text-muted-foreground">Rennes, Brest...</p>
+                  </CardContent>
+                </Card>
+              </Link>
 
               <Card className="col-span-1 p-2 sm:p-4 bg-gradient-to-br from-secondary/8 to-secondary/15 border-2 border-secondary/20 hover:border-secondary/30 transition-colors">
                 <CardContent className="pt-2 sm:pt-4">
@@ -568,19 +584,23 @@ export default function CasseVHULanding() {
                 </CardContent>
               </Card>
 
-              <Card className="col-span-1 p-2 sm:p-4 bg-gradient-to-br from-primary/8 to-primary/15 border-2 border-primary/20 hover:border-primary/30 transition-colors">
-                <CardContent className="pt-2 sm:pt-4">
-                  <h3 className="text-sm font-semibold mb-1 sm:mb-2 text-foreground">Nouvelle-Aquitaine</h3>
-                  <p className="text-xs sm:text-sm text-muted-foreground">Bordeaux, Poitiers...</p>
-                </CardContent>
-              </Card>
+              <Link href="/epaviste/nouvelle-aquitaine" className="group">
+                <Card className="col-span-1 p-2 sm:p-4 bg-gradient-to-br from-primary/8 to-primary/15 border-2 border-primary/20 hover:border-primary/30 transition-colors">
+                  <CardContent className="pt-2 sm:pt-4">
+                    <h3 className="text-sm font-semibold mb-1 sm:mb-2 text-foreground group-hover:underline">Nouvelle-Aquitaine</h3>
+                    <p className="text-xs sm:text-sm text-muted-foreground">Bordeaux, Poitiers...</p>
+                  </CardContent>
+                </Card>
+              </Link>
 
-              <Card className="col-span-1 p-2 sm:p-4 bg-gradient-to-br from-accent/10 to-accent/20 border-2 border-accent/20 hover:border-accent/30 transition-colors">
-                <CardContent className="pt-2 sm:pt-4">
-                  <h3 className="text-sm font-semibold mb-1 sm:mb-2 text-foreground">Auvergne-Rhône-Alpes</h3>
-                  <p className="text-xs sm:text-sm text-muted-foreground">Lyon, Grenoble...</p>
-                </CardContent>
-              </Card>
+              <Link href="/epaviste/auvergne-rhone-alpes" className="group">
+                <Card className="col-span-1 p-2 sm:p-4 bg-gradient-to-br from-accent/10 to-accent/20 border-2 border-accent/20 hover:border-accent/30 transition-colors">
+                  <CardContent className="pt-2 sm:pt-4">
+                    <h3 className="text-sm font-semibold mb-1 sm:mb-2 text-foreground group-hover:underline">Auvergne-Rhône-Alpes</h3>
+                    <p className="text-xs sm:text-sm text-muted-foreground">Lyon, Grenoble...</p>
+                  </CardContent>
+                </Card>
+              </Link>
 
               <Card className="col-span-1 p-2 sm:p-4 bg-gradient-to-br from-secondary/10 to-secondary/20 border-2 border-secondary/20 hover:border-secondary/30 transition-colors">
                 <CardContent className="pt-2 sm:pt-4">
@@ -604,6 +624,12 @@ export default function CasseVHULanding() {
               Peu importe votre localisation, un épaviste agréé proche de chez vous intervient rapidement et
               gratuitement.
             </p>
+            <Link href="/epaviste" className="inline-block mt-6">
+              <Button size="lg" className="rounded-full px-8">
+                Voir toutes nos zones d'intervention
+                <MapPin className="w-5 h-5 ml-2" />
+              </Button>
+            </Link>
           </div>
         </div>
       </section>
@@ -642,7 +668,7 @@ export default function CasseVHULanding() {
                       <ul className="space-y-2">
                         <li>• Carte grise du véhicule</li>
                         <li>• Pièce d'identité du propriétaire</li>
-                        <li>• Formulaire Cerfa n°15776*02 (cession pour destruction) rempli et signé</li>
+                        <li>• Formulaire <a href="/blog/formulaire-cerfa-15776-02-guide-remplissage" className="text-primary hover:underline">Cerfa n°15776*02 (cession pour destruction)</a> rempli et signé</li>
                       </ul>
                     </div>
                   </CollapsibleContent>

@@ -38,6 +38,11 @@ const posts: Post[] = postsData as Post[]
 const getBlogPost = (slug: string): Post | undefined => {
   return posts.find((post: Post) => post.slug === slug)
 }
+
+export function generateStaticParams() {
+  return posts.map((post) => ({ slug: post.slug }))
+}
+
 export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
   const post = getBlogPost(params.slug)
   if (!post) {
@@ -48,10 +53,16 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   return {
     title: post.title,
     description: post.excerpt,
+    alternates: {
+      canonical: `/blog/${post.slug}`,
+    },
     openGraph: {
       title: post.title,
       description: post.excerpt,
-      url: `https://www.casse-vhu.fr/blog/${post.slug}`,
+      url: `https://casse-vhu.fr/blog/${post.slug}`,
+      siteName: "Casse-VHU",
+      locale: "fr_FR",
+      type: "article",
       images: [
         {
           url: `/posts${post.image}`,
@@ -71,7 +82,14 @@ export async function generateMetadata({ params }: { params: { slug: string } })
 
 export default function BlogPostPage({ params }: { params: { slug: string } }) {
   const post = getBlogPost(params.slug)
-  const relatedPosts = posts.filter((p: Post) => p.slug !== params.slug).slice(0, 3)
+  const relatedPosts =
+    posts
+      .filter((p: Post) => p.slug !== params.slug)
+      .sort(
+        (a, b) =>
+          (b.category === post?.category ? 1 : 0) - (a.category === post?.category ? 1 : 0)
+      )
+      .slice(0, 3)
 
   if (!post) {
     return (
@@ -185,19 +203,50 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
                     </p>
                     <div className="flex flex-col sm:flex-row gap-4 justify-center">
                       <Button size="lg" className="rounded-full" asChild>
-                        <a href="tel:+33 6 30 30 20 53">
+                        <a href="tel:+33630302053">
                           <Phone className="w-4 h-4 mr-2" />
-                          <a href="tel:+33630302053">06 30 30 20 53</a>
+                          06 30 30 20 53
                         </a>
                       </Button>
                       <Link href="/contact">
                         <Button size="lg" variant="secondary" className="rounded-full" asChild>
-                          <div>Demander un devis</div>
+                          <span>Demander un devis</span>
                         </Button>
                       </Link>
                     </div>
                   </CardContent>
                 </Card>
+
+                {/* Contextual internal links */}
+                <section className="mt-8 rounded-2xl border bg-muted/30 p-8">
+                  <h3 className="text-xl font-bold text-foreground mb-4">Pour aller plus loin</h3>
+                  <ul className="space-y-3 text-muted-foreground">
+                    <li>
+                      <Link href="/services" className="inline-flex items-center text-primary font-medium hover:underline">
+                        Nos services d'enlèvement et de recyclage
+                        <ArrowRight className="w-4 h-4 ml-1" />
+                      </Link>
+                    </li>
+                    <li>
+                      <Link href="/enlevement-epave" className="inline-flex items-center text-primary font-medium hover:underline">
+                        Comment se déroule un enlèvement d'épave gratuit ?
+                        <ArrowRight className="w-4 h-4 ml-1" />
+                      </Link>
+                    </li>
+                    <li>
+                      <Link href="/centre-vhu-agree" className="inline-flex items-center text-primary font-medium hover:underline">
+                        Qu'est-ce qu'un centre VHU agréé ?
+                        <ArrowRight className="w-4 h-4 ml-1" />
+                      </Link>
+                    </li>
+                    <li>
+                      <Link href="/epaviste" className="inline-flex items-center text-primary font-medium hover:underline">
+                        Trouver un épaviste proche de chez vous
+                        <ArrowRight className="w-4 h-4 ml-1" />
+                      </Link>
+                    </li>
+                  </ul>
+                </section>
               </div>
 
               {/* Sidebar */}

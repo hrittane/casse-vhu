@@ -3,29 +3,38 @@ import {
     Mail,
     MapPin,
 } from "lucide-react"
+import { getZones } from "@/lib/zones"
 
 export default function Footer() {
+    const regions = getZones().filter((z) => z.type === "Région").slice(0, 4)
+
     return (
-        <footer className="bg-card border-t py-12">
+        <footer className="bg-card border-t py-12 pb-32 lg:pb-12">
             <div className="container mx-auto px-4">
                 <div className="grid md:grid-cols-4 gap-8">
 
                     <div>
                         <h3 className="font-semibold mb-4">Services</h3>
                         <ul className="space-y-2 text-sm text-muted-foreground">
-                            <li><a href="/services" className="hover:text-foreground transition-colors">Enlèvement gratuit VHU</a></li>
-                            <li><a href="/services" className="hover:text-foreground transition-colors">Recyclage automobile</a></li>
-                            <li><a href="/services" className="hover:text-foreground transition-colors">Dépollution véhicules</a></li>
-                            <li><a href="/services" className="hover:text-foreground transition-colors">Certificat de destruction</a></li>
+                            <li><a href="/enlevement-epave" className="hover:text-foreground transition-colors">Enlèvement d'épave gratuit</a></li>
+                            <li><a href="/centre-vhu-agree" className="hover:text-foreground transition-colors">Centre VHU agréé</a></li>
+                            <li><a href="/epaviste-agree" className="hover:text-foreground transition-colors">Épaviste agréé</a></li>
+                            <li><a href="/services" className="hover:text-foreground transition-colors">Tous nos services</a></li>
                         </ul>
                     </div>
                     <div>
                         <h3 className="font-semibold mb-4">Zones d'intervention</h3>
                         <ul className="space-y-2 text-sm text-muted-foreground">
-                            <li><a href="/epaviste/nouvelle-aquitaine" className="hover:text-foreground transition-colors">Nouvelle-Aquitaine</a></li>
-                            <li><a href="/epaviste/bretagne" className="hover:text-foreground transition-colors">Bretagne</a></li>
-                            <li><a href="/epaviste/hauts-de-france" className="hover:text-foreground transition-colors">Hauts-de-France</a></li>
-                            <li><a href="/epaviste/auvergne-rhone-alpes" className="hover:text-foreground transition-colors">Auvergne-Rhône-Alpes</a></li>
+                            {regions.map((region) => (
+                                <li key={region.slug}>
+                                    <a href={`/epaviste/${region.slug}`} className="hover:text-foreground transition-colors">
+                                        {region.name}
+                                    </a>
+                                </li>
+                            ))}
+                            <li>
+                                <a href="/epaviste" className="hover:text-foreground transition-colors">Toutes nos zones</a>
+                            </li>
                         </ul>
                     </div>
                     <div>

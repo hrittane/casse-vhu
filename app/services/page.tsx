@@ -1,7 +1,11 @@
 import { Metadata } from "next"
 
 export const metadata: Metadata = {
-    title: "Services",
+    title: "Épaviste agréé VHU : enlèvement d'épave gratuit sous 24h",
+    description: "Services d'enlèvement d'épave 100% gratuit sous 24h : épaviste agréé, centre VHU, démarches administratives et certificat de destruction fournis. 06 30 30 20 53.",
+    alternates: {
+        canonical: "/services",
+    },
 }
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
@@ -18,7 +22,9 @@ import {
     Twitter,
     Car,
     Bike,
+    ArrowRight,
 } from "lucide-react"
+import Link from "next/link"
 
 export default function ServicesPage() {
     const services = [
@@ -327,6 +333,27 @@ export default function ServicesPage() {
                                 </div>
                             </div>
                         </div>
+                        <div className="bg-muted/30 p-8 rounded-lg">
+                                <h2 className="text-3xl font-bold text-foreground mb-6">Pour aller plus loin</h2>
+                                <div className="grid md:grid-cols-2 gap-4">
+                                    <Link href="/enlevement-epave" className="inline-flex items-center gap-2 text-primary font-medium hover:underline">
+                                        Tout savoir sur l'enlèvement d'épave gratuit
+                                        <ArrowRight className="w-4 h-4" />
+                                    </Link>
+                                    <Link href="/centre-vhu-agree" className="inline-flex items-center gap-2 text-primary font-medium hover:underline">
+                                        Qu'est-ce qu'un centre VHU agréé ?
+                                        <ArrowRight className="w-4 h-4" />
+                                    </Link>
+                                    <Link href="/epaviste-agree" className="inline-flex items-center gap-2 text-primary font-medium hover:underline">
+                                        Le métier d'épaviste agréé
+                                        <ArrowRight className="w-4 h-4" />
+                                    </Link>
+                                    <Link href="/blog" className="inline-flex items-center gap-2 text-primary font-medium hover:underline">
+                                        Nos guides et conseils pratiques
+                                        <ArrowRight className="w-4 h-4" />
+                                    </Link>
+                                </div>
+                            </div>
                         <div className="bg-gradient-to-br from-primary/5 to-secondary/5 rounded-2xl p-8">
                             <h2 className="text-3xl font-bold text-foreground mb-6">Notre promesse client</h2>
                             <div className="space-y-4">

@@ -2,7 +2,6 @@ import { Metadata } from "next"
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
 import {
   Phone,
   Mail,
@@ -13,7 +12,6 @@ import {
   Calendar,
   Clock,
   ArrowRight,
-  Search,
   Tag,
 } from "lucide-react"
 import Link from "next/link"
@@ -21,7 +19,11 @@ import blogPosts from "@/data/blog/index.json"
 import { BlogSearch } from "@/components/ui/BlogSearch"
 
 export const metadata: Metadata = {
-  title: "Blog",
+  title: "Blog épaviste & recyclage VHU : guides et conseils",
+  description: "Guides pratiques, démarches administratives et réglementation pour se débarrasser d'un véhicule hors d'usage : carte grise, Cerfa, prime à la conversion, enlèvement d'épave.",
+  alternates: {
+    canonical: "/blog",
+  },
 }
 
 export default function BlogPage({
@@ -148,9 +150,12 @@ export default function BlogPage({
 
           {/* Load More Button */}
           <div className="text-center mt-12">
-            <Button size="lg" variant="outline" className="rounded-full bg-transparent">
-              Charger plus d'articles
-            </Button>
+            <Link href="/contact">
+              <Button size="lg" variant="outline" className="rounded-full bg-transparent">
+                <Phone className="w-4 h-4 mr-2" />
+                Demander un enlèvement gratuit
+              </Button>
+            </Link>
           </div>
         </div>
       </section>
@@ -159,15 +164,25 @@ export default function BlogPage({
       <section className="py-16 bg-muted/30">
         <div className="container mx-auto px-4">
           <div className="max-w-2xl mx-auto text-center">
-            <h2 className="text-3xl font-bold text-foreground mb-4">Restez informé</h2>
+            <h2 className="text-3xl font-bold text-foreground mb-4">Une question sur votre épave ?</h2>
             <p className="text-muted-foreground mb-8">
-              Recevez nos derniers articles et conseils directement dans votre boîte mail
+              Notre équipe d'épavistes agréés répond à toutes vos questions : carte grise perdue, prime à la
+              conversion, document Cerfa, restitution de véhicule.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
-              <Input type="email" placeholder="Votre adresse email" className="rounded-full flex-1" />
-              <Button className="rounded-full">S'abonner</Button>
+              <Button className="rounded-full flex-1" asChild>
+                <a href="tel:+33630302053">
+                  <Phone className="w-4 h-4 mr-2" />
+                  06 30 30 20 53
+                </a>
+              </Button>
+              <Button variant="outline" className="rounded-full flex-1" asChild>
+                <Link href="/contact">
+                  <Mail className="w-4 h-4 mr-2" />
+                  Nous contacter
+                </Link>
+              </Button>
             </div>
-            <p className="text-xs text-muted-foreground mt-4">Pas de spam, désabonnement possible à tout moment</p>
           </div>
         </div>
       </section>
