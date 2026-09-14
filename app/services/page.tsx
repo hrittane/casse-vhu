@@ -71,6 +71,41 @@ export default function ServicesPage() {
         <div className="min-h-screen bg-background">
             <script
                 type="application/ld+json"
+                dangerouslySetInnerHTML={{
+                    __html: JSON.stringify({
+                        "@context": "https://schema.org",
+                        "@type": "FAQPage",
+                        "mainEntity": [
+                            {
+                                "@type": "Question",
+                                "name": "Quels types de véhicules prenez-vous en charge ?",
+                                "acceptedAnswer": {
+                                    "@type": "Answer",
+                                    "text": "Nous prenons en charge tous types de véhicules : voitures, utilitaires, motos, scooters, camping-cars, etc., quel que soit leur état."
+                                }
+                            },
+                            {
+                                "@type": "Question",
+                                "name": "Mon véhicule ne roule plus, pouvez-vous quand même l'enlever ?",
+                                "acceptedAnswer": {
+                                    "@type": "Answer",
+                                    "text": "Oui, nous sommes équipés pour enlever les véhicules non-roulants."
+                                }
+                            },
+                            {
+                                "@type": "Question",
+                                "name": "Que se passe-t-il si je n'ai pas la carte grise ?",
+                                "acceptedAnswer": {
+                                    "@type": "Answer",
+                                    "text": "Dans la plupart des cas, nous pouvons vous aider à trouver une solution. Contactez-nous pour en discuter."
+                                }
+                            }
+                        ]
+                    }),
+                }}
+            />
+            <script
+                type="application/ld+json"
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
             />
             {/* Hero Section */}

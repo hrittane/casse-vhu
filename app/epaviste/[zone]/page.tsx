@@ -23,6 +23,23 @@ export async function generateStaticParams() {
     return getZones().map((zone) => ({ zone: zone.slug }))
 }
 
+function zoneInLine(zone: { name: string; type: string }): string {
+  const name = zone.name
+  if (zone.type === "Département") return `${name}`
+  if (zone.type === "Grandes communes") return name.split(",")[0]
+  const regionMap: Record<string, string> = {
+    "le Nord": "dans le Nord",
+    "Pas de Calais": "dans le Pas-de-Calais",
+    "Auvergne Rhône Alpes": "en Auvergne Rhône-Alpes",
+    "Nouvelle Aquitaine": "en Nouvelle-Aquitaine",
+    "Provence Alpes Côte d'Azur": "en Provence-Alpes-Côte d'Azur",
+    Bretagne: "en Bretagne",
+    Vendée: "en Vendée",
+    "Loire Atlantique": "en Loire-Atlantique",
+  }
+  return regionMap[name] ?? `à ${name}`
+}
+
 export async function generateMetadata({ params }: { params: { zone: string } }): Promise<Metadata> {
     const zone = findZoneBySlug(params.zone)
 
@@ -32,8 +49,14 @@ export async function generateMetadata({ params }: { params: { zone: string } })
         }
     }
 
-    const title = `Épaviste agréé & enlèvement d'épaves gratuit à ${zone.name}`
-    const description = `Enlèvement d'épave 100% gratuit à ${zone.name} sous 24h. Épaviste agréé VHU, certificat de destruction fourni sur place. Appelez le 06 30 30 20 53.`
+    const inLine = zoneInLine(zone)
+    const title =
+        zone.type === "Département"
+            ? `Centre VHU agréé ${zone.name} | Casse auto & enlèvement d'épave gratuit`
+            : zone.type === "Grandes communes"
+              ? `Casse auto ${zone.name.split(",")[0]} & alentours | Centre VHU agréé & enlèvement gratuit`
+              : `Casse auto & épaviste agréé ${inLine} | Enlèvement d'épave gratuit`
+    const description = `Enlèvement d'épave 100% gratuit ${inLine} sous 24h. Centre VHU agréé, casse auto, épaviste certifié : certificat de destruction fourni sur place. Appelez le 06 30 30 20 53.`
 
     return {
         title,
@@ -110,7 +133,29 @@ export default function ZonePage({ params }: { params: { zone: string } }) {
             "@type": "PostalAddress",
             "addressLocality": zoneName,
             "addressCountry": "FR"
-        }
+        },
+        "contactPoint": {
+            "@type": "ContactPoint",
+            "telephone": "+33-630-302-053",
+            "contactType": "customer service",
+            "contactOption": "TollFree",
+            "areaServed": "FR",
+            "availableLanguage": "French"
+        },
+        "openingHoursSpecification": [
+            {
+                "@type": "OpeningHoursSpecification",
+                "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+                "opens": "08:00",
+                "closes": "19:00"
+            },
+            {
+                "@type": "OpeningHoursSpecification",
+                "dayOfWeek": "Saturday",
+                "opens": "09:00",
+                "closes": "17:00"
+            }
+        ]
     };
 
     const faqSchema = {
@@ -415,17 +460,73 @@ export default function ZonePage({ params }: { params: { zone: string } }) {
                             </div>
                         </section>
 
-                        {/* Neighborhoods Section */}
+                        {/* Centre VHU section */}
                         <section>
-                            <h2 className="text-3xl font-bold text-foreground mb-6">Quartiers et Villes Desservis à {zoneName}</h2>
+                            <h2 className="text-3xl font-bold text-foreground mb-4">Centre VHU agréé à {zoneName}</h2>
+                            <p className="text-muted-foreground mb-4">
+                                Vous cherchez un <strong className="text-foreground">centre VHU agréé {zone.type === "Département" ? zone.name : `à ${zoneName}`}</strong>{" "}
+                                pour détruire votre véhicule ? Casse-VHU travaille avec des centres VHU agréés par la préfecture. Après
+                                dépollution, votre véhicule est recyclé conformément aux normes environnementales et vous recevez votre
+                                certificat de destruction immédiatement.
+                            </p>
+                            <p className="text-muted-foreground mb-6">
+                                La reprise d'un véhicule hors d'usage est gratuite et obligatoire : n'acceptez jamais qu'un ferrailleur
+                                récupère votre voiture sans agrément, vous resteriez responsable de ses infractions.
+                            </p>
+                            <p>
+                                <Link href="/centre-vhu-agree" className="inline-flex items-center text-primary font-medium hover:underline">
+                                    Tout savoir sur le centre VHU agréé
+                                    <ArrowRight className="w-4 h-4 ml-1" />
+                                </Link>
+                            </p>
+                        </section>
+
+                        {/* Destruction section */}
+                        <section className="bg-muted/30 rounded-2xl p-8">
+                            <h2 className="text-3xl font-bold text-foreground mb-4">Destruction de voiture à {zoneName}</h2>
+                            <p className="text-muted-foreground mb-4">
+                                La <strong className="text-foreground">destruction de votre véhicule à {zoneName}</strong> se déroule en
+                                quatre étapes : enlèvement gratuit, dépollution (liquides, batteries, airbag), démontage des pièces
+                                réutilisables et broyage de la carcasse. Le certificat de destruction délivré met fin à la vie
+                                administrative de votre véhicule et vous dédouane de toute responsabilité.
+                            </p>
+                            <ul className="space-y-3 text-sm text-muted-foreground mb-4">
+                                <li className="flex items-start gap-3">
+                                    <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
+                                    Certificat de destruction remis sur place
+                                </li>
+                                <li className="flex items-start gap-3">
+                                    <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
+                                    Déclaration en préfecture effectuée par nos soins
+                                </li>
+                                <li className="flex items-start gap-3">
+                                    <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
+                                    Destruction possible sans carte grise
+                                </li>
+                            </ul>
+                            <p>
+                                Besoin d'un guide ? Consultez notre article «{" "}
+                                <Link href="/blog/comment-se-debarrasser-dune-voiture-sans-carte-grise" className="text-primary font-medium hover:underline">
+                                    Comment se débarrasser d'une voiture sans carte grise ?
+                                </Link>
+                                ».
+                            </p>
+                        </section>
+
+                        {/* Casse automobile section */}
+                        <section>
+                            <h2 className="text-3xl font-bold text-foreground mb-4">Casse automobile {zone.type === "Grandes communes" ? `autour de ${zoneName.split(",")[0]}` : `à ${zoneName}`}</h2>
+                            <p className="text-muted-foreground mb-4">
+                                Une épave à faire enlever ? Notre <strong className="text-foreground">casse automobile {zone.type === "Grandes communes" ? `proche de ${zoneName.split(",")[0]}` : `dans ${zoneName}`}</strong>{" "}
+                                prend en charge votre véhicule accidenté, brûlé, inondé ou simplement hors d'usage, sans contrôle
+                                technique et sans frais. Retrouvez aussi nos pages{" "}
+                                <Link href="/epaviste" className="text-primary font-medium hover:underline">épaviste par région</Link> et notre service d'{" "}
+                                <Link href="/enlevement-epave" className="text-primary font-medium hover:underline">enlèvement d'épave gratuit</Link>.
+                            </p>
                             <div className="grid grid-cols-2 md:grid-cols-3 gap-2 text-sm text-muted-foreground">
-                                {/* This should be dynamically populated based on the zone */}
-                                <p>Centre-ville</p>
-                                <p>Quartier Nord</p>
-                                <p>Quartier Sud</p>
-                                <p>Zone Industrielle</p>
-                                <p>La périphérie</p>
-                                <p>Les communes voisines</p>
+                                {zone.type === "Grandes communes"
+                                    ? zone.name.split(",").map((city) => <p key={city}>{city.trim()}</p>)
+                                    : ["Localités desservies", "Zone industrielle", "Centre-ville", "Périphérie", "Communes limitrophes", "Route et chemin privé"].map((label) => <p key={label}>{label}</p>)}
                             </div>
                         </section>
 

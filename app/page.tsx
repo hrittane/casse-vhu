@@ -1,6 +1,7 @@
 import { Metadata } from "next"
 import Image from "next/image"
 import Link from "next/link"
+import { getZones } from "@/lib/zones"
 
 export const metadata: Metadata = {
   title: "Casse Auto & Épaviste Agréé VHU | Enlèvement Gratuit sous 24h",
@@ -36,8 +37,70 @@ import {
 } from "lucide-react"
 
 export default function CasseVHULanding() {
+  const zones = getZones()
+  const regions = zones.filter((z) => z.type === "Région")
+  const departments = zones.filter((z) => z.type === "Département")
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "L'enlèvement d'épave est-il vraiment gratuit ?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Oui, le service est entièrement gratuit partout en France, si votre véhicule est complet avec ses éléments essentiels (moteur, pot catalytique...). Aucun frais caché, aucune surprise."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Quels documents faut-il fournir ?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "La carte grise du véhicule, une pièce d'identité du propriétaire et le formulaire Cerfa n°15776*02 (cession pour destruction) rempli et signé."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Et si je n'ai plus la carte grise ?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Nous pouvons intervenir, mais un certificat de non-gage et une déclaration de perte ou de vol seront nécessaires. Nous vous guidons dans ces démarches."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Que devient mon véhicule après l'enlèvement ?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Il est transporté dans un centre agréé VHU pour dépollution, recyclage et destruction légale selon les normes environnementales en vigueur."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Puis-je bénéficier d'une prime à la conversion ?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Oui, si votre véhicule répond aux critères, nous vous guiderons dans la demande auprès des autorités compétentes pour obtenir votre prime à la conversion."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Intervenez-vous le week-end ?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Oui, nous proposons des créneaux le samedi selon les disponibilités. Contactez-nous pour organiser un rendez-vous qui vous convient."
+        }
+      }
+    ]
+  }
+
   return (
     <div className="min-h-screen bg-background">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
 
 
 
@@ -517,104 +580,61 @@ export default function CasseVHULanding() {
 
           {/* Bento Grid Layout */}
           <div className="max-w-7xl mx-auto">
-
             <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-2 sm:gap-4 auto-rows-fr">
-              {/* Large featured region - Primary color */}
-              <Card className="col-span-2 md:col-span-2 lg:col-span-2 md:row-span-2 p-3 sm:p-6 bg-gradient-to-br from-primary/15 to-primary/25 border-2 border-primary/30 text-primary-foreground">
-                <CardContent className="pt-3 sm:pt-6 h-full flex flex-col justify-center">
-                  <MapPin className="w-8 h-8 sm:w-12 sm:h-12 text-primary mb-2 sm:mb-4" />
-                  <h3 className="text-lg sm:text-xl font-bold mb-2 sm:mb-3 text-foreground">Île-de-France</h3>
-                  <p className="text-xs sm:text-sm text-muted-foreground mb-2 sm:mb-4">
-                    Paris (75), Seine-et-Marne (77), Yvelines (78), Essonne (91), Hauts-de-Seine (92), Seine-Saint-Denis
-                    (93), Val-de-Marne (94), Val-d'Oise (95)
-                  </p>
-                  <div className="text-xs text-primary font-medium">Zone prioritaire • Intervention sous 24h</div>
-                </CardContent>
-              </Card>
+              {regions.map((region, index) => {
+                const featured = index === 0
+                const gradients = [
+                  "from-primary/15 to-primary/25 border-primary/30",
+                  "from-secondary/10 to-secondary/20 border-secondary/20 hover:border-secondary/30",
+                  "from-accent/10 to-accent/20 border-accent/20 hover:border-accent/30",
+                  "from-primary/8 to-primary/15 border-primary/20 hover:border-primary/30",
+                  "from-secondary/15 to-secondary/25 border-secondary/30",
+                  "from-accent/8 to-accent/15 border-accent/20 hover:border-accent/30",
+                  "from-secondary/8 to-secondary/15 border-secondary/20 hover:border-secondary/30",
+                  "from-primary/10 to-primary/20 border-primary/20 hover:border-primary/30",
+                ]
+                const gradient = gradients[index % gradients.length]
+                return (
+                  <Link
+                    key={region.slug}
+                    href={`/epaviste/${region.slug}`}
+                    className={`group ${featured ? "col-span-2 md:col-span-2 lg:col-span-2 md:row-span-2" : "col-span-1 md:col-span-2"}`}
+                  >
+                    <Card className={`p-3 h-full bg-gradient-to-br ${gradient} border-2 hover:border-primary/50 transition-colors ${featured ? "sm:p-6" : "sm:p-4"}`}>
+                      <CardContent className={`pt-3 h-full flex flex-col justify-center ${featured ? "sm:pt-6" : "sm:pt-4"}`}>
+                        <MapPin className="w-8 h-8 sm:w-12 sm:h-12 text-primary mb-2 sm:mb-4" />
+                        <h3 className={`font-bold mb-1 sm:mb-2 text-foreground group-hover:underline ${featured ? "text-lg sm:text-xl" : "text-sm sm:text-base"}`}>
+                          {region.name}
+                        </h3>
+                        {featured && (
+                          <p className="text-xs sm:text-sm text-muted-foreground mb-2 sm:mb-4">
+                            Épaviste agréé & centre VHU agréé • Intervention sous 24h
+                          </p>
+                        )}
+                      </CardContent>
+                    </Card>
+                  </Link>
+                )
+              })}
+            </div>
 
-              {/* Medium regions with secondary color */}
-              <Card className="col-span-1 md:col-span-2 p-2 sm:p-4 bg-gradient-to-br from-secondary/10 to-secondary/20 border-2 border-secondary/20 hover:border-secondary/30 transition-colors">
-                <CardContent className="pt-2 sm:pt-4">
-                  <h3 className="text-sm sm:text-base font-semibold mb-1 sm:mb-2 text-foreground">Hauts-de-France</h3>
-                  <p className="text-xs sm:text-sm text-muted-foreground">Lille, Amiens, Arras, Beauvais...</p>
-                </CardContent>
-              </Card>
-
-              <Card className="col-span-1 md:col-span-2 p-2 sm:p-4 bg-gradient-to-br from-accent/10 to-accent/20 border-2 border-accent/20 hover:border-accent/30 transition-colors">
-                <CardContent className="pt-2 sm:pt-4">
-                  <h3 className="text-sm sm:text-base font-semibold mb-1 sm:mb-2 text-foreground">Normandie</h3>
-                  <p className="text-xs sm:text-sm text-muted-foreground">Rouen, Caen, Le Havre...</p>
-                </CardContent>
-              </Card>
-
-              <Card className="col-span-1 md:col-span-2 p-2 sm:p-4 bg-gradient-to-br from-primary/8 to-primary/15 border-2 border-primary/20 hover:border-primary/30 transition-colors">
-                <CardContent className="pt-2 sm:pt-4">
-                  <h3 className="text-sm sm:text-base font-semibold mb-1 sm:mb-2 text-foreground">Grand Est</h3>
-                  <p className="text-xs sm:text-sm text-muted-foreground">Strasbourg, Metz, Nancy...</p>
-                </CardContent>
-              </Card>
-
-              {/* Highlighted region with secondary gradient */}
-              <Link href="/epaviste/provence-alpes-cote-d-azur" className="group">
-                <Card className="col-span-1 md:col-span-2 lg:col-span-2 p-3 sm:p-6 bg-gradient-to-br from-secondary/15 to-secondary/25 border-2 border-secondary/30 h-full">
-                  <CardContent className="pt-3 sm:pt-6">
-                    <h3 className="text-sm sm:text-lg font-bold mb-2 sm:mb-3 text-foreground group-hover:underline">PACA & Occitanie</h3>
-                    <p className="text-xs sm:text-sm text-muted-foreground mb-2 sm:mb-3">
-                      Marseille, Nice, Toulon, Toulouse...
-                    </p>
-                    <div className="text-xs text-secondary font-medium">Sud de la France</div>
-                  </CardContent>
-                </Card>
-              </Link>
-
-              {/* Regular regions with alternating colors */}
-              <Link href="/epaviste/bretagne" className="group">
-                <Card className="col-span-1 p-2 sm:p-4 bg-gradient-to-br from-accent/8 to-accent/15 border-2 border-accent/20 hover:border-accent/30 transition-colors">
-                  <CardContent className="pt-2 sm:pt-4">
-                    <h3 className="text-sm font-semibold mb-1 sm:mb-2 text-foreground group-hover:underline">Bretagne</h3>
-                    <p className="text-xs sm:text-sm text-muted-foreground">Rennes, Brest...</p>
-                  </CardContent>
-                </Card>
-              </Link>
-
-              <Card className="col-span-1 p-2 sm:p-4 bg-gradient-to-br from-secondary/8 to-secondary/15 border-2 border-secondary/20 hover:border-secondary/30 transition-colors">
-                <CardContent className="pt-2 sm:pt-4">
-                  <h3 className="text-sm font-semibold mb-1 sm:mb-2 text-foreground">Pays de la Loire</h3>
-                  <p className="text-xs sm:text-sm text-muted-foreground">Nantes, Angers...</p>
-                </CardContent>
-              </Card>
-
-              <Link href="/epaviste/nouvelle-aquitaine" className="group">
-                <Card className="col-span-1 p-2 sm:p-4 bg-gradient-to-br from-primary/8 to-primary/15 border-2 border-primary/20 hover:border-primary/30 transition-colors">
-                  <CardContent className="pt-2 sm:pt-4">
-                    <h3 className="text-sm font-semibold mb-1 sm:mb-2 text-foreground group-hover:underline">Nouvelle-Aquitaine</h3>
-                    <p className="text-xs sm:text-sm text-muted-foreground">Bordeaux, Poitiers...</p>
-                  </CardContent>
-                </Card>
-              </Link>
-
-              <Link href="/epaviste/auvergne-rhone-alpes" className="group">
-                <Card className="col-span-1 p-2 sm:p-4 bg-gradient-to-br from-accent/10 to-accent/20 border-2 border-accent/20 hover:border-accent/30 transition-colors">
-                  <CardContent className="pt-2 sm:pt-4">
-                    <h3 className="text-sm font-semibold mb-1 sm:mb-2 text-foreground group-hover:underline">Auvergne-Rhône-Alpes</h3>
-                    <p className="text-xs sm:text-sm text-muted-foreground">Lyon, Grenoble...</p>
-                  </CardContent>
-                </Card>
-              </Link>
-
-              <Card className="col-span-1 p-2 sm:p-4 bg-gradient-to-br from-secondary/10 to-secondary/20 border-2 border-secondary/20 hover:border-secondary/30 transition-colors">
-                <CardContent className="pt-2 sm:pt-4">
-                  <h3 className="text-sm font-semibold mb-1 sm:mb-2 text-foreground">Bourgogne-Franche-Comté</h3>
-                  <p className="text-xs sm:text-sm text-muted-foreground">Dijon, Besançon...</p>
-                </CardContent>
-              </Card>
-
-              <Card className="col-span-1 p-2 sm:p-4 bg-gradient-to-br from-primary/10 to-primary/20 border-2 border-primary/20 hover:border-primary/30 transition-colors">
-                <CardContent className="pt-2 sm:pt-4">
-                  <h3 className="text-sm font-semibold mb-1 sm:mb-2 text-foreground">Centre-Val de Loire</h3>
-                  <p className="text-xs sm:text-sm text-muted-foreground">Orléans, Tours...</p>
-                </CardContent>
-              </Card>
+            {/* Departments */}
+            <div className="mt-8">
+              <h3 className="text-sm font-semibold text-foreground mb-3">Départements couverts</h3>
+              <div className="flex flex-wrap gap-2">
+                {departments.map((dept) => (
+                  <Link key={dept.slug} href={`/epaviste/${dept.slug}`}>
+                    <Button variant="outline" size="sm" className="rounded-full bg-transparent">
+                      {dept.name}
+                    </Button>
+                  </Link>
+                ))}
+                <Link href="/epaviste">
+                  <Button variant="ghost" size="sm" className="rounded-full">
+                    Toutes nos zones d'intervention
+                  </Button>
+                </Link>
+              </div>
             </div>
           </div>
 
