@@ -20,7 +20,7 @@ export async function POST(request: Request) {
 
         const { data, error } = await resend.emails.send({
             from: "CASSE-VHU <contact@casse-vhu.fr>",
-            to: "contact@casse-vhu.fr",
+            to: ["contact@casse-vhu.fr", "info@moroccan.dev"],
             subject: "Nouveau message du formulaire de contact",
             html: `
         <p><strong>Nom & Prénom:</strong> ${name}</p>

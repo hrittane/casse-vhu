@@ -5,6 +5,6 @@
 3. Analytics : google analytics
 4. Seo : google console
 5. Email sending : Resned (github login)
-6. [Ionos Domain Dashboard](https://my.ionos.fr/domains-dashboard#) ( Login : contact.carcasse@gmail.com / pass : 123Azerty@1988 )
-7. [Ionos Webmail](https://id.ionos.com/identifier) ( Login : contact@casse-vhu.fr / pass : M0tdep@sse1988 )
+6. [Ionos Domain Dashboard](https://my.ionos.fr/domains-dashboard#) ( Login : contact.carcasse@gmail.com / pass : 123Azerty@ )
+7. [Ionos Webmail](https://id.ionos.com/identifier) ( Login : contact@casse-vhu.fr / pass : 123Azerty@ )
 
