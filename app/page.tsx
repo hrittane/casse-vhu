@@ -1,3 +1,4 @@
+import { canonicalUrl } from "@/lib/site"
 import { Metadata } from "next"
 import Image from "next/image"
 import Link from "next/link"
@@ -99,7 +100,7 @@ export default function CasseVHULanding() {
             metadata API always emits the bare origin for the root path (see
             next/dist/lib/metadata/resolvers/resolve-url.js), so the tag is
             rendered explicitly to keep it identical to the redirect target. */}
-        <link rel="canonical" href="https://www.casse-vhu.fr/" />
+        <link rel="canonical" href={canonicalUrl("/")} />
       </head>
       <script
         type="application/ld+json"

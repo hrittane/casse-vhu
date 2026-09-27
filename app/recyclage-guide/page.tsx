@@ -1,10 +1,11 @@
+import { canonicalUrl } from "@/lib/site"
 import { Metadata } from "next"
 
 export const metadata: Metadata = {
     title: "Guide du recyclage automobile : comment recycler son véhicule ?",
     description: "Guide complet du recyclage automobile et de la mise à la casse d'un véhicule hors d'usage : centre VHU agréé, dépollution, certificat de destruction.",
     alternates: {
-        canonical: "/recyclage-guide",
+        canonical: canonicalUrl("/recyclage-guide"),
     },
 }
 import { Button } from "@/components/ui/button"

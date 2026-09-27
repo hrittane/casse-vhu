@@ -1,3 +1,4 @@
+import { canonicalUrl } from "@/lib/site"
 import { Metadata } from "next"
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
@@ -54,7 +55,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
     title: post.title,
     description: post.excerpt,
     alternates: {
-      canonical: `/blog/${post.slug}`,
+      canonical: canonicalUrl(`/blog/${post.slug}`),
     },
     openGraph: {
       title: post.title,

@@ -1,3 +1,4 @@
+import { canonicalUrl } from "@/lib/site"
 import { Metadata } from "next"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
@@ -62,7 +63,7 @@ export async function generateMetadata({ params }: { params: { zone: string } })
         title,
         description,
         alternates: {
-            canonical: `/epaviste/${zone.slug}`,
+            canonical: canonicalUrl(`/epaviste/${zone.slug}`),
         },
         openGraph: {
             title,

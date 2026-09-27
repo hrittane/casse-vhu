@@ -1,3 +1,4 @@
+import { SITE_URL } from "@/lib/site"
 import type React from "react"
 import type { Metadata } from "next"
 import { GeistSans } from "geist/font/sans"
@@ -12,7 +13,7 @@ import GoogleAnalytics from "@/components/ui/GoogleAnalytics"
 import "./globals.css"
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://www.casse-vhu.fr"),
+  metadataBase: new URL(SITE_URL),
   title: {
     default: "Casse-VHU - Recyclage Automobile Gratuit | Enlèvement VHU",
     template: "%s | Casse-VHU",

@@ -1,10 +1,11 @@
+import { canonicalUrl } from "@/lib/site"
 import { Metadata } from "next"
 
 export const metadata: Metadata = {
     title: "À propos : notre épaviste agréé VHU",
     description: "Découvrez Casse-VHU, votre épaviste agréé VHU en France : enlèvement d'épave gratuit, recyclage responsable et démarches simplifiées depuis 2015.",
     alternates: {
-        canonical: "/a-propos",
+        canonical: canonicalUrl("/a-propos"),
     },
 }
 import { Button } from "@/components/ui/button"

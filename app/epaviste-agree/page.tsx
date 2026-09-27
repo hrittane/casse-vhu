@@ -1,3 +1,4 @@
+import { canonicalUrl } from "@/lib/site"
 import { Metadata } from "next"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
@@ -19,7 +20,7 @@ export const metadata: Metadata = {
     title: "Épaviste agréé VHU : enlèvement gratuit de votre véhicule",
     description: "Votre épaviste agréé VHU : enlèvement gratuit de véhicule hors d'usage sous 24h partout en France. Certificat de destruction fourni sur place. Appelez le 06 30 30 20 53.",
     alternates: {
-        canonical: "/epaviste-agree",
+        canonical: canonicalUrl("/epaviste-agree"),
     },
     openGraph: {
         title: "Épaviste agréé VHU : enlèvement gratuit de votre véhicule",

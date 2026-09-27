@@ -1,10 +1,11 @@
+import { canonicalUrl } from "@/lib/site"
 import { Metadata } from "next"
 
 export const metadata: Metadata = {
     title: "Épaviste par ville et région : nos zones d'intervention",
     description: "Épaviste agréé et enlèvement d'épave gratuit par ville, région et département en France. Centre VHU agréé proche de chez vous, intervention sous 24h.",
     alternates: {
-        canonical: "/epaviste",
+        canonical: canonicalUrl("/epaviste"),
     },
 }
 import { Button } from "@/components/ui/button"

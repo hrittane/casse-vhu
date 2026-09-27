@@ -1,3 +1,4 @@
+import { canonicalUrl } from "@/lib/site"
 import { Metadata } from "next"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
@@ -18,7 +19,7 @@ export const metadata: Metadata = {
     title: "Centre VHU agréé : recyclage et destruction de véhicules hors d'usage",
     description: "Centre VHU agréé préfecture : dépollution, destruction et recyclage de véhicules hors d'usage, avec certificat officiel. Épaviste agréé partout en France. 06 30 30 20 53.",
     alternates: {
-        canonical: "/centre-vhu-agree",
+        canonical: canonicalUrl("/centre-vhu-agree"),
     },
     openGraph: {
         title: "Centre VHU agréé : recyclage et destruction de véhicules hors d'usage",

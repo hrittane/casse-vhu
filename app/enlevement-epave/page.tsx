@@ -1,3 +1,4 @@
+import { canonicalUrl } from "@/lib/site"
 import { Metadata } from "next"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
@@ -18,7 +19,7 @@ export const metadata: Metadata = {
     title: "Enlèvement d'épave gratuit sous 24h | Casse-VHU",
     description: "Enlèvement d'épave gratuit partout en France sous 24h. Épaviste agréé VHU, certificat de destruction fourni sur place, carte grise perdue acceptée. Appelez le 06 30 30 20 53.",
     alternates: {
-        canonical: "/enlevement-epave",
+        canonical: canonicalUrl("/enlevement-epave"),
     },
     openGraph: {
         title: "Enlèvement d'épave gratuit sous 24h | Casse-VHU",

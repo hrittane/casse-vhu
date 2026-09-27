@@ -1,10 +1,11 @@
+import { canonicalUrl } from "@/lib/site"
 import { Metadata } from "next"
 
 export const metadata: Metadata = {
     title: "Épaviste agréé VHU : enlèvement d'épave gratuit sous 24h",
     description: "Services d'enlèvement d'épave 100% gratuit sous 24h : épaviste agréé, centre VHU, démarches administratives et certificat de destruction fournis. 06 30 30 20 53.",
     alternates: {
-        canonical: "/services",
+        canonical: canonicalUrl("/services"),
     },
 }
 import { Button } from "@/components/ui/button"

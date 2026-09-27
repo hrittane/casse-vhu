@@ -1,3 +1,4 @@
+import { canonicalUrl } from "@/lib/site"
 import { Metadata } from "next"
 import Image from "next/image"
 
@@ -5,7 +6,7 @@ export const metadata: Metadata = {
     title: "Contact",
     description: "Contactez Casse-VHU pour un enlèvement d'épave gratuit sous 24h partout en France. Épaviste agréé, certificat de destruction fourni. 06 30 30 20 53.",
     alternates: {
-        canonical: "/contact",
+        canonical: canonicalUrl("/contact"),
     },
 }
 import { Button } from "@/components/ui/button"

@@ -1,3 +1,4 @@
+import { canonicalUrl } from "@/lib/site"
 import { Metadata } from "next"
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
@@ -22,7 +23,7 @@ export const metadata: Metadata = {
   title: "Blog épaviste & recyclage VHU : guides et conseils",
   description: "Guides pratiques, démarches administratives et réglementation pour se débarrasser d'un véhicule hors d'usage : carte grise, Cerfa, prime à la conversion, enlèvement d'épave.",
   alternates: {
-    canonical: "/blog",
+    canonical: canonicalUrl("/blog"),
   },
 }
 
