@@ -6,9 +6,6 @@ import { getZones } from "@/lib/zones"
 export const metadata: Metadata = {
   title: "Casse Auto & Épaviste Agréé VHU | Enlèvement Gratuit sous 24h",
   description: "Épaviste agréé VHU : enlèvement d'épave 100% gratuit, intervention sous 24h, certificat de destruction fourni sur place. Centre VHU agréé préfecture, service partout en France. Appelez le 06 30 30 20 53.",
-  alternates: {
-    canonical: "/",
-  },
 }
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
@@ -97,6 +94,13 @@ export default function CasseVHULanding() {
 
   return (
     <div className="min-h-screen bg-background">
+      <head>
+        {/* The canonical homepage is the only URL with a trailing slash. Next's
+            metadata API always emits the bare origin for the root path (see
+            next/dist/lib/metadata/resolvers/resolve-url.js), so the tag is
+            rendered explicitly to keep it identical to the redirect target. */}
+        <link rel="canonical" href="https://www.casse-vhu.fr/" />
+      </head>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}

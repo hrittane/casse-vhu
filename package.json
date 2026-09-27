@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "postbuild": "next-sitemap",
+    "postbuild": "next-sitemap && node scripts/normalize-sitemap-root.mjs",
     "optimize-images": "node scripts/image-optimizer.mjs",
     "postinstall": "partytown copylib public/~partytown"
   },

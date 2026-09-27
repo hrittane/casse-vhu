@@ -5,7 +5,7 @@ import blogPosts from '../../data/blog/index.json';
 export const dynamic = 'force-dynamic';
 
 export async function GET() {
-    const baseUrl = 'https://casse-vhu.fr';
+    const baseUrl = 'https://www.casse-vhu.fr';
 
     const sections = [
         `# Instructions for AI and LLMs (Answer Engine Optimization)`,

@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     openGraph: {
         title: "Enlèvement d'épave gratuit sous 24h | Casse-VHU",
         description: "Enlèvement d'épave gratuit partout en France sous 24h. Certificat de destruction fourni sur place.",
-        url: "https://casse-vhu.fr/enlevement-epave",
+        url: "https://www.casse-vhu.fr/enlevement-epave",
         siteName: "Casse-VHU",
         locale: "fr_FR",
         type: "website",
@@ -54,8 +54,8 @@ const schema = {
     "@type": "AutomotiveBusiness",
     "name": "Casse-VHU",
     "description": "Enlèvement d'épave gratuit partout en France sous 24h.",
-    "url": "https://casse-vhu.fr/enlevement-epave",
-    "logo": "https://casse-vhu.fr/logo.png",
+    "url": "https://www.casse-vhu.fr/enlevement-epave",
+    "logo": "https://www.casse-vhu.fr/logo.png",
     "telephone": "+33-630-302-053",
     "priceRange": "0€",
     "areaServed": "France"

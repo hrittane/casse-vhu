@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     openGraph: {
         title: "Épaviste agréé VHU : enlèvement gratuit de votre véhicule",
         description: "Épaviste agréé VHU : enlèvement gratuit de véhicule hors d'usage sous 24h partout en France.",
-        url: "https://casse-vhu.fr/epaviste-agree",
+        url: "https://www.casse-vhu.fr/epaviste-agree",
         siteName: "Casse-VHU",
         locale: "fr_FR",
         type: "website",
@@ -55,8 +55,8 @@ const schema = {
     "@type": "AutomotiveBusiness",
     "name": "Casse-VHU",
     "description": "Épaviste agréé VHU : enlèvement gratuit de véhicules hors d'usage.",
-    "url": "https://casse-vhu.fr/epaviste-agree",
-    "logo": "https://casse-vhu.fr/logo.png",
+    "url": "https://www.casse-vhu.fr/epaviste-agree",
+    "logo": "https://www.casse-vhu.fr/logo.png",
     "telephone": "+33-630-302-053",
     "priceRange": "0€",
     "areaServed": "France"

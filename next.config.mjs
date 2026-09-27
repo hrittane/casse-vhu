@@ -43,22 +43,49 @@ for (const type of zoneTypes) {
   }
 }
 
+const CANONICAL_HOST = "www.casse-vhu.fr"
+const APEX_HOST = "casse-vhu.fr"
+const CANONICAL_ORIGIN = `https://${CANONICAL_HOST}`
+
 const nextConfig = {
   experimental: {
     partytown: true,
   },
+  trailingSlash: false,
   async redirects() {
     return [
+      // ":path*" matches empty on the root, which drops the trailing slash and
+      // would send "/" to the origin-only form. The root is pinned explicitly so
+      // it lands on the canonical "https://www.casse-vhu.fr/".
+      {
+        source: "/",
+        has: [{ type: "host", value: APEX_HOST }],
+        destination: `${CANONICAL_ORIGIN}/`,
+        statusCode: 301,
+      },
+      {
+        source: "/",
+        has: [
+          { type: "host", value: CANONICAL_HOST },
+          { type: "header", key: "x-forwarded-proto", value: "http" },
+        ],
+        destination: `${CANONICAL_ORIGIN}/`,
+        statusCode: 301,
+      },
+      {
+        source: "/:path*",
+        has: [{ type: "host", value: APEX_HOST }],
+        destination: `${CANONICAL_ORIGIN}/:path*`,
+        statusCode: 301,
+      },
       {
         source: "/:path*",
         has: [
-          {
-            type: "host",
-            value: "www.casse-vhu.fr",
-          },
+          { type: "host", value: CANONICAL_HOST },
+          { type: "header", key: "x-forwarded-proto", value: "http" },
         ],
-        destination: "https://casse-vhu.fr/:path*",
-        permanent: true,
+        destination: `${CANONICAL_ORIGIN}/:path*`,
+        statusCode: 301,
       },
       {
         source: "/zones",

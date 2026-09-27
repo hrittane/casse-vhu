@@ -67,7 +67,7 @@ export async function generateMetadata({ params }: { params: { zone: string } })
         openGraph: {
             title,
             description,
-            url: `https://casse-vhu.fr/epaviste/${zone.slug}`,
+            url: `https://www.casse-vhu.fr/epaviste/${zone.slug}`,
             siteName: "Casse-VHU",
             locale: "fr_FR",
             type: "website",
@@ -121,8 +121,8 @@ export default function ZonePage({ params }: { params: { zone: string } }) {
         "@type": "AutomotiveBusiness",
         "name": `Casse-VHU ${zoneName}`,
         "description": `Service d'enlèvement d'épaves gratuit à ${zoneName}.`,
-        "url": `https://casse-vhu.fr/epaviste/${zone.slug}`,
-        "logo": "https://casse-vhu.fr/logo.png",
+        "url": `https://www.casse-vhu.fr/epaviste/${zone.slug}`,
+        "logo": "https://www.casse-vhu.fr/logo.png",
         "telephone": "+33-630-302-053",
         "priceRange": "0€",
         "areaServed": {

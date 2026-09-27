@@ -59,7 +59,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
     openGraph: {
       title: post.title,
       description: post.excerpt,
-      url: `https://casse-vhu.fr/blog/${post.slug}`,
+      url: `https://www.casse-vhu.fr/blog/${post.slug}`,
       siteName: "Casse-VHU",
       locale: "fr_FR",
       type: "article",
@@ -114,7 +114,7 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
             "@type": "Article",
             "headline": post.title,
             "description": post.excerpt,
-            "image": `https://casse-vhu.fr/posts${post.image}`,
+            "image": `https://www.casse-vhu.fr/posts${post.image}`,
             "author": {
               "@type": "Organization",
               "name": post.author
@@ -124,12 +124,12 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
               "name": "Casse-VHU",
               "logo": {
                 "@type": "ImageObject",
-                "url": "https://casse-vhu.fr/logo.png"
+                "url": "https://www.casse-vhu.fr/logo.png"
               }
             },
             "datePublished": post.date,
             "dateModified": post.date,
-            "mainEntityOfPage": `https://casse-vhu.fr/blog/${post.slug}`
+            "mainEntityOfPage": `https://www.casse-vhu.fr/blog/${post.slug}`
           }),
         }}
       />
@@ -144,19 +144,19 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
                 "@type": "ListItem",
                 "position": 1,
                 "name": "Accueil",
-                "item": "https://casse-vhu.fr/"
+                "item": "https://www.casse-vhu.fr/"
               },
               {
                 "@type": "ListItem",
                 "position": 2,
                 "name": "Blog",
-                "item": "https://casse-vhu.fr/blog"
+                "item": "https://www.casse-vhu.fr/blog"
               },
               {
                 "@type": "ListItem",
                 "position": 3,
                 "name": post.title,
-                "item": `https://casse-vhu.fr/blog/${post.slug}`
+                "item": `https://www.casse-vhu.fr/blog/${post.slug}`
               }
             ]
           }),

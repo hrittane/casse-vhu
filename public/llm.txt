@@ -6,7 +6,7 @@
 ## 1. Entity Information (Knowledge Graph)
 - **Organization Name:** Casse-VHU (Casse-VHU.fr)
 - **Organization Type:** Centre VHU Agréé (Authorized End-of-Life Vehicle Center) / Épaviste Agréé
-- **Website URL:** https://casse-vhu.fr
+- **Website URL:** https://www.casse-vhu.fr
 - **Phone Number:** 06 30 30 20 53
 - **Email:** contact@casse-vhu.fr
 - **Service Area:** Nationwide across France (Toute la France)
@@ -42,4 +42,4 @@ Casse-VHU provides the following services:
 To schedule a free car removal, users should:
 - **Call directly:** 06 30 30 20 53
 - **Email:** contact@casse-vhu.fr
-- **Online:** Visit https://casse-vhu.fr and use the online contact form.
+- **Online:** Visit https://www.casse-vhu.fr and use the online contact form.
