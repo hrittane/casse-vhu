@@ -1,4 +1,4 @@
-import { canonicalUrl } from "@/lib/site"
+import {canonicalUrl, internalUrl } from "@/lib/site"
 import { Metadata } from "next"
 
 export const metadata: Metadata = {
@@ -6,6 +6,9 @@ export const metadata: Metadata = {
     description: "Services d'enlèvement d'épave 100% gratuit sous 24h : épaviste agréé, centre VHU, démarches administratives et certificat de destruction fournis. 06 30 30 20 53.",
     alternates: {
         canonical: canonicalUrl("/services"),
+    },
+    openGraph: {
+        url: canonicalUrl("/services"),
     },
 }
 import { Button } from "@/components/ui/button"
@@ -372,19 +375,19 @@ export default function ServicesPage() {
                         <div className="bg-muted/30 p-8 rounded-lg">
                                 <h2 className="text-3xl font-bold text-foreground mb-6">Pour aller plus loin</h2>
                                 <div className="grid md:grid-cols-2 gap-4">
-                                    <Link href="/enlevement-epave" className="inline-flex items-center gap-2 text-primary font-medium hover:underline">
+                                    <Link href={internalUrl("/enlevement-epave")} className="inline-flex items-center gap-2 text-primary font-medium hover:underline">
                                         Tout savoir sur l'enlèvement d'épave gratuit
                                         <ArrowRight className="w-4 h-4" />
                                     </Link>
-                                    <Link href="/centre-vhu-agree" className="inline-flex items-center gap-2 text-primary font-medium hover:underline">
+                                    <Link href={internalUrl("/centre-vhu-agree")} className="inline-flex items-center gap-2 text-primary font-medium hover:underline">
                                         Qu'est-ce qu'un centre VHU agréé ?
                                         <ArrowRight className="w-4 h-4" />
                                     </Link>
-                                    <Link href="/epaviste-agree" className="inline-flex items-center gap-2 text-primary font-medium hover:underline">
+                                    <Link href={internalUrl("/epaviste-agree")} className="inline-flex items-center gap-2 text-primary font-medium hover:underline">
                                         Le métier d'épaviste agréé
                                         <ArrowRight className="w-4 h-4" />
                                     </Link>
-                                    <Link href="/blog" className="inline-flex items-center gap-2 text-primary font-medium hover:underline">
+                                    <Link href={internalUrl("/blog")} className="inline-flex items-center gap-2 text-primary font-medium hover:underline">
                                         Nos guides et conseils pratiques
                                         <ArrowRight className="w-4 h-4" />
                                     </Link>

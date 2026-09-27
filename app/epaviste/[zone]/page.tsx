@@ -1,4 +1,4 @@
-import { canonicalUrl } from "@/lib/site"
+import {canonicalUrl, internalUrl } from "@/lib/site"
 import { Metadata } from "next"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
@@ -17,8 +17,16 @@ import {
     ArrowRight,
 } from "lucide-react"
 import { notFound } from "next/navigation"
-import { getZones, findZoneBySlug } from "@/lib/zones"
+import {
+    getZones,
+    findZoneBySlug,
+    parentZoneOf,
+    childZonesOf,
+    regionOf,
+} from "@/lib/zones"
 import Link from "next/link"
+
+export const dynamicParams = false
 
 export async function generateStaticParams() {
     return getZones().map((zone) => ({ zone: zone.slug }))
@@ -47,6 +55,7 @@ export async function generateMetadata({ params }: { params: { zone: string } })
     if (!zone) {
         return {
             title: "Zone non trouvée",
+            robots: { index: false, follow: false },
         }
     }
 
@@ -97,6 +106,12 @@ export default function ZonePage({ params }: { params: { zone: string } }) {
     }
 
     const zoneName = zone.name
+    const zoneLabel = zone.label
+    const zoneCode = zone.code
+    const zoneCommunes = zone.communes
+    const parentZone = parentZoneOf(zone)
+    const childZones = childZonesOf(zone)
+    const regionZone = regionOf(zone)
 
     const faqData = [
         {
@@ -203,7 +218,7 @@ export default function ZonePage({ params }: { params: { zone: string } }) {
                                     06 30 30 20 53
                                 </a>
                             </Button>
-                            <Link href="/contact">
+                            <Link href={internalUrl("/contact")}>
                                 <Button
                                     size="lg"
                                     variant="outline"
@@ -475,7 +490,7 @@ export default function ZonePage({ params }: { params: { zone: string } }) {
                                 récupère votre voiture sans agrément, vous resteriez responsable de ses infractions.
                             </p>
                             <p>
-                                <Link href="/centre-vhu-agree" className="inline-flex items-center text-primary font-medium hover:underline">
+                                <Link href={internalUrl("/centre-vhu-agree")} className="inline-flex items-center text-primary font-medium hover:underline">
                                     Tout savoir sur le centre VHU agréé
                                     <ArrowRight className="w-4 h-4 ml-1" />
                                 </Link>
@@ -507,7 +522,7 @@ export default function ZonePage({ params }: { params: { zone: string } }) {
                             </ul>
                             <p>
                                 Besoin d'un guide ? Consultez notre article «{" "}
-                                <Link href="/blog/comment-se-debarrasser-dune-voiture-sans-carte-grise" className="text-primary font-medium hover:underline">
+                                <Link href={internalUrl("/blog/comment-se-debarrasser-dune-voiture-sans-carte-grise")} className="text-primary font-medium hover:underline">
                                     Comment se débarrasser d'une voiture sans carte grise ?
                                 </Link>
                                 ».
@@ -521,8 +536,8 @@ export default function ZonePage({ params }: { params: { zone: string } }) {
                                 Une épave à faire enlever ? Notre <strong className="text-foreground">casse automobile {zone.type === "Grandes communes" ? `proche de ${zoneName.split(",")[0]}` : `dans ${zoneName}`}</strong>{" "}
                                 prend en charge votre véhicule accidenté, brûlé, inondé ou simplement hors d'usage, sans contrôle
                                 technique et sans frais. Retrouvez aussi nos pages{" "}
-                                <Link href="/epaviste" className="text-primary font-medium hover:underline">épaviste par région</Link> et notre service d'{" "}
-                                <Link href="/enlevement-epave" className="text-primary font-medium hover:underline">enlèvement d'épave gratuit</Link>.
+                                <Link href={internalUrl("/epaviste")} className="text-primary font-medium hover:underline">épaviste par région</Link> et notre service d'{" "}
+                                <Link href={internalUrl("/enlevement-epave")} className="text-primary font-medium hover:underline">enlèvement d'épave gratuit</Link>.
                             </p>
                             <div className="grid grid-cols-2 md:grid-cols-3 gap-2 text-sm text-muted-foreground">
                                 {zone.type === "Grandes communes"
@@ -530,6 +545,129 @@ export default function ZonePage({ params }: { params: { zone: string } }) {
                                     : ["Localités desservies", "Zone industrielle", "Centre-ville", "Périphérie", "Communes limitrophes", "Route et chemin privé"].map((label) => <p key={label}>{label}</p>)}
                             </div>
                         </section>
+
+                        {/* Communes: the only genuinely per-zone prose on this page,
+                            and the main source of unique text for these landings. */}
+                        <section>
+                            <h2 className="text-3xl font-bold text-foreground mb-6">
+                                Communes desservies à {zoneLabel}
+                            </h2>
+                            <p className="text-muted-foreground mb-6">
+                                {zoneCommunes.length > 1
+                                    ? `Nos épavistes agréés interviennent dans chacune des ${zoneCommunes.length} communes de ${zoneLabel} : ${zoneCommunes.join(", ")}. Quelle que soit votre commune, l'enlèvement est gratuit et le certificat de destruction vous est remis sur place.`
+                                    : `Nos épavistes agréés couvrent l'ensemble du territoire de ${zoneLabel}. L'enlèvement d'épave y est gratuit, sans frais cachés, avec un certificat de destruction remis le jour même.`}
+                            </p>
+                            <div className="grid md:grid-cols-2 gap-4">
+                                {zoneCommunes.map((commune) => (
+                                    <div key={commune} className="border rounded-lg p-4">
+                                        <h3 className="font-semibold text-foreground mb-2">
+                                            Enlèvement d'épave gratuit à {commune}
+                                        </h3>
+                                        <p className="text-muted-foreground">
+                                            Nous prenons en charge votre véhicule hors
+                                            usage à {commune}, à domicile, sur votre
+                                            lieu de travail ou en stationnement privé,
+                                            puis nous le déposons dans un centre VHU
+                                            agréé{zoneCode ? ` du département ${zoneCode}` : ""}.
+                                            Le certificat de destruction vous est remis
+                                            à {commune}.
+                                        </p>
+                                    </div>
+                                ))}
+                            </div>
+                        </section>
+
+                        {zoneCode && (
+                            <section>
+                                <h2 className="text-3xl font-bold text-foreground mb-6">
+                                    Agrément de préfecture et obligations VHU en
+                                    {zoneLabel} ({zoneCode})
+                                </h2>
+                                <div className="space-y-4 text-muted-foreground">
+                                    <p>
+                                        Le département de la {zoneLabel} ({zoneCode})
+                                        est placé sous l'autorité de sa préfecture, qui
+                                        délivre les agréments des centres VHU et des
+                                        épavistes opérant sur ce territoire. Notre
+                                        équipe intervient donc dans un cadre strictement
+                                        réglementé.
+                                    </p>
+                                    <p>
+                                        Concrètement, chaque véhicule enlevé sur le
+                                        département {zoneCode} est transporté vers un
+                                        centre agréé par la préfecture de la {zoneLabel},
+                                        où il est dépollué puis détruit. Le certificat
+                                        de destruction qui vous est remis est
+                                        obligatoire pour rendre la vente de la carte
+                                        grise du véhicule mis à la casse dans le
+                                        {zoneCode}.
+                                    </p>
+                                    <ul className="list-disc pl-6 space-y-2">
+                                        <li>
+                                            Enlèvement gratuit dans le {zoneCode} et
+                                            toutes ses communes, y compris pour les
+                                            véhicules sans carte grise.
+                                        </li>
+                                        <li>
+                                            Prise en charge des voitures, utilitaires,
+                                            motos et camping-cars sur l'ensemble de
+                                            la {zoneLabel}.
+                                        </li>
+                                        <li>
+                                            Certificat de destruction conforme aux
+                                            exigences de la préfecture de la
+                                            {zoneLabel} ({zoneCode}).
+                                        </li>
+                                    </ul>
+                                </div>
+                            </section>
+                        )}
+
+                        {/* Internal linking: each zone page links up to its region
+                            and down to the towns or departments it covers. */}
+                        {(parentZone || childZones.length > 0) && (
+                            <section>
+                                <h2 className="text-3xl font-bold text-foreground mb-6">
+                                    Zones d'intervention voisines
+                                </h2>
+                                <div className="grid md:grid-cols-2 gap-4">
+                                    {parentZone && (
+                                        <Link
+                                            href={internalUrl(`/epaviste/${parentZone.slug}`)}
+                                            className="border rounded-lg p-4 hover:border-primary"
+                                        >
+                                            <p className="text-sm text-muted-foreground">
+                                                Voir la zone
+                                            </p>
+                                            <p className="font-semibold text-foreground">
+                                                {parentZone.label}
+                                            </p>
+                                        </Link>
+                                    )}
+                                    {childZones.map((child) => (
+                                        <Link
+                                            key={child.slug}
+                                            href={internalUrl(`/epaviste/${child.slug}`)}
+                                            className="border rounded-lg p-4 hover:border-primary"
+                                        >
+                                            <p className="text-sm text-muted-foreground">
+                                                Communes couvertes
+                                            </p>
+                                            <p className="font-semibold text-foreground">
+                                                {child.label}
+                                            </p>
+                                        </Link>
+                                    ))}
+                                </div>
+                                {regionZone && regionZone.slug !== zone.slug && (
+                                    <p className="text-muted-foreground mt-4">
+                                        Besoin d'un devis hors de la {zoneLabel} ?
+                                        Consultez nos zones en {regionZone.label} ou
+                                        appelez-nous au 06 30 30 20 53.
+                                    </p>
+                                )}
+                            </section>
+                        )}
 
                         {/* Localized Map Section */}
                         <section>
@@ -568,25 +706,25 @@ export default function ZonePage({ params }: { params: { zone: string } }) {
                             <h2 className="text-2xl font-bold text-foreground mb-4">Pour aller plus loin</h2>
                             <ul className="space-y-3 text-muted-foreground">
                                 <li>
-                                    <Link href="/centre-vhu-agree" className="inline-flex items-center text-primary font-medium hover:underline">
+                                    <Link href={internalUrl("/centre-vhu-agree")} className="inline-flex items-center text-primary font-medium hover:underline">
                                         Qu'est-ce qu'un centre VHU agréé ?
                                         <ArrowRight className="w-4 h-4 ml-1" />
                                     </Link>
                                 </li>
                                 <li>
-                                    <Link href="/enlevement-epave" className="inline-flex items-center text-primary font-medium hover:underline">
+                                    <Link href={internalUrl("/enlevement-epave")} className="inline-flex items-center text-primary font-medium hover:underline">
                                         Tout savoir sur l'enlèvement d'épave gratuit
                                         <ArrowRight className="w-4 h-4 ml-1" />
                                     </Link>
                                 </li>
                                 <li>
-                                    <Link href="/epaviste-agree" className="inline-flex items-center text-primary font-medium hover:underline">
+                                    <Link href={internalUrl("/epaviste-agree")} className="inline-flex items-center text-primary font-medium hover:underline">
                                         Le rôle et les missions d'un épaviste agréé
                                         <ArrowRight className="w-4 h-4 ml-1" />
                                     </Link>
                                 </li>
                                 <li>
-                                    <Link href="/blog" className="inline-flex items-center text-primary font-medium hover:underline">
+                                    <Link href={internalUrl("/blog")} className="inline-flex items-center text-primary font-medium hover:underline">
                                         Guides et conseils sur le recyclage automobile
                                         <ArrowRight className="w-4 h-4 ml-1" />
                                     </Link>
@@ -608,7 +746,7 @@ export default function ZonePage({ params }: { params: { zone: string } }) {
                                         06 30 30 20 53
                                     </a>
                                 </Button>
-                                <Link href="/contact">
+                                <Link href={internalUrl("/contact")}>
                                     <Button
                                         size="lg"
                                         variant="outline"

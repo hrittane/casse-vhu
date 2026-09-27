@@ -1,4 +1,4 @@
-import { canonicalUrl } from "@/lib/site"
+import {canonicalUrl, internalUrl } from "@/lib/site"
 import { Metadata } from "next"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
@@ -101,7 +101,7 @@ export default function EnlevementEpavePage() {
                                     06 30 30 20 53
                                 </a>
                             </Button>
-                            <Link href="/contact">
+                            <Link href={internalUrl("/contact")}>
                                 <Button size="lg" variant="outline" className="text-lg px-8 py-6 rounded-full bg-transparent" asChild>
                                     <span>Demander un devis gratuit</span>
                                 </Button>
@@ -212,14 +212,14 @@ export default function EnlevementEpavePage() {
                         </p>
                         <div className="flex flex-wrap gap-2">
                             {regions.map((region) => (
-                                <Link key={region.slug} href={`/epaviste/${region.slug}`}>
+                                <Link key={region.slug} href={internalUrl(`/epaviste/${region.slug}`)}>
                                     <Button variant="outline" size="sm" className="rounded-full bg-transparent">
                                         {region.name}
                                         <ArrowRight className="w-3 h-3 ml-2" />
                                     </Button>
                                 </Link>
                             ))}
-                            <Link href="/epaviste">
+                            <Link href={internalUrl("/epaviste")}>
                                 <Button variant="ghost" size="sm" className="rounded-full">
                                     Toutes nos zones
                                     <ArrowRight className="w-3 h-3 ml-2" />
@@ -241,9 +241,9 @@ export default function EnlevementEpavePage() {
                         </div>
                         <p className="mt-6 text-muted-foreground">
                             Pour aller plus loin, consultez notre guide complet sur le{" "}
-                            <Link href="/centre-vhu-agree" className="text-primary hover:underline">centre VHU agréé</Link> ou nos articles de blog sur la{" "}
-                            <Link href="/blog/comment-se-debarrasser-dune-voiture-sans-carte-grise" className="text-primary hover:underline">carte grise perdue</Link> et la{" "}
-                            <Link href="/blog/prime-conversion-2026-conditions-demarches" className="text-primary hover:underline">prime à la conversion 2026</Link>.
+                            <Link href={internalUrl("/centre-vhu-agree")} className="text-primary hover:underline">centre VHU agréé</Link> ou nos articles de blog sur la{" "}
+                            <Link href={internalUrl("/blog/comment-se-debarrasser-dune-voiture-sans-carte-grise")} className="text-primary hover:underline">carte grise perdue</Link> et la{" "}
+                            <Link href={internalUrl("/blog/prime-conversion-2026-conditions-demarches")} className="text-primary hover:underline">prime à la conversion 2026</Link>.
                         </p>
                     </section>
 
@@ -260,7 +260,7 @@ export default function EnlevementEpavePage() {
                                     06 30 30 20 53
                                 </a>
                             </Button>
-                            <Link href="/contact">
+                            <Link href={internalUrl("/contact")}>
                                 <Button size="lg" variant="outline" className="text-lg px-8 py-6 rounded-full bg-transparent border-white text-white hover:bg-white hover:text-primary" asChild>
                                     <span>
                                         <Mail className="w-5 h-5 mr-2" />

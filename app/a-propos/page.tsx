@@ -1,4 +1,4 @@
-import { canonicalUrl } from "@/lib/site"
+import {canonicalUrl, internalUrl } from "@/lib/site"
 import { Metadata } from "next"
 
 export const metadata: Metadata = {
@@ -6,6 +6,9 @@ export const metadata: Metadata = {
     description: "Découvrez Casse-VHU, votre épaviste agréé VHU en France : enlèvement d'épave gratuit, recyclage responsable et démarches simplifiées depuis 2015.",
     alternates: {
         canonical: canonicalUrl("/a-propos"),
+    },
+    openGraph: {
+        url: canonicalUrl("/a-propos"),
     },
 }
 import { Button } from "@/components/ui/button"
@@ -278,7 +281,7 @@ export default function AProposPage() {
                             <Phone className="w-5 h-5 mr-2" />
                             <a href="tel:+33630302053">06 30 30 20 53</a>
                         </Button>
-                        <Link href="/contact">
+                        <Link href={internalUrl("/contact")}>
                             <Button
                                 size="lg"
                                 variant="outline"

@@ -1,4 +1,4 @@
-import { canonicalUrl } from "@/lib/site"
+import {canonicalUrl, internalUrl } from "@/lib/site"
 import { Metadata } from "next"
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
@@ -19,12 +19,31 @@ import Link from "next/link"
 import blogPosts from "@/data/blog/index.json"
 import { BlogSearch } from "@/components/ui/BlogSearch"
 
-export const metadata: Metadata = {
-  title: "Blog épaviste & recyclage VHU : guides et conseils",
-  description: "Guides pratiques, démarches administratives et réglementation pour se débarrasser d'un véhicule hors d'usage : carte grise, Cerfa, prime à la conversion, enlèvement d'épave.",
-  alternates: {
-    canonical: canonicalUrl("/blog"),
-  },
+export function generateMetadata({
+  searchParams,
+}: {
+  searchParams: { [key: string]: string | string[] | undefined }
+}): Metadata {
+  // ?category= and ?search= are filter views of the same listing. They are
+  // kept out of the index so they cannot compete with the clean /blog page,
+  // while /blog itself stays indexable.
+  const isFilterView =
+    Boolean(searchParams.search) || Boolean(searchParams.category)
+
+  return {
+    title: "Blog épaviste & recyclage VHU : guides et conseils",
+    description:
+      "Guides pratiques, démarches administratives et réglementation pour se débarrasser d'un véhicule hors d'usage : carte grise, Cerfa, prime à la conversion, enlèvement d'épave.",
+    alternates: {
+      canonical: canonicalUrl("/blog"),
+    },
+    openGraph: {
+      url: canonicalUrl("/blog"),
+    },
+    robots: isFilterView
+      ? { index: false, follow: false }
+      : { index: true, follow: true },
+  }
 }
 
 export default function BlogPage({
@@ -84,7 +103,7 @@ export default function BlogPage({
             {categories.map((category) => (
               <Link
                 key={category}
-                href={category === "Tous" ? "/blog" : `/blog?category=${category}`}
+                href={category === "Tous" ? internalUrl("/blog") : internalUrl(`/blog?category=${category}`)}
               >
                 <Button
                   variant={selectedCategory === category ? "default" : "outline"}
@@ -137,7 +156,7 @@ export default function BlogPage({
                       <Calendar className="w-3 h-3 mr-1" />
                       {post.date}
                     </div>
-                    <Link href={`/blog/${post.slug}`}>
+                    <Link href={internalUrl(`/blog/${post.slug}`)}>
                       <Button variant="ghost" size="sm" className="group/btn">
                         Lire la suite
                         <ArrowRight className="w-3 h-3 ml-2 group-hover/btn:translate-x-1 transition-transform" />
@@ -151,7 +170,7 @@ export default function BlogPage({
 
           {/* Load More Button */}
           <div className="text-center mt-12">
-            <Link href="/contact">
+            <Link href={internalUrl("/contact")}>
               <Button size="lg" variant="outline" className="rounded-full bg-transparent">
                 <Phone className="w-4 h-4 mr-2" />
                 Demander un enlèvement gratuit
@@ -178,7 +197,7 @@ export default function BlogPage({
                 </a>
               </Button>
               <Button variant="outline" className="rounded-full flex-1" asChild>
-                <Link href="/contact">
+                <Link href={internalUrl("/contact")}>
                   <Mail className="w-4 h-4 mr-2" />
                   Nous contacter
                 </Link>

@@ -1,4 +1,4 @@
-import { canonicalUrl } from "@/lib/site"
+import {canonicalUrl, internalUrl } from "@/lib/site"
 import { Metadata } from "next"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
@@ -101,7 +101,7 @@ export default function CentreVhuAgreePage() {
                                     06 30 30 20 53
                                 </a>
                             </Button>
-                            <Link href="/contact">
+                            <Link href={internalUrl("/contact")}>
                                 <Button size="lg" variant="outline" className="text-lg px-8 py-6 rounded-full bg-transparent" asChild>
                                     <span>Demander un devis gratuit</span>
                                 </Button>
@@ -181,14 +181,14 @@ export default function CentreVhuAgreePage() {
                         </p>
                         <div className="flex flex-wrap gap-2">
                             {departments.map((dept) => (
-                                <Link key={dept.slug} href={`/epaviste/${dept.slug}`}>
+                                <Link key={dept.slug} href={internalUrl(`/epaviste/${dept.slug}`)}>
                                     <Button variant="outline" size="sm" className="rounded-full bg-transparent">
                                         {dept.name}
                                         <ArrowRight className="w-3 h-3 ml-2" />
                                     </Button>
                                 </Link>
                             ))}
-                            <Link href="/epaviste">
+                            <Link href={internalUrl("/epaviste")}>
                                 <Button variant="ghost" size="sm" className="rounded-full">
                                     Toutes nos zones
                                     <ArrowRight className="w-3 h-3 ml-2" />
@@ -233,8 +233,8 @@ export default function CentreVhuAgreePage() {
                         </div>
                         <p className="mt-6 text-muted-foreground">
                             En savoir plus : consultez notre guide de{" "}
-                            <Link href="/recyclage-guide" className="text-primary hover:underline">recyclage automobile</Link> et notre article sur la{" "}
-                            <Link href="/blog/prime-conversion-2026-conditions-demarches" className="text-primary hover:underline">prime à la conversion 2026</Link>.
+                            <Link href={internalUrl("/recyclage-guide")} className="text-primary hover:underline">recyclage automobile</Link> et notre article sur la{" "}
+                            <Link href={internalUrl("/blog/prime-conversion-2026-conditions-demarches")} className="text-primary hover:underline">prime à la conversion 2026</Link>.
                         </p>
                     </section>
 
@@ -251,7 +251,7 @@ export default function CentreVhuAgreePage() {
                                     06 30 30 20 53
                                 </a>
                             </Button>
-                            <Link href="/contact">
+                            <Link href={internalUrl("/contact")}>
                                 <Button size="lg" variant="outline" className="text-lg px-8 py-6 rounded-full bg-transparent border-white text-white hover:bg-white hover:text-primary" asChild>
                                     <span>
                                         <Mail className="w-5 h-5 mr-2" />

@@ -1,4 +1,6 @@
 "use client"
+import { internalUrl } from "@/lib/site"
+
 import React from 'react'
 import { Button } from "@/components/ui/button"
 import { Phone, FileText } from "lucide-react"
@@ -24,7 +26,7 @@ function StickyMenu() {
                 </a>
             </Button>
             <Button variant="outline" className="rounded-full flex-1 max-w-[180px]" asChild>
-                <a href="/contact">
+                <a href={internalUrl("/contact")}>
                     <FileText className="w-4 h-4 mr-2" />
                     Devis gratuit
                 </a>

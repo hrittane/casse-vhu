@@ -1,4 +1,4 @@
-import { canonicalUrl } from "@/lib/site"
+import {canonicalUrl, internalUrl } from "@/lib/site"
 import { Metadata } from "next"
 
 export const metadata: Metadata = {
@@ -6,6 +6,9 @@ export const metadata: Metadata = {
     description: "Guide complet du recyclage automobile et de la mise à la casse d'un véhicule hors d'usage : centre VHU agréé, dépollution, certificat de destruction.",
     alternates: {
         canonical: canonicalUrl("/recyclage-guide"),
+    },
+    openGraph: {
+        url: canonicalUrl("/recyclage-guide"),
     },
 }
 import { Button } from "@/components/ui/button"
@@ -96,7 +99,7 @@ export default function GuidePage() {
                                 Un <strong>véhicule hors d'usage</strong> (VHU) est une voiture, un utilitaire, une moto ou tout autre
                                 véhicule destiné à la destruction, car irréparable, accidenté ou simplement trop ancien pour circuler.
                                 En France, un VHU ne peut être ni abandonné ni confié à n'importe qui : il doit obligatoirement être
-                                remis à un <Link href="/centre-vhu-agree">centre VHU agréé</Link>, seul habilité à le dépolluer et à le
+                                remis à un <Link href={internalUrl("/centre-vhu-agree")}>centre VHU agréé</Link>, seul habilité à le dépolluer et à le
                                 recycler dans les règles.
                             </p>
                             <h2>Quels déchets le recyclage automobile traite-t-il ?</h2>
@@ -128,10 +131,10 @@ export default function GuidePage() {
                             <h2>Le recyclage des voitures : un geste pour l'environnement</h2>
                             <p>
                                 Recycler une voiture, c'est éviter la fabrication de nouvelles matières premières et réduire les
-                                émissions de CO2. En confiant votre épave à un <Link href="/enlevement-epave">enlèvement gratuit</Link>{" "}
+                                émissions de CO2. En confiant votre épave à un <Link href={internalUrl("/enlevement-epave")}>enlèvement gratuit</Link>{" "}
                                 puis à notre filière agréée, vous participez à une économie circulaire et vous repartez avec votre
                                 certificat de destruction le jour même. Votre épave peut aussi vous ouvrir droit à la{" "}
-                                <Link href="/blog/prime-conversion-2026-conditions-demarches">prime à la conversion</Link> si vous
+                                <Link href={internalUrl("/blog/prime-conversion-2026-conditions-demarches")}>prime à la conversion</Link> si vous
                                 remplacez votre véhicule.
                             </p>
                             <h2>Questions fréquentes sur le recyclage automobile</h2>
@@ -142,15 +145,15 @@ export default function GuidePage() {
                             <p>
                                 <strong>Puis-je faire recycler un véhicule sans carte grise ?</strong> Oui, avec une déclaration de
                                 perte ou de vol et le certificat de non-gage. Consultez notre guide sur la{" "}
-                                <Link href="/blog/comment-se-debarrasser-dune-voiture-sans-carte-grise">voiture sans carte grise</Link>.
+                                <Link href={internalUrl("/blog/comment-se-debarrasser-dune-voiture-sans-carte-grise")}>voiture sans carte grise</Link>.
                             </p>
                             <p>
                                 <strong>Où se trouve un centre VHU agréé près de chez moi ?</strong> Retrouvez nos pages{" "}
-                                <Link href="/epaviste">par région et par département</Link> pour connaître nos zones d'intervention.
+                                <Link href={internalUrl("/epaviste")}>par région et par département</Link> pour connaître nos zones d'intervention.
                             </p>
                             <h2>Comment mettre sa voiture à la casse ?</h2>
                             <p>
-                                Si vous possédez un véhicule hors d'usage, vous devez le confier à un centre VHU agréé. La procédure est généralement gratuite. Vous devrez fournir la carte grise du véhicule, un certificat de non-gage et une pièce d'identité. Découvrez ce qu'est un <Link href="/centre-vhu-agree">centre VHU agréé</Link>, comment se déroule notre service d'<Link href="/enlevement-epave">enlèvement d'épave gratuit</Link>, ou consultez notre <Link href="/services">page services</Link> et <Link href="/blog">le blog</Link>. Vous pouvez aussi <Link href="/contact">nous contacter</Link> directement.
+                                Si vous possédez un véhicule hors d'usage, vous devez le confier à un centre VHU agréé. La procédure est généralement gratuite. Vous devrez fournir la carte grise du véhicule, un certificat de non-gage et une pièce d'identité. Découvrez ce qu'est un <Link href={internalUrl("/centre-vhu-agree")}>centre VHU agréé</Link>, comment se déroule notre service d'<Link href={internalUrl("/enlevement-epave")}>enlèvement d'épave gratuit</Link>, ou consultez notre <Link href={internalUrl("/services")}>page services</Link> et <Link href={internalUrl("/blog")}>le blog</Link>. Vous pouvez aussi <Link href={internalUrl("/contact")}>nous contacter</Link> directement.
                             </p>
                         </div>
                     </div>

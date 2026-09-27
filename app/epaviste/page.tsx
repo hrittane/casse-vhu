@@ -1,4 +1,4 @@
-import { canonicalUrl } from "@/lib/site"
+import {canonicalUrl, internalUrl } from "@/lib/site"
 import { Metadata } from "next"
 
 export const metadata: Metadata = {
@@ -6,6 +6,9 @@ export const metadata: Metadata = {
     description: "Épaviste agréé et enlèvement d'épave gratuit par ville, région et département en France. Centre VHU agréé proche de chez vous, intervention sous 24h.",
     alternates: {
         canonical: canonicalUrl("/epaviste"),
+    },
+    openGraph: {
+        url: canonicalUrl("/epaviste"),
     },
 }
 import { Button } from "@/components/ui/button"
@@ -37,6 +40,43 @@ export default function ZonesPage() {
                 </div>
             </section>
 
+            {/* Explanatory content: without this the hub was only 267 words,
+                which Google can read as thin on a page that links to every zone. */}
+            <section className="py-16">
+                <div className="container mx-auto px-4">
+                    <div className="max-w-4xl mx-auto space-y-6">
+                        <h2 className="text-3xl font-bold text-foreground">
+                            Un épaviste agréé dans votre région
+                        </h2>
+                        <p className="text-muted-foreground">
+                            Casse-VHU organise l'enlèvement de votre véhicule hors
+                            d'usage partout en France, gratuitement et sans que vous
+                            ayez à vous déplacer. Quel que soit votre département, un
+                            centre VHU agréé par la préfecture se trouve à moins de
+                            quelques heures de route : nous organisons le transport
+                            vers ce centre et nous vous remettons le certificat de
+                            destruction sur place.
+                        </p>
+                        <p className="text-muted-foreground">
+                            Ce service est obligatoire dans les deux sens : le
+                            propriétaire d'un véhicule hors d'usage doit le faire
+                            prendre en charge, et le centre agréé doit délivrer le
+                            certificat de destruction. C'est ce document qui vous
+                            permet de radier la carte grise du véhicule auprès de
+                            l'ANTS.
+                        </p>
+                        <p className="text-muted-foreground">
+                            Sélectionnez votre zone ci-dessous pour connaître les
+                            communes couvertes, le département concerné et les
+                            modalités d'intervention sur place. Vous pouvez aussi
+                            appeler directement le 06 30 30 20 53 : un conseiller
+                            vous répond du lundi au samedi et organise
+                            l'enlèvement sous 24 à 48 heures.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
             {/* Zones Sections */}
             <section className="py-20">
                 <div className="container mx-auto px-4">
@@ -50,7 +90,7 @@ export default function ZonesPage() {
                             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
                                 {regions.map((region) => {
                                     return (
-                                        <Link key={region.slug} href={`/epaviste/${region.slug}`}>                                            <Card className="p-6 hover:shadow-lg transition-all hover:border-primary/50 bg-gradient-to-br from-primary/5 to-primary/10 cursor-pointer h-full">
+                                        <Link key={region.slug} href={internalUrl(`/epaviste/${region.slug}`)}>                                            <Card className="p-6 hover:shadow-lg transition-all hover:border-primary/50 bg-gradient-to-br from-primary/5 to-primary/10 cursor-pointer h-full">
                                                 <CardContent className="pt-6">
                                                     <div className="flex items-start gap-3">
                                                         <MapPin className="w-5 h-5 text-primary flex-shrink-0 mt-1" />
@@ -75,7 +115,7 @@ export default function ZonesPage() {
                             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
                                 {departments.map((departement) => {
                                     return (
-                                        <Link key={departement.slug} href={`/epaviste/${departement.slug}`}>                                            <Card className="p-6 hover:shadow-lg transition-all hover:border-secondary/50 bg-gradient-to-br from-secondary/5 to-secondary/10 cursor-pointer h-full">
+                                        <Link key={departement.slug} href={internalUrl(`/epaviste/${departement.slug}`)}>                                            <Card className="p-6 hover:shadow-lg transition-all hover:border-secondary/50 bg-gradient-to-br from-secondary/5 to-secondary/10 cursor-pointer h-full">
                                                 <CardContent className="pt-6">
                                                     <div className="flex items-start gap-3">
                                                         <MapPin className="w-5 h-5 text-secondary flex-shrink-0 mt-1" />
@@ -100,7 +140,7 @@ export default function ZonesPage() {
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                 {communes.map((commune) => {
                                     return (
-                                        <Link key={commune.slug} href={`/epaviste/${commune.slug}`}>                                            <Card className="p-6 hover:shadow-lg transition-all hover:border-accent/50 bg-gradient-to-br from-accent/5 to-accent/10 cursor-pointer h-full">
+                                        <Link key={commune.slug} href={internalUrl(`/epaviste/${commune.slug}`)}>                                            <Card className="p-6 hover:shadow-lg transition-all hover:border-accent/50 bg-gradient-to-br from-accent/5 to-accent/10 cursor-pointer h-full">
                                                 <CardContent className="pt-6">
                                                     <div className="flex items-start gap-3">
                                                         <MapPin className="w-5 h-5 text-accent flex-shrink-0 mt-1" />
@@ -133,7 +173,7 @@ export default function ZonesPage() {
                                 <Phone className="w-5 h-5 mr-2" />
                                 <a href="tel:+33630302053">06 30 30 20 53</a>
                             </Button>
-                            <Link href="/contact">
+                            <Link href={internalUrl("/contact")}>
                                 <Button
                                     size="lg"
                                     variant="outline"

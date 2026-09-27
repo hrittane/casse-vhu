@@ -1,4 +1,6 @@
 "use client"
+import { internalUrl } from "@/lib/site"
+
 import React, { useState } from 'react';
 import { usePathname } from 'next/navigation';
 import Image from 'next/image';
@@ -52,7 +54,7 @@ function TopMenu() {
             <header className=" bg-card/50 backdrop-blur-sm sticky top-0 z-50">
                 <div className="container mx-auto px-4 py-2 flex items-center justify-between">
                     <div className="flex items-center space-x-2">
-                        <a href="/">
+                        <a href={internalUrl("/")}>
                             <Image src="/logo.png" alt="Casse-VHU Logo" width={160} height={32} className=" w-auto" />
                         </a>
                         {/* <img src="/logo.png" alt="Casse-VHU Logo" className="h-10 w-auto" /> */}
@@ -63,7 +65,7 @@ function TopMenu() {
                         {navLinks.map((link) => {
                             const isActive = pathname === link.href;
                             return (
-                                <a key={link.href} href={link.href} className={`transition-colors hover:text-foreground ${isActive ? 'text-foreground font-medium' : 'text-muted-foreground'}`}>
+                                <a key={link.href} href={internalUrl(link.href)} className={`transition-colors hover:text-foreground ${isActive ? 'text-foreground font-medium' : 'text-muted-foreground'}`}>
                                     {link.text}
                                 </a>
                             );
@@ -86,7 +88,7 @@ function TopMenu() {
                                         return (
                                             <SheetClose asChild key={link.href}>
                                                 <a
-                                                    href={link.href}
+                                                    href={internalUrl(link.href)}
                                                     className={`transition-colors hover:text-foreground text-lg py-3 w-full text-center ${isActive ? 'text-foreground font-medium' : 'text-muted-foreground'}`}
                                                 >
                                                     {link.text}
@@ -96,7 +98,7 @@ function TopMenu() {
                                     })}
                                     <div className="pt-6 w-full px-8">
                                         <Button className="w-full rounded-full" asChild>
-                                            <a href="/contact">
+                                            <a href={internalUrl("/contact")}>
                                                 <Mail className="w-4 h-4 mr-2" />
                                                 Contactez-nous
                                             </a>

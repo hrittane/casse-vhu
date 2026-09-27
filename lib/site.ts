@@ -21,3 +21,24 @@ export function canonicalUrl(path: string = "/"): string {
     withLeadingSlash.length > 1 ? withLeadingSlash.replace(/\/+$/, "") : withLeadingSlash
   return `${SITE_URL}${normalized}`
 }
+
+/**
+ * Builds an absolute internal link so every href in the markup points at the
+ * canonical origin, never at whatever host the request happened to arrive on.
+ *
+ * It shares its normalisation with `canonicalUrl` on purpose: an internal link
+ * must always resolve to exactly the URL that page declares as its canonical,
+ * otherwise the two signals can disagree about which URL is authoritative. Any
+ * query string or hash is preserved, which is what the /blog filter views need.
+ *
+ * @example internalUrl("/contact")           // "https://www.casse-vhu.fr/contact"
+ * @example internalUrl("/epaviste/le-nord/") // "https://www.casse-vhu.fr/epaviste/le-nord"
+ * @example internalUrl("/blog?category=X")   // "https://www.casse-vhu.fr/blog?category=X"
+ * @example internalUrl("#anchor")            // "https://www.casse-vhu.fr/#anchor"
+ */
+export function internalUrl(path: string = "/"): string {
+  const suffixAt = path.search(/[?#]/)
+  const pathname = suffixAt === -1 ? path : path.slice(0, suffixAt)
+  const suffix = suffixAt === -1 ? "" : path.slice(suffixAt)
+  return `${canonicalUrl(pathname)}${suffix}`
+}

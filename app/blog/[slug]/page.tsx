@@ -1,4 +1,4 @@
-import { canonicalUrl } from "@/lib/site"
+import {canonicalUrl, internalUrl } from "@/lib/site"
 import { Metadata } from "next"
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
@@ -97,7 +97,7 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
       <div className="min-h-screen bg-background flex items-center justify-center">
         <div className="text-center">
           <h1 className="text-2xl font-bold mb-4">Article non trouvé</h1>
-          <Link href="/blog">
+          <Link href={internalUrl("/blog")}>
             <Button>Retour au blog</Button>
           </Link>
         </div>
@@ -169,11 +169,11 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
       <section className="py-4 border-b bg-muted/30">
         <div className="container mx-auto px-4">
           <div className="flex items-center space-x-2 text-sm text-muted-foreground">
-            <Link href="/" className="hover:text-foreground transition-colors">
+            <Link href={internalUrl("/")} className="hover:text-foreground transition-colors">
               Accueil
             </Link>
             <span>/</span>
-            <Link href="/blog" className="hover:text-foreground transition-colors">
+            <Link href={internalUrl("/blog")} className="hover:text-foreground transition-colors">
               Blog
             </Link>
             <span>/</span>
@@ -187,7 +187,7 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <Link
-              href="/blog"
+              href={internalUrl("/blog")}
               className="inline-flex items-center text-primary hover:text-primary/80 transition-colors mb-8"
             >
               <ArrowLeft className="w-4 h-4 mr-2" />
@@ -265,7 +265,7 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
                           06 30 30 20 53
                         </a>
                       </Button>
-                      <Link href="/contact">
+                      <Link href={internalUrl("/contact")}>
                         <Button size="lg" variant="secondary" className="rounded-full" asChild>
                           <span>Demander un devis</span>
                         </Button>
@@ -279,25 +279,25 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
                   <h3 className="text-xl font-bold text-foreground mb-4">Pour aller plus loin</h3>
                   <ul className="space-y-3 text-muted-foreground">
                     <li>
-                      <Link href="/services" className="inline-flex items-center text-primary font-medium hover:underline">
+                      <Link href={internalUrl("/services")} className="inline-flex items-center text-primary font-medium hover:underline">
                         Nos services d'enlèvement et de recyclage
                         <ArrowRight className="w-4 h-4 ml-1" />
                       </Link>
                     </li>
                     <li>
-                      <Link href="/enlevement-epave" className="inline-flex items-center text-primary font-medium hover:underline">
+                      <Link href={internalUrl("/enlevement-epave")} className="inline-flex items-center text-primary font-medium hover:underline">
                         Comment se déroule un enlèvement d'épave gratuit ?
                         <ArrowRight className="w-4 h-4 ml-1" />
                       </Link>
                     </li>
                     <li>
-                      <Link href="/centre-vhu-agree" className="inline-flex items-center text-primary font-medium hover:underline">
+                      <Link href={internalUrl("/centre-vhu-agree")} className="inline-flex items-center text-primary font-medium hover:underline">
                         Qu'est-ce qu'un centre VHU agréé ?
                         <ArrowRight className="w-4 h-4 ml-1" />
                       </Link>
                     </li>
                     <li>
-                      <Link href="/epaviste" className="inline-flex items-center text-primary font-medium hover:underline">
+                      <Link href={internalUrl("/epaviste")} className="inline-flex items-center text-primary font-medium hover:underline">
                         Trouver un épaviste proche de chez vous
                         <ArrowRight className="w-4 h-4 ml-1" />
                       </Link>
@@ -388,7 +388,7 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
                         <Calendar className="w-3 h-3 mr-1" />
                         {relatedPost.date}
                       </div>
-                      <Link href={`/blog/${relatedPost.slug}`}>
+                      <Link href={internalUrl(`/blog/${relatedPost.slug}`)}>
                         <Button variant="ghost" size="sm" className="group/btn">
                           Lire
                           <ArrowRight className="w-3 h-3 ml-2 group-hover/btn:translate-x-1 transition-transform" />

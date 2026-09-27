@@ -1,4 +1,4 @@
-import { canonicalUrl } from "@/lib/site"
+import {canonicalUrl, internalUrl } from "@/lib/site"
 import { Metadata } from "next"
 import Image from "next/image"
 import Link from "next/link"
@@ -7,6 +7,9 @@ import { getZones } from "@/lib/zones"
 export const metadata: Metadata = {
   title: "Casse Auto & Épaviste Agréé VHU | Enlèvement Gratuit sous 24h",
   description: "Épaviste agréé VHU : enlèvement d'épave 100% gratuit, intervention sous 24h, certificat de destruction fourni sur place. Centre VHU agréé préfecture, service partout en France. Appelez le 06 30 30 20 53.",
+  openGraph: {
+    url: canonicalUrl("/"),
+  },
 }
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
@@ -98,9 +101,10 @@ export default function CasseVHULanding() {
       <head>
         {/* The canonical homepage is the only URL with a trailing slash. Next's
             metadata API always emits the bare origin for the root path (see
-            next/dist/lib/metadata/resolvers/resolve-url.js), so the tag is
-            rendered explicitly to keep it identical to the redirect target. */}
+            next/dist/lib/metadata/resolvers/resolve-url.js), so the tags are
+            rendered explicitly to keep them identical to the redirect target. */}
         <link rel="canonical" href={canonicalUrl("/")} />
+        <meta property="og:url" content={canonicalUrl("/")} />
       </head>
       <script
         type="application/ld+json"
@@ -136,7 +140,7 @@ export default function CasseVHULanding() {
                 charge complète des démarches administratives, la dépollution et le recyclage.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
-                <Link href="/contact">
+                <Link href={internalUrl("/contact")}>
                   <Button
                     size="lg"
                     className="text-lg px-8 py-6 rounded-full shadow-lg hover:shadow-xl transition-all bg-white text-primary hover:bg-white/90 w-full sm:w-auto"
@@ -602,7 +606,7 @@ export default function CasseVHULanding() {
                 return (
                   <Link
                     key={region.slug}
-                    href={`/epaviste/${region.slug}`}
+                    href={internalUrl(`/epaviste/${region.slug}`)}
                     className={`group ${featured ? "col-span-2 md:col-span-2 lg:col-span-2 md:row-span-2" : "col-span-1 md:col-span-2"}`}
                   >
                     <Card className={`p-3 h-full bg-gradient-to-br ${gradient} border-2 hover:border-primary/50 transition-colors ${featured ? "sm:p-6" : "sm:p-4"}`}>
@@ -628,13 +632,13 @@ export default function CasseVHULanding() {
               <h3 className="text-sm font-semibold text-foreground mb-3">Départements couverts</h3>
               <div className="flex flex-wrap gap-2">
                 {departments.map((dept) => (
-                  <Link key={dept.slug} href={`/epaviste/${dept.slug}`}>
+                  <Link key={dept.slug} href={internalUrl(`/epaviste/${dept.slug}`)}>
                     <Button variant="outline" size="sm" className="rounded-full bg-transparent">
                       {dept.name}
                     </Button>
                   </Link>
                 ))}
-                <Link href="/epaviste">
+                <Link href={internalUrl("/epaviste")}>
                   <Button variant="ghost" size="sm" className="rounded-full">
                     Toutes nos zones d'intervention
                   </Button>
@@ -649,7 +653,7 @@ export default function CasseVHULanding() {
               Peu importe votre localisation, un épaviste agréé proche de chez vous intervient rapidement et
               gratuitement.
             </p>
-            <Link href="/epaviste" className="inline-block mt-6">
+            <Link href={internalUrl("/epaviste")} className="inline-block mt-6">
               <Button size="lg" className="rounded-full px-8">
                 Voir toutes nos zones d'intervention
                 <MapPin className="w-5 h-5 ml-2" />
@@ -693,7 +697,7 @@ export default function CasseVHULanding() {
                       <ul className="space-y-2">
                         <li>• Carte grise du véhicule</li>
                         <li>• Pièce d'identité du propriétaire</li>
-                        <li>• Formulaire <a href="/blog/formulaire-cerfa-15776-02-guide-remplissage" className="text-primary hover:underline">Cerfa n°15776*02 (cession pour destruction)</a> rempli et signé</li>
+                        <li>• Formulaire <a href={internalUrl("/blog/formulaire-cerfa-15776-02-guide-remplissage")} className="text-primary hover:underline">Cerfa n°15776*02 (cession pour destruction)</a> rempli et signé</li>
                       </ul>
                     </div>
                   </CollapsibleContent>

@@ -1,3 +1,4 @@
+import { internalUrl } from "@/lib/site"
 import {
     Phone,
     Mail,
@@ -16,10 +17,10 @@ export default function Footer() {
                     <div>
                         <h3 className="font-semibold mb-4">Services</h3>
                         <ul className="space-y-2 text-sm text-muted-foreground">
-                            <li><a href="/enlevement-epave" className="hover:text-foreground transition-colors">Enlèvement d'épave gratuit</a></li>
-                            <li><a href="/centre-vhu-agree" className="hover:text-foreground transition-colors">Centre VHU agréé</a></li>
-                            <li><a href="/epaviste-agree" className="hover:text-foreground transition-colors">Épaviste agréé</a></li>
-                            <li><a href="/services" className="hover:text-foreground transition-colors">Tous nos services</a></li>
+                            <li><a href={internalUrl("/enlevement-epave")} className="hover:text-foreground transition-colors">Enlèvement d'épave gratuit</a></li>
+                            <li><a href={internalUrl("/centre-vhu-agree")} className="hover:text-foreground transition-colors">Centre VHU agréé</a></li>
+                            <li><a href={internalUrl("/epaviste-agree")} className="hover:text-foreground transition-colors">Épaviste agréé</a></li>
+                            <li><a href={internalUrl("/services")} className="hover:text-foreground transition-colors">Tous nos services</a></li>
                         </ul>
                     </div>
                     <div>
@@ -27,13 +28,13 @@ export default function Footer() {
                         <ul className="space-y-2 text-sm text-muted-foreground">
                             {regions.map((region) => (
                                 <li key={region.slug}>
-                                    <a href={`/epaviste/${region.slug}`} className="hover:text-foreground transition-colors">
+                                    <a href={internalUrl(`/epaviste/${region.slug}`)} className="hover:text-foreground transition-colors">
                                         {region.name}
                                     </a>
                                 </li>
                             ))}
                             <li>
-                                <a href="/epaviste" className="hover:text-foreground transition-colors">Toutes nos zones</a>
+                                <a href={internalUrl("/epaviste")} className="hover:text-foreground transition-colors">Toutes nos zones</a>
                             </li>
                         </ul>
                     </div>
@@ -41,22 +42,22 @@ export default function Footer() {
                         <h3 className="font-semibold mb-4">À propos</h3>
                         <ul className="space-y-2 text-sm text-muted-foreground">
                             <li>
-                                <a href="/a-propos" className="hover:text-foreground transition-colors">
+                                <a href={internalUrl("/a-propos")} className="hover:text-foreground transition-colors">
                                     Notre entreprise
                                 </a>
                             </li>
                             <li>
-                                <a href="/blog" className="hover:text-foreground transition-colors">
+                                <a href={internalUrl("/blog")} className="hover:text-foreground transition-colors">
                                     Blog
                                 </a>
                             </li>
                             <li>
-                                <a href="/contact" className="hover:text-foreground transition-colors">
+                                <a href={internalUrl("/contact")} className="hover:text-foreground transition-colors">
                                     Contact
                                 </a>
                             </li>
                             <li>
-                                <a href="/recyclage-guide" className="hover:text-foreground transition-colors">
+                                <a href={internalUrl("/recyclage-guide")} className="hover:text-foreground transition-colors">
                                     guide de recyclage
                                 </a>
                             </li>

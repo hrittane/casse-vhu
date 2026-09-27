@@ -3,6 +3,8 @@ import { Resend } from "resend";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
+const NO_INDEX = { "X-Robots-Tag": "noindex, nofollow" };
+
 export async function POST(request: Request) {
     try {
         const body = await request.json();
@@ -37,14 +39,14 @@ export async function POST(request: Request) {
 
         if (error) {
             console.error("Error sending email:", error);
-            return NextResponse.json({ error });
+            return NextResponse.json({ error }, { headers: NO_INDEX });
         }
 
         console.log("Form submitted successfully:", data);
 
-        return NextResponse.json({ data });
+        return NextResponse.json({ data }, { headers: NO_INDEX });
     } catch (error) {
         console.error("Caught an exception:", error);
-        return NextResponse.json({ error });
+        return NextResponse.json({ error }, { headers: NO_INDEX });
     }
 }

@@ -8,6 +8,9 @@ export const metadata: Metadata = {
     alternates: {
         canonical: canonicalUrl("/contact"),
     },
+    openGraph: {
+        url: canonicalUrl("/contact"),
+    },
 }
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
@@ -60,6 +63,35 @@ export default function ContactPage() {
                         {/* Contact Information */}
                         <div className="space-y-6">
                             <div>
+                                <div className="space-y-4 text-muted-foreground mb-10">
+                                    <p>
+                                        Un conseiller Casse-VHU vous répond du lundi
+                                        au samedi, de 8h à 19h. Décrivez-nous votre
+                                        véhicule et votre commune : nous vérifions
+                                        immédiatement la disponibilité d'un créneau
+                                        d'enlèvement et nous vous rappelons pour
+                                        confirmer le rendez-vous.
+                                    </p>
+                                    <p>
+                                        Pour accélérer le traitement, préparez la
+                                        carte grise du véhicule, votre pièce
+                                        d'identité et, si vous en avez un, le
+                                        certificat de non-gage. Si la carte grise a
+                                        été perdue, indiquez-nous le numéro
+                                        d'immatriculation : nous vous guiderons dans
+                                        la démarche de radiation auprès de l'ANTS.
+                                    </p>
+                                    <p>
+                                        L'enlèvement est entièrement gratuit : la
+                                        casse d'un véhicule hors d'usage complet est
+                                        à la charge du centre VHU agréé qui le
+                                        réceptionne. Aucun frais de déplacement,
+                                        de remorquage ou de traitement ne vous est
+                                        facturé. Le certificat de destruction vous
+                                        est remis à la fin de l'intervention.
+                                    </p>
+                                </div>
+
                                 <h2 className="text-2xl md:text-3xl font-bold mb-6 text-primary">Nos coordonnées</h2>
                                 <p className="text-muted-foreground mb-8">
                                     Nous sommes disponibles pour répondre à toutes vos questions concernant l'enlèvement et le recyclage
@@ -126,6 +158,66 @@ export default function ContactPage() {
 
                         </div>
 
+                    </div>
+                </div>
+            </section>
+
+            {/* FAQ: answers the questions the form itself cannot, using the
+                same factual claims already stated across the site. */}
+            <section className="py-16 bg-muted/30">
+                <div className="container mx-auto px-4">
+                    <div className="max-w-4xl mx-auto">
+                        <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-8">
+                            Questions fréquentes avant de nous contacter
+                        </h2>
+                        <div className="space-y-6">
+                            <div>
+                                <h3 className="font-semibold text-foreground mb-2">
+                                    L'enlèvement est-il vraiment gratuit ?
+                                </h3>
+                                <p className="text-muted-foreground">
+                                    Oui. La casse d'un véhicule hors d'usage complet
+                                    est à la charge du centre VHU agréé qui le
+                                    réceptionne, et non à la charge du propriétaire.
+                                    Aucun frais de déplacement, de remorquage ou de
+                                    traitement ne vous est facturé.
+                                </p>
+                            </div>
+                            <div>
+                                <h3 className="font-semibold text-foreground mb-2">
+                                    Combien de temps faut-il compter ?
+                                </h3>
+                                <p className="text-muted-foreground">
+                                    L'intervention est organisée sous 24 à 48 heures
+                                    après votre appel, y compris pour un véhicule
+                                    accidenté, brûlé ou sans carte grise.
+                                </p>
+                            </div>
+                            <div>
+                                <h3 className="font-semibold text-foreground mb-2">
+                                    Quels documents dois-je préparer ?
+                                </h3>
+                                <p className="text-muted-foreground">
+                                    La carte grise du véhicule, une copie de votre
+                                    pièce d'identité et, le cas échéant, le
+                                    certificat de non-gage. Si la carte grise a été
+                                    perdue, indiquez-nous le numéro
+                                    d'immatriculation : nous vous accompagnons dans
+                                    la démarche de radiation auprès de l'ANTS.
+                                </p>
+                            </div>
+                            <div>
+                                <h3 className="font-semibold text-foreground mb-2">
+                                    Quels véhicules acceptez-vous ?
+                                </h3>
+                                <p className="text-muted-foreground">
+                                    Voitures, utilitaires, motos, scooters, quads,
+                                    camping-cars et poids lourds, quel que soit leur
+                                    état : accidenté, brûlé, inondé, moteur cassé ou
+                                    sans contrôle technique valide.
+                                </p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </section>
