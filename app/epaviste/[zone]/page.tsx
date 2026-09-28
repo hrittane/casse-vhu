@@ -1,4 +1,4 @@
-import {canonicalUrl, internalUrl } from "@/lib/site"
+import { SITE_URL, canonicalUrl, internalUrl } from "@/lib/site"
 import { Metadata } from "next"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
@@ -32,21 +32,55 @@ export async function generateStaticParams() {
     return getZones().map((zone) => ({ zone: zone.slug }))
 }
 
-function zoneInLine(zone: { name: string; type: string }): string {
-  const name = zone.name
-  if (zone.type === "Département") return `${name}`
-  if (zone.type === "Grandes communes") return name.split(",")[0]
-  const regionMap: Record<string, string> = {
-    "le Nord": "dans le Nord",
-    "Pas de Calais": "dans le Pas-de-Calais",
-    "Auvergne Rhône Alpes": "en Auvergne Rhône-Alpes",
-    "Nouvelle Aquitaine": "en Nouvelle-Aquitaine",
-    "Provence Alpes Côte d'Azur": "en Provence-Alpes-Côte d'Azur",
-    Bretagne: "en Bretagne",
-    Vendée: "en Vendée",
-    "Loire Atlantique": "en Loire-Atlantique",
-  }
-  return regionMap[name] ?? `à ${name}`
+/**
+ * French takes a different preposition per place name, and the article varies
+ * with the name itself: "dans le Nord", "dans les Bouches-du-Rhône", "en
+ * Vendée", "à Rennes". None of that is derivable from the zone type, so the
+ * phrasing is declared per zone. Region keys are the raw values in
+ * data/zones.json, which stores them unhyphenated; the corrected spelling lives
+ * in the value because it is what reads correctly in the copy.
+ */
+const REGION_IN: Record<string, string> = {
+  "Nouvelle Aquitaine": "en Nouvelle-Aquitaine",
+  Bretagne: "en Bretagne",
+  "le Nord": "dans le Nord",
+  "Pas de Calais": "dans le Pas-de-Calais",
+  "Auvergne Rhône Alpes": "en Auvergne-Rhône-Alpes",
+  "Provence Alpes Côte d'Azur": "en Provence-Alpes-Côte d'Azur",
+  Vendée: "en Vendée",
+  "Loire Atlantique": "en Loire-Atlantique",
+}
+
+const DEPARTMENT_IN: Record<string, string> = {
+  Gironde: "en Gironde",
+  "Ille-et-Vilaine": "en Ille-et-Vilaine",
+  Nord: "dans le Nord",
+  "Pas-de-Calais": "dans le Pas-de-Calais",
+  Isère: "en Isère",
+  "Bouches-du-Rhône": "dans les Bouches-du-Rhône",
+  Vendée: "en Vendée",
+  "Loire-Atlantique": "en Loire-Atlantique",
+}
+
+/** "Gironde (33)" -> "Gironde". The number is a database value, not copy. */
+function bareName(zone: { name: string; type: string }): string {
+  return zone.type === "Département" ? zone.name.replace(/\s*\(\d+\)$/, "") : zone.name
+}
+
+/** Full phrase for use in a sentence, e.g. "en Bretagne", "dans le Nord". */
+function zoneIn(zone: { name: string; type: string }): string {
+  if (zone.type === "Grandes communes") return `à ${zone.name.split(",")[0].trim()}`
+  // The maps are keyed on the bare name, so "Nord (59)" has to be stripped
+  // before lookup or every department silently falls through to a guessed
+  // preposition.
+  const map = zone.type === "Département" ? DEPARTMENT_IN : REGION_IN
+  return map[bareName(zone)] ?? `à ${bareName(zone)}`
+}
+
+/** Place name on its own, e.g. "Bretagne", "le Nord", "Rennes". */
+function zoneDisplay(zone: { name: string; type: string }): string {
+  if (zone.type === "Grandes communes") return zone.name.split(",")[0].trim()
+  return zoneIn(zone).replace(/^(?:en|dans les?|à)\s+/, "")
 }
 
 export async function generateMetadata({ params }: { params: { zone: string } }): Promise<Metadata> {
@@ -59,12 +93,22 @@ export async function generateMetadata({ params }: { params: { zone: string } })
         }
     }
 
-    const inLine = zoneInLine(zone)
+    const inLine = zoneIn(zone)
+    const display = zoneDisplay(zone)
+    // Several data/zones.json entries name a place twice: once as a "Région"
+    // and once as a "Département" (Vendée, Loire Atlantique, le Nord, Pas de
+    // Calais). Both rows resolve to the same French phrase, so a shared title
+    // would give two URLs an identical title tag. Departments therefore keep
+    // their number qualifier, which is also what distinguishes them in the
+    // title the way "Centre VHU agréé Gironde (33)" did before.
+    const isDuplicateOfARegion = getZones().some(
+        (z) => z.type === "Région" && z.name !== zone.name && zoneIn(z) === inLine
+    )
     const title =
-        zone.type === "Département"
-            ? `Centre VHU agréé ${zone.name} | Casse auto & enlèvement d'épave gratuit`
-            : zone.type === "Grandes communes"
-              ? `Casse auto ${zone.name.split(",")[0]} & alentours | Centre VHU agréé & enlèvement gratuit`
+        zone.type === "Grandes communes"
+            ? `Casse auto ${display} & alentours | Centre VHU agréé & enlèvement gratuit`
+            : zone.type === "Département" && isDuplicateOfARegion
+              ? `Casse auto & épaviste agréé ${inLine} (${zone.code ?? ""}) | Enlèvement d'épave gratuit`
               : `Casse auto & épaviste agréé ${inLine} | Enlèvement d'épave gratuit`
     const description = `Enlèvement d'épave 100% gratuit ${inLine} sous 24h. Centre VHU agréé, casse auto, épaviste certifié : certificat de destruction fourni sur place. Appelez le 06 30 30 20 53.`
 
@@ -107,6 +151,8 @@ export default function ZonePage({ params }: { params: { zone: string } }) {
 
     const zoneName = zone.name
     const zoneLabel = zone.label
+    const inPhrase = zoneIn(zone)
+    const zoneDisplayName = zoneDisplay(zone)
     const zoneCode = zone.code
     const zoneCommunes = zone.communes
     const parentZone = parentZoneOf(zone)
@@ -115,19 +161,19 @@ export default function ZonePage({ params }: { params: { zone: string } }) {
 
     const faqData = [
         {
-            question: `Quels types de véhicules sont pris en charge à ${zoneName} ?`,
-            answer: `Nous prenons en charge tous types de véhicules à ${zoneName} : voitures, utilitaires, motos, scooters, camping-cars, etc., quel que soit leur état.`
+            question: `Quels types de véhicules sont pris en charge ${inPhrase} ?`,
+            answer: `Nous prenons en charge tous types de véhicules ${inPhrase} : voitures, utilitaires, motos, scooters, camping-cars, etc., quel que soit leur état.`
         },
         {
-            question: `L'enlèvement d'épave est-il vraiment gratuit à ${zoneName} ?`,
-            answer: `Oui, notre service d'enlèvement d'épave à ${zoneName} est 100% gratuit, sans frais cachés, avec intervention sous 24 à 48h.`
+            question: `L'enlèvement d'épave est-il vraiment gratuit ${inPhrase} ?`,
+            answer: `Oui, notre service d'enlèvement d'épave ${inPhrase} est 100% gratuit, sans frais cachés, avec intervention sous 24 à 48h.`
         },
         {
-            question: `Quels documents dois-je fournir pour l'enlèvement de mon véhicule à ${zoneName} ?`,
+            question: `Quels documents dois-je fournir pour l'enlèvement de mon véhicule ${inPhrase} ?`,
             answer: `Vous devrez fournir la carte grise du véhicule, une pièce d'identité et un certificat de non-gage. Sans carte grise, nous vous guidons dans les démarches.`
         },
         {
-            question: `Est-ce un épaviste agréé et un centre VHU certifié qui opère à ${zoneName} ?`,
+            question: `Est-ce un épaviste agréé et un centre VHU certifié qui opère ${inPhrase} ?`,
             answer: `Oui, Casse-VHU est un service d'épaviste agréé : votre véhicule est dépollué et détruit dans un centre VHU agréé par la préfecture, avec remise d'un certificat de destruction.`
         }
     ];
@@ -135,19 +181,24 @@ export default function ZonePage({ params }: { params: { zone: string } }) {
     const schema = {
         "@context": "https://schema.org",
         "@type": "AutomotiveBusiness",
-        "name": `Casse-VHU ${zoneName}`,
-        "description": `Service d'enlèvement d'épaves gratuit à ${zoneName}.`,
-        "url": `https://www.casse-vhu.fr/epaviste/${zone.slug}`,
-        "logo": "https://www.casse-vhu.fr/logo.png",
+        "@id": `${canonicalUrl(`/epaviste/${zone.slug}`)}#business`,
+        "name": `Casse-VHU ${zoneDisplayName}`,
+        "description": `Service d'enlèvement d'épaves gratuit ${inPhrase}.`,
+        "url": canonicalUrl(`/epaviste/${zone.slug}`),
+        "logo": `${SITE_URL}/logo.png`,
         "telephone": "+33-630-302-053",
-        "priceRange": "0€",
+        // Links this page's business node to the site-wide one from
+        // app/layout.tsx. Without it the two AutomotiveBusiness nodes on a zone
+        // page read as unrelated businesses rather than one company serving
+        // this area.
+        "parentOrganization": { "@id": `${SITE_URL}/#organization` },
         "areaServed": {
             "@type": "Place",
-            "name": zoneName
+            "name": zoneDisplayName
         },
         "address": {
             "@type": "PostalAddress",
-            "addressLocality": zoneName,
+            "addressLocality": zoneDisplayName,
             "addressCountry": "FR"
         },
         "contactPoint": {
@@ -206,10 +257,10 @@ export default function ZonePage({ params }: { params: { zone: string } }) {
                             <span className="text-sm font-medium text-primary">{zoneName}</span>
                         </div>
                         <h1 className="text-4xl lg:text-5xl font-bold text-foreground mb-6">
-                            Enlèvement d'Épaves Gratuit à {zoneName}
+                            Enlèvement d'Épaves Gratuit {inPhrase}
                         </h1>
                         <p className="text-xl text-muted-foreground mb-8">
-                            Votre épaviste agréé VHU pour un service rapide, gratuit et 100% conforme à {zoneName}
+                            Votre épaviste agréé VHU pour un service rapide, gratuit et 100% conforme {inPhrase}
                         </p>
                         <div className="flex flex-col sm:flex-row gap-4 justify-center">
                             <Button size="lg" className="text-lg px-8 py-6 rounded-full" asChild>
@@ -242,14 +293,14 @@ export default function ZonePage({ params }: { params: { zone: string } }) {
                     <div className="space-y-12">
                         {/* Introduction */}
                         <section>
-                            <h2 className="text-3xl font-bold text-foreground mb-6">Service d'Enlèvement d'Épaves à {zoneName}</h2>
+                            <h2 className="text-3xl font-bold text-foreground mb-6">Service d'Enlèvement d'Épaves {inPhrase}</h2>
                             <div className="prose prose-lg max-w-none text-muted-foreground space-y-4">
                                 <p>
-                                    Vous possédez un véhicule hors d'usage (VHU), accidenté, en panne ou irréparable à {zoneName} ? Vous
+                                    Vous possédez un véhicule hors d'usage (VHU), accidenté, en panne ou irréparable {inPhrase} ? Vous
                                     ne savez pas comment le faire enlever rapidement, légalement et gratuitement ?
                                 </p>
                                 <p>
-                                    <strong>Casse-VHU.fr</strong> est votre épaviste agréé disponible à {zoneName}, spécialisé dans
+                                    <strong>Casse-VHU.fr</strong> est votre épaviste agréé disponible {inPhrase}, spécialisé dans
                                     l'enlèvement gratuit d'épaves et la mise à la casse de tous types de véhicules. Nous assurons la prise
                                     en charge complète des démarches administratives, la dépollution et le recyclage de votre voiture à{" "}
                                     {zoneName}, dans le strict respect de la réglementation et des normes environnementales.
@@ -260,7 +311,7 @@ export default function ZonePage({ params }: { params: { zone: string } }) {
                         {/* Why Choose Us */}
                         <section className="bg-muted/30 rounded-2xl p-8">
                             <h2 className="text-3xl font-bold text-foreground mb-6">
-                                Pourquoi faire appel à Casse-VHU.fr à {zoneName} ?
+                                Pourquoi faire appel à Casse-VHU.fr {inPhrase} ?
                             </h2>
                             <div className="grid md:grid-cols-2 gap-6">
                                 <div className="flex gap-4">
@@ -272,7 +323,7 @@ export default function ZonePage({ params }: { params: { zone: string } }) {
                                     <div>
                                         <h3 className="font-semibold text-foreground mb-2">Enlèvement gratuit sous 24 à 48h</h3>
                                         <p className="text-sm text-muted-foreground">
-                                            Intervention rapide à {zoneName} pour enlever votre épave sans frais
+                                            Intervention rapide {inPhrase} pour enlever votre épave sans frais
                                         </p>
                                     </div>
                                 </div>
@@ -310,7 +361,7 @@ export default function ZonePage({ params }: { params: { zone: string } }) {
                                     </div>
                                     <div>
                                         <h3 className="font-semibold text-foreground mb-2">Service professionnel</h3>
-                                        <p className="text-sm text-muted-foreground">Équipe réactive et conforme à la loi à {zoneName}</p>
+                                        <p className="text-sm text-muted-foreground">Équipe réactive et conforme à la loi {inPhrase}</p>
                                     </div>
                                 </div>
                             </div>
@@ -319,10 +370,10 @@ export default function ZonePage({ params }: { params: { zone: string } }) {
                         {/* Vehicle Types */}
                         <section>
                             <h2 className="text-3xl font-bold text-foreground mb-6">
-                                Quels véhicules récupérons-nous à {zoneName} ?
+                                Quels véhicules récupérons-nous {inPhrase} ?
                             </h2>
                             <p className="text-muted-foreground mb-8">
-                                Nos services s'appliquent à tous types de véhicules hors d'usage à {zoneName}, quel que soit leur état :
+                                Nos services s'appliquent à tous types de véhicules hors d'usage {inPhrase}, quel que soit leur état :
                             </p>
                             <div className="grid md:grid-cols-2 gap-4">
                                 <Card className="border-2 hover:border-primary/50 transition-colors">
@@ -332,7 +383,7 @@ export default function ZonePage({ params }: { params: { zone: string } }) {
                                             <div>
                                                 <h3 className="font-semibold text-foreground mb-2">Voitures particulières</h3>
                                                 <p className="text-sm text-muted-foreground">
-                                                    Essence, diesel, électrique, hybride - tous types de voitures à {zoneName}
+                                                    Essence, diesel, électrique, hybride - tous types de voitures {inPhrase}
                                                 </p>
                                             </div>
                                         </div>
@@ -345,7 +396,7 @@ export default function ZonePage({ params }: { params: { zone: string } }) {
                                             <div>
                                                 <h3 className="font-semibold text-foreground mb-2">Utilitaires et camionnettes</h3>
                                                 <p className="text-sm text-muted-foreground">
-                                                    Véhicules professionnels et utilitaires légers à {zoneName}
+                                                    Véhicules professionnels et utilitaires légers {inPhrase}
                                                 </p>
                                             </div>
                                         </div>
@@ -357,7 +408,7 @@ export default function ZonePage({ params }: { params: { zone: string } }) {
                                             <Bike className="w-8 h-8 text-primary flex-shrink-0" />
                                             <div>
                                                 <h3 className="font-semibold text-foreground mb-2">Motos, scooters et quads</h3>
-                                                <p className="text-sm text-muted-foreground">Deux-roues et véhicules de loisirs à {zoneName}</p>
+                                                <p className="text-sm text-muted-foreground">Deux-roues et véhicules de loisirs {inPhrase}</p>
                                             </div>
                                         </div>
                                     </CardContent>
@@ -369,7 +420,7 @@ export default function ZonePage({ params }: { params: { zone: string } }) {
                                             <div>
                                                 <h3 className="font-semibold text-foreground mb-2">Camping-cars et caravanes</h3>
                                                 <p className="text-sm text-muted-foreground">
-                                                    Véhicules de loisirs et habitations mobiles à {zoneName}
+                                                    Véhicules de loisirs et habitations mobiles {inPhrase}
                                                 </p>
                                             </div>
                                         </div>
@@ -378,7 +429,7 @@ export default function ZonePage({ params }: { params: { zone: string } }) {
                             </div>
                             <div className="mt-6 p-6 bg-accent/10 rounded-xl border-l-4 border-accent">
                                 <p className="text-sm text-muted-foreground">
-                                    <strong>État du véhicule à {zoneName} :</strong> accidenté, brûlé, inondé, avec moteur HS, sans
+                                    <strong>État du véhicule {inPhrase} :</strong> accidenté, brûlé, inondé, avec moteur HS, sans
                                     contrôle technique, immobilisé ou simplement trop ancien… nous assurons son enlèvement gratuit.
                                 </p>
                             </div>
@@ -387,7 +438,7 @@ export default function ZonePage({ params }: { params: { zone: string } }) {
                         {/* Process */}
                         <section className="bg-gradient-to-br from-primary/5 to-secondary/5 rounded-2xl p-8">
                             <h2 className="text-3xl font-bold text-foreground mb-6">
-                                Comment se déroule un enlèvement d'épave à {zoneName} ?
+                                Comment se déroule un enlèvement d'épave {inPhrase} ?
                             </h2>
                             <div className="space-y-6">
                                 <div className="flex gap-4">
@@ -399,7 +450,7 @@ export default function ZonePage({ params }: { params: { zone: string } }) {
                                     <div>
                                         <h3 className="font-semibold text-foreground mb-2">Contactez-nous</h3>
                                         <p className="text-sm text-muted-foreground">
-                                            Par téléphone ou via notre formulaire en ligne pour votre enlèvement à {zoneName}
+                                            Par téléphone ou via notre formulaire en ligne pour votre enlèvement {inPhrase}
                                         </p>
                                     </div>
                                 </div>
@@ -411,7 +462,7 @@ export default function ZonePage({ params }: { params: { zone: string } }) {
                                     </div>
                                     <div>
                                         <h3 className="font-semibold text-foreground mb-2">Planifiez un rendez-vous</h3>
-                                        <p className="text-sm text-muted-foreground">Selon vos disponibilités à {zoneName}</p>
+                                        <p className="text-sm text-muted-foreground">Selon vos disponibilités {inPhrase}</p>
                                     </div>
                                 </div>
                                 <div className="flex gap-4">
@@ -424,7 +475,7 @@ export default function ZonePage({ params }: { params: { zone: string } }) {
                                         <h3 className="font-semibold text-foreground mb-2">Enlèvement du véhicule</h3>
                                         <p className="text-sm text-muted-foreground">
                                             Nous venons chercher votre véhicule à votre domicile, sur un parking, au garage ou sur la voie
-                                            publique à {zoneName}
+                                            publique {inPhrase}
                                         </p>
                                     </div>
                                 </div>
@@ -448,16 +499,16 @@ export default function ZonePage({ params }: { params: { zone: string } }) {
                         {/* Benefits */}
                         <section>
                             <h2 className="text-3xl font-bold text-foreground mb-6">
-                                Les avantages d'un épaviste agréé VHU à {zoneName}
+                                Les avantages d'un épaviste agréé VHU {inPhrase}
                             </h2>
                             <p className="text-muted-foreground mb-6">
                                 En France, la destruction des véhicules hors d'usage est strictement réglementée. Seul un centre agréé
-                                VHU peut dépolluer et recycler votre voiture en toute légalité à {zoneName}.
+                                VHU peut dépolluer et recycler votre voiture en toute légalité {inPhrase}.
                             </p>
                             <div className="grid md:grid-cols-2 gap-4">
                                 <div className="flex items-start gap-3 p-4 bg-muted/30 rounded-lg">
                                     <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                                    <span className="text-sm text-muted-foreground">La garantie légale de destruction à {zoneName}</span>
+                                    <span className="text-sm text-muted-foreground">La garantie légale de destruction {inPhrase}</span>
                                 </div>
                                 <div className="flex items-start gap-3 p-4 bg-muted/30 rounded-lg">
                                     <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
@@ -478,9 +529,9 @@ export default function ZonePage({ params }: { params: { zone: string } }) {
 
                         {/* Centre VHU section */}
                         <section>
-                            <h2 className="text-3xl font-bold text-foreground mb-4">Centre VHU agréé à {zoneName}</h2>
+                            <h2 className="text-3xl font-bold text-foreground mb-4">Centre VHU agréé {inPhrase}</h2>
                             <p className="text-muted-foreground mb-4">
-                                Vous cherchez un <strong className="text-foreground">centre VHU agréé {zone.type === "Département" ? zone.name : `à ${zoneName}`}</strong>{" "}
+                                Vous cherchez un <strong className="text-foreground">centre VHU agréé {zone.type === "Département" ? zone.name : `${inPhrase}`}</strong>{" "}
                                 pour détruire votre véhicule ? Casse-VHU travaille avec des centres VHU agréés par la préfecture. Après
                                 dépollution, votre véhicule est recyclé conformément aux normes environnementales et vous recevez votre
                                 certificat de destruction immédiatement.
@@ -499,9 +550,9 @@ export default function ZonePage({ params }: { params: { zone: string } }) {
 
                         {/* Destruction section */}
                         <section className="bg-muted/30 rounded-2xl p-8">
-                            <h2 className="text-3xl font-bold text-foreground mb-4">Destruction de voiture à {zoneName}</h2>
+                            <h2 className="text-3xl font-bold text-foreground mb-4">Destruction de voiture {inPhrase}</h2>
                             <p className="text-muted-foreground mb-4">
-                                La <strong className="text-foreground">destruction de votre véhicule à {zoneName}</strong> se déroule en
+                                La <strong className="text-foreground">destruction de votre véhicule {inPhrase}</strong> se déroule en
                                 quatre étapes : enlèvement gratuit, dépollution (liquides, batteries, airbag), démontage des pièces
                                 réutilisables et broyage de la carcasse. Le certificat de destruction délivré met fin à la vie
                                 administrative de votre véhicule et vous dédouane de toute responsabilité.
@@ -531,9 +582,9 @@ export default function ZonePage({ params }: { params: { zone: string } }) {
 
                         {/* Casse automobile section */}
                         <section>
-                            <h2 className="text-3xl font-bold text-foreground mb-4">Casse automobile {zone.type === "Grandes communes" ? `autour de ${zoneName.split(",")[0]}` : `à ${zoneName}`}</h2>
+                            <h2 className="text-3xl font-bold text-foreground mb-4">Casse automobile {zone.type === "Grandes communes" ? `autour de ${zoneName.split(",")[0]}` : `${inPhrase}`}</h2>
                             <p className="text-muted-foreground mb-4">
-                                Une épave à faire enlever ? Notre <strong className="text-foreground">casse automobile {zone.type === "Grandes communes" ? `proche de ${zoneName.split(",")[0]}` : `dans ${zoneName}`}</strong>{" "}
+                                Une épave à faire enlever ? Notre <strong className="text-foreground">casse automobile {inPhrase}</strong>{" "}
                                 prend en charge votre véhicule accidenté, brûlé, inondé ou simplement hors d'usage, sans contrôle
                                 technique et sans frais. Retrouvez aussi nos pages{" "}
                                 <Link href={internalUrl("/epaviste")} className="text-primary font-medium hover:underline">épaviste par région</Link> et notre service d'{" "}
@@ -690,7 +741,7 @@ export default function ZonePage({ params }: { params: { zone: string } }) {
 
                         {/* FAQ Section */}
                         <section>
-                            <h2 className="text-3xl font-bold text-foreground mb-6">Questions Fréquentes à {zoneName}</h2>
+                            <h2 className="text-3xl font-bold text-foreground mb-6">Questions Fréquentes {inPhrase}</h2>
                             <div className="space-y-4">
                                 {faqData.map((faq, index) => (
                                     <div key={index} className="border p-4 rounded-lg">
@@ -734,9 +785,9 @@ export default function ZonePage({ params }: { params: { zone: string } }) {
 
                         {/* CTA Section */}
                         <section className="bg-gradient-to-br from-primary to-primary/80 text-primary-foreground rounded-2xl p-8 text-center">
-                            <h2 className="text-3xl font-bold mb-4">Contactez Casse-VHU.fr à {zoneName}</h2>
+                            <h2 className="text-3xl font-bold mb-4">Contactez Casse-VHU.fr {inPhrase}</h2>
                             <p className="text-lg mb-8 opacity-90">
-                                Ne laissez pas une épave encombrer votre espace à {zoneName}. Faites appel à Casse-VHU.fr pour un
+                                Ne laissez pas une épave encombrer votre espace {inPhrase}. Faites appel à Casse-VHU.fr pour un
                                 enlèvement gratuit et rapide.
                             </p>
                             <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -829,7 +880,7 @@ export default function ZonePage({ params }: { params: { zone: string } }) {
                         <Card className="bg-gradient-to-br from-accent/10 to-accent/5 border-accent/20">
                             <CardContent className="p-6">
                                 <h4 className="font-semibold text-foreground mb-3">Intervention rapide</h4>
-                                <p className="text-sm text-muted-foreground mb-4">Enlèvement sous 24 à 48h à {zoneName}</p>
+                                <p className="text-sm text-muted-foreground mb-4">Enlèvement sous 24 à 48h {inPhrase}</p>
                                 <div className="flex items-center gap-2 text-sm">
                                     <Clock className="w-4 h-4 text-accent" />
                                     <span className="text-muted-foreground">Réponse immédiate</span>

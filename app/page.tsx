@@ -6,7 +6,7 @@ import { getZones } from "@/lib/zones"
 
 export const metadata: Metadata = {
   title: "Casse Auto & Épaviste Agréé VHU | Enlèvement Gratuit sous 24h",
-  description: "Épaviste agréé VHU : enlèvement d'épave 100% gratuit, intervention sous 24h, certificat de destruction fourni sur place. Centre VHU agréé préfecture, service partout en France. Appelez le 06 30 30 20 53.",
+  description: "Épaviste agréé VHU : enlèvement d'épave 100% gratuit, certificat de destruction fourni. Appelez le 06 30 30 20 53.",
   openGraph: {
     url: canonicalUrl("/"),
   },
@@ -44,6 +44,7 @@ export default function CasseVHULanding() {
   const faqSchema = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
+    "@id": `${canonicalUrl("/")}#faq`,
     "mainEntity": [
       {
         "@type": "Question",
@@ -132,6 +133,9 @@ export default function CasseVHULanding() {
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             {/* Left side - Content and CTA */}
             <div>
+              <p className="text-sm font-semibold uppercase tracking-wider text-white/80 mb-3">
+                Centre VHU agréé par la préfecture · Épaviste gratuit
+              </p>
               <h1 className="text-4xl lg:text-5xl font-bold text-white mb-6 text-balance">
                 Enlèvement d'épaves gratuit partout en France
               </h1>

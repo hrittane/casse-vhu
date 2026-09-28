@@ -1,4 +1,4 @@
-import {canonicalUrl, internalUrl } from "@/lib/site"
+import { SITE_URL, canonicalUrl, internalUrl } from "@/lib/site"
 import { Metadata } from "next"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
@@ -53,18 +53,20 @@ const faqData = [
 const schema = {
     "@context": "https://schema.org",
     "@type": "AutomotiveBusiness",
+    "@id": `${canonicalUrl("/enlevement-epave")}#business`,
     "name": "Casse-VHU",
     "description": "Enlèvement d'épave gratuit partout en France sous 24h.",
-    "url": "https://www.casse-vhu.fr/enlevement-epave",
-    "logo": "https://www.casse-vhu.fr/logo.png",
+    "url": canonicalUrl("/enlevement-epave"),
+    "logo": `${SITE_URL}/logo.png`,
     "telephone": "+33-630-302-053",
-    "priceRange": "0€",
+    "parentOrganization": { "@id": `${SITE_URL}/#organization` },
     "areaServed": "France"
 };
 
 const faqSchema = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
+    "@id": `${canonicalUrl("/enlevement-epave")}#faq`,
     "mainEntity": faqData.map(faq => ({
         "@type": "Question",
         "name": faq.question,

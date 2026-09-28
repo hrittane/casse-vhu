@@ -1,4 +1,4 @@
-import {canonicalUrl, internalUrl } from "@/lib/site"
+import { SITE_URL, canonicalUrl, internalUrl } from "@/lib/site"
 import { Metadata } from "next"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
@@ -53,18 +53,20 @@ const faqData = [
 const schema = {
     "@context": "https://schema.org",
     "@type": "AutomotiveBusiness",
+    "@id": `${canonicalUrl("/centre-vhu-agree")}#business`,
     "name": "Casse-VHU",
     "description": "Centre VHU agréé : dépollution, destruction et recyclage de véhicules hors d'usage.",
-    "url": "https://www.casse-vhu.fr/centre-vhu-agree",
-    "logo": "https://www.casse-vhu.fr/logo.png",
+    "url": canonicalUrl("/centre-vhu-agree"),
+    "logo": `${SITE_URL}/logo.png`,
     "telephone": "+33-630-302-053",
-    "priceRange": "0€",
+    "parentOrganization": { "@id": `${SITE_URL}/#organization` },
     "areaServed": "France"
 };
 
 const faqSchema = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
+    "@id": `${canonicalUrl("/centre-vhu-agree")}#faq`,
     "mainEntity": faqData.map(faq => ({
         "@type": "Question",
         "name": faq.question,

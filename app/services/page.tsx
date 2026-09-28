@@ -1,4 +1,4 @@
-import {canonicalUrl, internalUrl } from "@/lib/site"
+import { SITE_URL, canonicalUrl, internalUrl } from "@/lib/site"
 import { Metadata } from "next"
 
 export const metadata: Metadata = {
@@ -38,7 +38,7 @@ export default function ServicesPage() {
             "description": "Service rapide sous 24-48h partout en France, sans frais cachés.",
             "provider": {
                 "@type": "AutomotiveBusiness",
-                "name": "Casse-VHU"
+                "@id": `${SITE_URL}/#organization`
             }
         },
         {
@@ -47,7 +47,7 @@ export default function ServicesPage() {
             "description": "Toutes les formalités sont prises en charge : certificat de destruction, déclaration en préfecture.",
             "provider": {
                 "@type": "AutomotiveBusiness",
-                "name": "Casse-VHU"
+                "@id": `${SITE_URL}/#organization`
             }
         },
         {
@@ -56,7 +56,7 @@ export default function ServicesPage() {
             "description": "Recyclage et dépollution dans un centre VHU agréé.",
             "provider": {
                 "@type": "AutomotiveBusiness",
-                "name": "Casse-VHU"
+                "@id": `${SITE_URL}/#organization`
             }
         }
     ];

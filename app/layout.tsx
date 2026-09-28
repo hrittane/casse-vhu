@@ -62,12 +62,12 @@ export default function RootLayout({
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "AutomotiveBusiness",
+              "@id": `${SITE_URL}/#organization`,
               "name": "Casse-VHU",
               "description": "Service gratuit d'enlèvement et recyclage de véhicules hors d'usage. Casse auto écologique et certifiée.",
-              "url": "https://www.casse-vhu.fr",
-              "logo": "https://www.casse-vhu.fr/logo.png",
+              "url": `${SITE_URL}/`,
+              "logo": `${SITE_URL}/logo.png`,
               "telephone": "+33-630-302-053",
-              "priceRange": "0€",
               "serviceArea": [
                 {
                   "@type": "Place",
