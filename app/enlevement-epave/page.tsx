@@ -16,14 +16,14 @@ import Link from "next/link"
 import { getZones } from "@/lib/zones"
 
 export const metadata: Metadata = {
-    title: "Enlèvement d'épave gratuit sous 24h | Casse-VHU",
-    description: "Enlèvement d'épave gratuit partout en France sous 24h. Épaviste agréé VHU, certificat de destruction fourni sur place, carte grise perdue acceptée. Appelez le 06 30 30 20 53.",
+    title: "Enlèvement d'épave gratuit sous 24 à 48h | Casse-VHU",
+    description: "Enlèvement d'épave gratuit partout en France sous 24 à 48h. Épaviste agréé VHU, certificat de destruction fourni sur place, carte grise perdue acceptée. 06 30 30 20 53.",
     alternates: {
         canonical: canonicalUrl("/enlevement-epave"),
     },
     openGraph: {
-        title: "Enlèvement d'épave gratuit sous 24h | Casse-VHU",
-        description: "Enlèvement d'épave gratuit partout en France sous 24h. Certificat de destruction fourni sur place.",
+        title: "Enlèvement d'épave gratuit sous 24 à 48h | Casse-VHU",
+        description: "Enlèvement d'épave gratuit partout en France sous 24 à 48h. Certificat de destruction fourni sur place.",
         url: "https://www.casse-vhu.fr/enlevement-epave",
         siteName: "Casse-VHU",
         locale: "fr_FR",
@@ -55,7 +55,7 @@ const schema = {
     "@type": "AutomotiveBusiness",
     "@id": `${canonicalUrl("/enlevement-epave")}#business`,
     "name": "Casse-VHU",
-    "description": "Enlèvement d'épave gratuit partout en France sous 24h.",
+    "description": "Enlèvement d'épave gratuit partout en France sous 24 à 48h.",
     "url": canonicalUrl("/enlevement-epave"),
     "logo": `${SITE_URL}/logo.png`,
     "telephone": "+33-630-302-053",
@@ -90,7 +90,7 @@ export default function EnlevementEpavePage() {
                 <div className="container mx-auto px-4">
                     <div className="max-w-4xl mx-auto text-center">
                         <h1 className="text-4xl lg:text-5xl font-bold text-foreground mb-6">
-                            Enlèvement d'épave gratuit sous 24h
+                            Enlèvement d'épave gratuit sous 24 à 48h
                         </h1>
                         <p className="text-xl text-muted-foreground mb-8">
                             Un épaviste agréé VHU intervient partout en France : nous enlevons votre véhicule hors d'usage,
@@ -111,7 +111,7 @@ export default function EnlevementEpavePage() {
                         </div>
                         <div className="mt-8 flex flex-wrap items-center justify-center gap-6 text-sm text-muted-foreground">
                             <span className="inline-flex items-center"><CheckCircle className="w-4 h-4 mr-2 text-primary" />100% gratuit</span>
-                            <span className="inline-flex items-center"><CheckCircle className="w-4 h-4 mr-2 text-primary" />24-48h max</span>
+                            <span className="inline-flex items-center"><CheckCircle className="w-4 h-4 mr-2 text-primary" />24 à 48h</span>
                             <span className="inline-flex items-center"><CheckCircle className="w-4 h-4 mr-2 text-primary" />Certificat sur place</span>
                         </div>
                     </div>
@@ -216,7 +216,7 @@ export default function EnlevementEpavePage() {
                             {regions.map((region) => (
                                 <Link key={region.slug} href={internalUrl(`/epaviste/${region.slug}`)}>
                                     <Button variant="outline" size="sm" className="rounded-full bg-transparent">
-                                        {region.name}
+                                        {region.displayName}
                                         <ArrowRight className="w-3 h-3 ml-2" />
                                     </Button>
                                 </Link>

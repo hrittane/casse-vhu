@@ -29,7 +29,7 @@ export default function Footer() {
                             {regions.map((region) => (
                                 <li key={region.slug}>
                                     <a href={internalUrl(`/epaviste/${region.slug}`)} className="hover:text-foreground transition-colors">
-                                        {region.name}
+                                        {region.displayName}
                                     </a>
                                 </li>
                             ))}
@@ -82,7 +82,7 @@ export default function Footer() {
                     </div>
                 </div>
                 <div className="border-t mt-8 pt-8 text-center text-sm text-muted-foreground">
-                    <p>&copy; 2024 Casse-VHU. Tous droits réservés. | Centre VHU agréé préfecture</p>
+                    <p>&copy; {new Date().getFullYear()} Casse-VHU. Tous droits réservés. | Centre VHU agréé préfecture</p>
                     <p className="mt-2">
                         Created by <a href="https://www.moroccan.dev/" target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-colors">Soufiane Hrittane</a>
                     </p>

@@ -89,7 +89,7 @@ export default function AProposPage() {
                                     <div className="w-16 h-16 bg-secondary/20 rounded-full flex items-center justify-center mx-auto mb-4">
                                         <Clock className="w-8 h-8 text-secondary" />
                                     </div>
-                                    <div className="text-4xl font-bold text-foreground mb-2">24-48h</div>
+                                    <div className="text-4xl font-bold text-foreground mb-2">24 à 48h</div>
                                     <p className="text-muted-foreground">Délai d'intervention</p>
                                 </CardContent>
                             </Card>
@@ -274,7 +274,7 @@ export default function AProposPage() {
                 <div className="container mx-auto px-4 text-center">
                     <h2 className="text-3xl lg:text-4xl font-bold mb-6">Prêt à faire enlever votre véhicule ?</h2>
                     <p className="text-xl mb-8 opacity-90">
-                        Contactez-nous dès maintenant pour un enlèvement gratuit sous 24-48h
+                        Contactez-nous dès maintenant pour un enlèvement gratuit sous 24 à 48h
                     </p>
                     <div className="flex flex-col sm:flex-row gap-4 justify-center">
                         <Button size="lg" variant="secondary" className="text-lg px-8 py-6 rounded-full">

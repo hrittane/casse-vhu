@@ -18,13 +18,13 @@ import { getZones } from "@/lib/zones"
 
 export const metadata: Metadata = {
     title: "Épaviste agréé VHU : enlèvement gratuit de votre véhicule",
-    description: "Votre épaviste agréé VHU : enlèvement gratuit de véhicule hors d'usage sous 24h partout en France. Certificat de destruction fourni sur place. Appelez le 06 30 30 20 53.",
+    description: "Votre épaviste agréé VHU : enlèvement gratuit de véhicule hors d'usage sous 24 à 48h partout en France. Certificat de destruction fourni sur place. 06 30 30 20 53.",
     alternates: {
         canonical: canonicalUrl("/epaviste-agree"),
     },
     openGraph: {
         title: "Épaviste agréé VHU : enlèvement gratuit de votre véhicule",
-        description: "Épaviste agréé VHU : enlèvement gratuit de véhicule hors d'usage sous 24h partout en France.",
+        description: "Épaviste agréé VHU : enlèvement gratuit de véhicule hors d'usage sous 24 à 48h partout en France.",
         url: "https://www.casse-vhu.fr/epaviste-agree",
         siteName: "Casse-VHU",
         locale: "fr_FR",
@@ -112,7 +112,7 @@ export default function EpavisteAgreePage() {
                         </div>
                         <div className="mt-8 flex flex-wrap items-center justify-center gap-6 text-sm text-muted-foreground">
                             <span className="inline-flex items-center"><CheckCircle className="w-4 h-4 mr-2 text-primary" />Agréé préfecture</span>
-                            <span className="inline-flex items-center"><CheckCircle className="w-4 h-4 mr-2 text-primary" />Gratuit sous 24h</span>
+                            <span className="inline-flex items-center"><CheckCircle className="w-4 h-4 mr-2 text-primary" />Gratuit sous 24 à 48h</span>
                             <span className="inline-flex items-center"><CheckCircle className="w-4 h-4 mr-2 text-primary" />Certificat sur place</span>
                         </div>
                     </div>
@@ -212,7 +212,7 @@ export default function EpavisteAgreePage() {
                             {regions.map((region) => (
                                 <Link key={region.slug} href={internalUrl(`/epaviste/${region.slug}`)}>
                                     <Button variant="outline" size="sm" className="rounded-full bg-transparent">
-                                        {region.name}
+                                        {region.displayName}
                                         <ArrowRight className="w-3 h-3 ml-2" />
                                     </Button>
                                 </Link>
@@ -249,7 +249,7 @@ export default function EpavisteAgreePage() {
                     <section className="bg-gradient-to-br from-primary to-primary/80 text-primary-foreground rounded-2xl p-8 text-center">
                         <h2 className="text-3xl font-bold mb-4">Appelez votre épaviste agréé maintenant</h2>
                         <p className="text-lg mb-8 opacity-90">
-                            Enlèvement gratuit sous 24h, intervention partout en France.
+                            Enlèvement gratuit sous 24 à 48h, intervention partout en France.
                         </p>
                         <div className="flex flex-col sm:flex-row gap-4 justify-center">
                             <Button size="lg" className="text-lg px-8 py-6 rounded-full bg-white text-primary hover:bg-white/90" asChild>

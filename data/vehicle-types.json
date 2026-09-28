@@ -1,0 +1,130 @@
+{
+  "vehicleTypes": [
+    {
+      "slug": "utilitaire",
+      "type": "Utilitaire",
+      "icon": "Truck",
+      "title": "Casse Utilitaire | Épaviste Gratuit & Destruction Utilitaire",
+      "description": "Enlèvement et destruction de votre utilitaire : fourgon, plateau ou camionnette. Récup auto en centre VHU agréé, enlèvement gratuit sous 24 à 48h partout en France.",
+      "h1": "Casse Utilitaire : Épaviste Gratuit & Destruction d'Utilitaire",
+      "intro": "Un utilitaire n'est pas une voiture agrandie, et il ne se traite pas comme une. Sa carcasse est plus lourde, ses accès sont plus étroits, son pot catalytique est souvent mieux placé, et sa valeur de reprise suit une logique différente. Notre épaviste organise l'enlèvement de votre utilitaire dans les mêmes conditions qu'une voiture particulière : gratuitement, et avec un certificat de destruction remis sur place.",
+      "distinctSections": [
+        {
+          "heading": "Pourquoi l'utilitaire se valorise différemment",
+          "body": "L'écart de prix par rapport à une citadine vient d'abord du poids. Un fourgon ou un plateau embarque une quantité de métal et de plastique nettement supérieure, et la matière est justement ce que rachète un épaviste. Ensuite viennent les composants : un utilitaire récent contient un système de dépollution, une électronique de puissance et des pièces d'usure qui conservent une valeur en pièces détachées. Enfin, le poids brut déclaré sur la carte grise donne une première borne, mais c'est le poids réel à vide qui fait foi au moment de la reprise."
+        },
+        {
+          "heading": "Comment se passe l'enlèvement d'un utilitaire",
+          "body": "Un utilitaire ne passe pas au lavage comme une berline, il se soulève. Selon le modèle et l'accessibilité, nous chargeons la benne ou la cabine sur un plateau, ou nous utilisons une grue. Cette différence a une conséquence très concrète pour vous : il faut pouvoir accéder au véhicule et disposer d'une place de stationnement dégagée. Dans un parking souterrain ou dans une voie étroite, l'intervention peut nécessiter un créneau plus long. Nous vérifions ces contraintes au téléphone, avant de fixer le rendez-vous, pour éviter un déplacement inutile."
+        },
+        {
+          "heading": "Documents à préparer pour un utilitaire",
+          "body": "La liste est la même que pour une voiture, avec une attention particulière à la complétude du véhicule. La carte grise de l'utilitaire, une pièce d'identité du propriétaire, le formulaire de cession pour destruction signé, et le certificat de non-gage. Si votre utilitaire est monté sur un châssis, ou s'il s'agit d'un plateau, il faut dissocier la caisse de son groupe pour que le poids soit identifié. Donnez-nous le modèle exact au téléphone : cela évite les allers-retours."
+        }
+      ],
+      "related": [
+        "Voitures particulières",
+        "Camionnettes",
+        "Camping-cars"
+      ],
+      "faq": [
+        {
+          "question": "Reprenez-vous les utilitaires de moins de 3,5 tonnes ?",
+          "answer": "Oui. Fourgons, camionnettes, plateaux et pick-up de moins de 3,5 tonnes sont repris dans les mêmes conditions que les voitures, avec enlèvement gratuit et certificat de destruction."
+        },
+        {
+          "question": "Mon utilitaire est-il accepté s'il est accidenté ?",
+          "answer": "Oui, à condition que la structure soit identifiable. Un utilitaire accidenté, brûlé ou inondé est accepté tant qu'il est complet, que vous pouvez prouver qu'il vous appartient, et qu'il ne manque pas ses éléments de sécurité."
+        },
+        {
+          "question": "Combien vaut un utilitaire à la casse ?",
+          "answer": "La valeur dépend du poids, de l'état et des pièces réutilisables. Un utilitaire récent avec un moteur intact se valorise mieux qu'un modèle ancien démantelé. L'estimation est gratuite et se fait par téléphone à partir du modèle et de l'année."
+        }
+      ]
+    },
+    {
+      "slug": "voiture-sans-permis",
+      "type": "Voiture sans permis",
+      "icon": "Bike",
+      "title": "Casse Voiture Sans Permis | Épaviste Gratuit & Destruction",
+      "description": "Enlèvement et destruction de votre voiture sans permis (quadricycle, cyclo) : reprise complète en centre VHU agréé, enlèvement gratuit sous 24 à 48h.",
+      "h1": "Casse Voiture Sans Permis : Épaviste Gratuit & Destruction",
+      "intro": "Une voiture sans permis est un véhicule immatriculé, avec sa carte grise, son assurance et son contrôle technique. À ce titre, elle relève exactement du même régime qu'une voiture particulière : son propriétaire a l'obligation de la faire reprendre, et le certificat de destruction est indispensable pour radier l'immatriculation. La seule vraie différence tient au poids, et donc à la valeur de la matière.",
+      "distinctSections": [
+        {
+          "heading": "Quadricycle ou cyclo : deux régimes différents",
+          "body": "La distinction n'est pas cosmétique. Un quadricycle est un véhicule à quatre roues, non soumis au permis de conduire, dont la vitesse est limitée : il est immatriculé et se déclare à la caisse d'assurance. Un cyclo, ou cyclomoteur, est un deux-roues léger : il ne porte pas de carte grise classique et suit une logique de déclaration différente. Avant d'accepter une reprise, il faut savoir dans quelle catégorie votre engin est enregistré, car les pièces demandées ne sont pas identiques. Dites-le-nous au téléphone, nous adaptons la procédure."
+        },
+        {
+          "heading": "La carte grise d'un quadricycle",
+          "body": "Oui, un quadricycle possède une carte grise, au même titre qu'une voiture. Elle porte l'immatriculation, la date de la première immatriculation et le numéro de la carte. Si vous l'avez perdue, la procédure est identique à celle d'une voiture classique : déclaration de perte en ligne, et une preuve de propriété pour justifier la radiation. Un quadricycle sans carte grise mais avec attestation d'assurance reste reprenable."
+        },
+        {
+          "heading": "Faible poids, faible valeur, reprise garantie",
+          "body": "Un quadricycle pèse beaucoup moins lourd qu'une voiture, et la matière qu'il contient est donc moins volumineuse : sa valeur de reprise est nettement inférieure. Ce n'est pas un obstacle. La reprise d'un véhicule hors d'usage est obligatoire et gratuite quels que soient son poids et son état : un centre VHU agréé ne peut pas refuser un véhicule qui remplit les conditions de complétude et de traçabilité. Si la vente ne rapporte rien, l'enlèvement, lui, reste gratuit."
+        }
+      ],
+      "related": [
+        "Motos et scooters",
+        "Voitures particulières",
+        "Utilitaires"
+      ],
+      "faq": [
+        {
+          "question": "Un quadricycle sans permis peut-il être repris à la casse ?",
+          "answer": "Oui. Un quadricycle est un véhicule hors d'usage comme un autre : s'il est complet et que vous prouvez en être le propriétaire, il est repris gratuitement et vous recevez un certificat de destruction."
+        },
+        {
+          "question": "Faut-il une carte grise pour faire enlever une voiture sans permis ?",
+          "answer": "Elle facilite la procédure et fournit le poids, l'année et le type d'engin, mais son absence n'empêche pas la reprise. Une déclaration de perte associée à une attestation d'assurance suffit."
+        },
+        {
+          "question": "Et pour un deux-roues (cyclo, scooter, moto) ?",
+          "answer": "Les deux-roues suivent la même logique : reprise gratuite en centre agréé et certificat de destruction. Le poids étant faible, la valeur de la matière est elle aussi faible, ce qui rend l'opération encore moins intéressante financièrement pour nous, et encore plus gratuite pour vous."
+        }
+      ]
+    },
+    {
+      "slug": "camionnette",
+      "type": "Camionnette",
+      "icon": "Truck",
+      "title": "Casse Camionnette | Épaviste Gratuit & Destruction Camionnette",
+      "description": "Enlèvement et destruction de votre camionnette : Trafic, Berlingo, Partner, Vito, Transit. Récup auto en centre VHU agréé, enlèvement gratuit sous 24 à 48h.",
+      "h1": "Casse Camionnette : Épaviste Gratuit & Destruction",
+      "intro": "La camionnette est le véhicule utilitaire le plus courant en France, et l'un des plus difficiles à décider : son prix d'achat neuf est élevé, sa valeur d'occasion chute brutalement au premier réemploi, et son entretien coûte cher. Quand elle part à la casse, la question n'est plus « combien je revends » mais « combien ça me coûte de m'en débarrasser ». La réponse est : rien.",
+      "distinctSections": [
+        {
+          "heading": "Les modèles les plus courants",
+          "body": "Renault Trafic, Citroën Berlingo, Peugeot Partner, Ford Transit, Mercedes Vito, Volkswagen Transporter, Opel Combo, Fiat Doblo, Dacia Dokker, Nissan Primastar et Citroën Jumpy forment l'essentiel du parc. Ils partagent la même architecture : une cabine, un volume de chargement arrière, et une structure qui se dépose très facilement. Cette architecture est un atout pour la valorisation, car le volume arrière est souvent vide et la tôle de répartition plutôt homogène."
+        },
+        {
+          "heading": "Version passager ou version utilitaire",
+          "body": "C'est la première question que l'on nous pose, et elle change la donne. Une version passager possède des vitres arrière, des sièges, un pont arrière et généralement un hayon : le véhicule est alors plus facile à revendre en occasion, ou à recycler pour ses pièces. Une version utilitaire, avec des parois lisses, est souvent dépolluée pour l'huile, l'électricité et les gaz, et garde une valeur de pièces plus élevée. Les deux restent reprises gratuitement."
+        },
+        {
+          "heading": "Un poids qui joue en votre faveur",
+          "body": "C'est le principal avantage d'une camionnette dans une reprise : son tonnage. Entre deux véhicules du même âge, celui qui pèse le plus rapporte le plus en matière. Une camionnette de livraison se distingue d'une berline non seulement par sa taille, mais par la quantité d'acier et de plastique qu'elle mobilise. C'est ce qui explique qu'une camionnette ancienne ait souvent encore un prix de reprise, là où une citadine du même millésime n'en a plus."
+        }
+      ],
+      "related": [
+        "Utilitaires",
+        "Voitures particulières",
+        "Poids lourds"
+      ],
+      "faq": [
+        {
+          "question": "Reprenez-vous les camionnettes de plus de 10 ans ?",
+          "answer": "Oui. L'âge n'est pas un critère de refus. Une camionnette ancienne mais complète est même souvent mieux valorisée qu'une citadine du même âge, parce qu'elle pèse davantage."
+        },
+        {
+          "question": "Que faire des vitres et des sièges de ma camionnette ?",
+          "answer": "Ce sont précisément des composants qui gardent de la valeur en pièces détachées : vitres, sièges, portes et hayons alimentent le marché de l'occasion et de la réparation. Ils ne sont pas déposés en déchet."
+        },
+        {
+          "question": "Le véhicule doit-il être vidé de ses affaires ?",
+          "answer": "Oui, il doit être vide et le plus propre possible : les effets personnels doivent être retirés avant le passage du camion. Les liquides résiduels (huiles, carburants, liquide de refroidissement) font l'objet d'une dépollution spécifique par le centre agréé."
+        }
+      ]
+    }
+  ]
+}

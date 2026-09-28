@@ -32,7 +32,7 @@ export function canonicalUrl(path: string = "/"): string {
  * query string or hash is preserved, which is what the /blog filter views need.
  *
  * @example internalUrl("/contact")           // "https://www.casse-vhu.fr/contact"
- * @example internalUrl("/epaviste/le-nord/") // "https://www.casse-vhu.fr/epaviste/le-nord"
+ * @example internalUrl("/epaviste/nord-59/") // "https://www.casse-vhu.fr/epaviste/nord-59"
  * @example internalUrl("/blog?category=X")   // "https://www.casse-vhu.fr/blog?category=X"
  * @example internalUrl("#anchor")            // "https://www.casse-vhu.fr/#anchor"
  */

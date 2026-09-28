@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import zones from '../../data/zones.json';
+import { getZonesByType } from '@/lib/zones';
 import blogPosts from '../../data/blog/index.json';
 
 export const dynamic = 'force-dynamic';
@@ -38,11 +38,11 @@ export async function GET() {
         `## 4. Zones d'Intervention (Service Areas)`,
         `Nous intervenons partout en France. Voici les principales zones couvertes :`,
         `### Régions`,
-        zones.Région.map(r => `- ${r}`).join('\n'),
+        getZonesByType('Région').map(z => `- ${z.displayName} : ${baseUrl}/epaviste/${z.slug}`).join('\n'),
         `### Départements`,
-        zones.Département.map(d => `- ${d}`).join('\n'),
+        getZonesByType('Département').map(z => `- ${z.displayName} : ${baseUrl}/epaviste/${z.slug}`).join('\n'),
         `### Grandes Communes`,
-        zones['Grandes communes'].map(c => `- ${c}`).join('\n'),
+        getZonesByType('Grandes communes').map(z => `- ${z.label} et sa région : ${baseUrl}/epaviste/${z.slug}`).join('\n'),
 
         `## 5. Ressources et Guides (Blog)`,
         `Retrouvez nos conseils et informations réglementaires :`,

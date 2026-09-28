@@ -1,32 +1,284 @@
 {
-    "Région": [
-        "Nouvelle Aquitaine",
-        "Bretagne",
-        "le Nord",
-        "Pas de Calais",
-        "Auvergne Rhône Alpes",
-        "Provence Alpes Côte d'Azur",
-        "Vendée",
-        "Loire Atlantique"
+    "places": [
+        {
+            "name": "Nouvelle Aquitaine",
+            "label": "Nouvelle-Aquitaine",
+            "type": "Région",
+            "preposition": "en Nouvelle-Aquitaine",
+            "parent": null,
+            "communes": []
+        },
+        {
+            "name": "Bretagne",
+            "label": "Bretagne",
+            "type": "Région",
+            "preposition": "en Bretagne",
+            "parent": null,
+            "communes": []
+        },
+        {
+            "name": "Auvergne Rhône Alpes",
+            "label": "Auvergne-Rhône-Alpes",
+            "type": "Région",
+            "preposition": "en Auvergne-Rhône-Alpes",
+            "parent": null,
+            "communes": []
+        },
+        {
+            "name": "Provence Alpes Côte d'Azur",
+            "label": "Provence-Alpes-Côte d'Azur",
+            "type": "Région",
+            "preposition": "en Provence-Alpes-Côte d'Azur",
+            "parent": null,
+            "communes": []
+        },
+
+        {
+            "name": "Gironde (33)",
+            "label": "Gironde",
+            "type": "Département",
+            "preposition": "en Gironde",
+            "parent": "Nouvelle Aquitaine",
+            "communes": [
+                "Bordeaux",
+                "Mérignac",
+                "Pessac",
+                "Talence",
+                "Bègles",
+                "Villenave-d'Ornon"
+            ]
+        },
+        {
+            "name": "Ille-et-Vilaine (35)",
+            "label": "Ille-et-Vilaine",
+            "type": "Département",
+            "preposition": "en Ille-et-Vilaine",
+            "parent": "Bretagne",
+            "communes": [
+                "Rennes",
+                "Saint-Malo",
+                "Fougères",
+                "Vitré",
+                "Cesson-Sévigné"
+            ]
+        },
+        {
+            "name": "Nord (59)",
+            "label": "Nord",
+            "type": "Département",
+            "preposition": "dans le Nord",
+            "parent": null,
+            "communes": [
+                "Lille",
+                "Roubaix",
+                "Tourcoing",
+                "Dunkerque",
+                "Valenciennes",
+                "Maubeuge"
+            ]
+        },
+        {
+            "name": "Pas-de-Calais (62)",
+            "label": "Pas-de-Calais",
+            "type": "Département",
+            "preposition": "dans le Pas-de-Calais",
+            "parent": null,
+            "communes": [
+                "Calais",
+                "Boulogne-sur-Mer",
+                "Arras",
+                "Lens",
+                "Béthune",
+                "Saint-Omer"
+            ]
+        },
+        {
+            "name": "Isère (38)",
+            "label": "Isère",
+            "type": "Département",
+            "preposition": "en Isère",
+            "parent": "Auvergne Rhône Alpes",
+            "communes": [
+                "Grenoble",
+                "Échirolles",
+                "Voiron",
+                "Vienne",
+                "Bourgoin-Jallieu"
+            ]
+        },
+        {
+            "name": "Bouches-du-Rhône (13)",
+            "label": "Bouches-du-Rhône",
+            "type": "Département",
+            "preposition": "dans les Bouches-du-Rhône",
+            "parent": "Provence Alpes Côte d'Azur",
+            "communes": [
+                "Marseille",
+                "Aix-en-Provence",
+                "Arles",
+                "Martigues",
+                "Istres",
+                "Salon-de-Provence"
+            ]
+        },
+        {
+            "name": "Vendée (85)",
+            "label": "Vendée",
+            "type": "Département",
+            "preposition": "en Vendée",
+            "parent": null,
+            "communes": [
+                "La Roche-sur-Yon",
+                "Les Sables-d'Olonne",
+                "Challans",
+                "Fontenay-le-Comte",
+                "Les Herbiers"
+            ]
+        },
+        {
+            "name": "Loire-Atlantique (44)",
+            "label": "Loire-Atlantique",
+            "type": "Département",
+            "preposition": "en Loire-Atlantique",
+            "parent": null,
+            "communes": [
+                "Nantes",
+                "Saint-Nazaire",
+                "Rezé",
+                "Saint-Herblain",
+                "Orvault"
+            ]
+        },
+
+        {
+            "name": "Bordeaux, Mérignac, Pessac, Talence, Bègles, Villenave-d'Ornon",
+            "label": "Bordeaux",
+            "type": "Grandes communes",
+            "preposition": "à Bordeaux",
+            "parent": "Gironde (33)",
+            "communes": [
+                "Bordeaux",
+                "Mérignac",
+                "Pessac",
+                "Talence",
+                "Bègles",
+                "Villenave-d'Ornon"
+            ]
+        },
+        {
+            "name": "Lille, Roubaix, Tourcoing, Dunkerque, Valenciennes, Maubeuge",
+            "label": "Lille",
+            "type": "Grandes communes",
+            "preposition": "à Lille",
+            "parent": "Nord (59)",
+            "communes": [
+                "Lille",
+                "Roubaix",
+                "Tourcoing",
+                "Dunkerque",
+                "Valenciennes",
+                "Maubeuge"
+            ]
+        },
+        {
+            "name": "Calais, Boulogne-sur-Mer, Arras, Lens, Béthune, Saint-Omer",
+            "label": "Calais",
+            "type": "Grandes communes",
+            "preposition": "à Calais",
+            "parent": "Pas-de-Calais (62)",
+            "communes": [
+                "Calais",
+                "Boulogne-sur-Mer",
+                "Arras",
+                "Lens",
+                "Béthune",
+                "Saint-Omer"
+            ]
+        },
+        {
+            "name": "Grenoble, Échirolles, Voiron, Vienne, Bourgoin-Jallieu",
+            "label": "Grenoble",
+            "type": "Grandes communes",
+            "preposition": "à Grenoble",
+            "parent": "Isère (38)",
+            "communes": [
+                "Grenoble",
+                "Échirolles",
+                "Voiron",
+                "Vienne",
+                "Bourgoin-Jallieu"
+            ]
+        },
+        {
+            "name": "Marseille, Aix-en-Provence, Arles, Martigues, Istres, Salon-de-Provence",
+            "label": "Marseille",
+            "type": "Grandes communes",
+            "preposition": "à Marseille",
+            "parent": "Bouches-du-Rhône (13)",
+            "communes": [
+                "Marseille",
+                "Aix-en-Provence",
+                "Arles",
+                "Martigues",
+                "Istres",
+                "Salon-de-Provence"
+            ]
+        },
+        {
+            "name": "La Roche-sur-Yon, Les Sables-d'Olonne, Challans, Fontenay-le-Comte, Les Herbiers",
+            "label": "La Roche-sur-Yon",
+            "type": "Grandes communes",
+            "preposition": "à La Roche-sur-Yon",
+            "parent": "Vendée (85)",
+            "communes": [
+                "La Roche-sur-Yon",
+                "Les Sables-d'Olonne",
+                "Challans",
+                "Fontenay-le-Comte",
+                "Les Herbiers"
+            ]
+        },
+        {
+            "name": "Nantes, Saint-Nazaire, Rezé, Saint-Herblain, Orvault",
+            "label": "Nantes",
+            "type": "Grandes communes",
+            "preposition": "à Nantes",
+            "parent": "Loire-Atlantique (44)",
+            "communes": [
+                "Nantes",
+                "Saint-Nazaire",
+                "Rezé",
+                "Saint-Herblain",
+                "Orvault"
+            ]
+        }
     ],
-    "Département": [
-        "Gironde (33)",
-        "Ille-et-Vilaine (35)",
-        "Nord (59)",
-        "Pas-de-Calais (62)",
-        "Isère (38)",
-        "Bouches-du-Rhône (13)",
-        "Vendée (85)",
-        "Loire-Atlantique (44)"
-    ],
-    "Grandes communes": [
-        "Bordeaux, Mérignac, Pessac, Talence, Bègles, Villenave-d'Ornon",
-        "Rennes, Saint-Malo, Fougères, Vitré, Cesson-Sévigné",
-        "Lille, Roubaix, Tourcoing, Dunkerque, Valenciennes, Maubeuge",
-        "Calais, Boulogne-sur-Mer, Arras, Lens, Béthune, Saint-Omer",
-        "Grenoble, Échirolles, Voiron, Vienne, Bourgoin-Jallieu",
-        "Marseille, Aix-en-Provence, Arles, Martigues, Istres, Salon-de-Provence",
-        "La Roche-sur-Yon, Les Sables-d'Olonne, Challans, Fontenay-le-Comte, Les Herbiers",
-        "Nantes, Saint-Nazaire, Rezé, Saint-Herblain, Orvault"
+
+    "retired": [
+        {
+            "name": "le Nord",
+            "type": "Région",
+            "redirectsTo": "Nord (59)"
+        },
+        {
+            "name": "Pas de Calais",
+            "type": "Région",
+            "redirectsTo": "Pas-de-Calais (62)"
+        },
+        {
+            "name": "Vendée",
+            "type": "Région",
+            "redirectsTo": "Vendée (85)"
+        },
+        {
+            "name": "Loire Atlantique",
+            "type": "Région",
+            "redirectsTo": "Loire-Atlantique (44)"
+        },
+        {
+            "name": "Rennes, Saint-Malo, Fougères, Vitré, Cesson-Sévigné",
+            "type": "Grandes communes",
+            "redirectsTo": "Ille-et-Vilaine (35)"
+        }
     ]
 }

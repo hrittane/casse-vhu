@@ -5,9 +5,14 @@ import Link from "next/link"
 import { getZones } from "@/lib/zones"
 
 export const metadata: Metadata = {
-  title: "Casse Auto & Épaviste Agréé VHU | Enlèvement Gratuit sous 24h",
-  description: "Épaviste agréé VHU : enlèvement d'épave 100% gratuit, certificat de destruction fourni. Appelez le 06 30 30 20 53.",
+  title: "Casse Auto & Épaviste Agréé VHU | Enlèvement Épave Gratuit | Casse-VHU.fr",
+  description: "Centre VHU agréé préfecture pour l'enlèvement d'épave gratuit. Destruction automobile conforme, débarrassage de voiture rapide et remise du certificat de destruction.",
+  alternates: {
+    canonical: canonicalUrl("/"),
+  },
   openGraph: {
+    title: "Casse Auto & Épaviste Agréé VHU | Enlèvement Épave Gratuit",
+    description: "Centre VHU agréé préfecture pour l'enlèvement d'épave gratuit. Destruction automobile conforme et certificat de destruction remis sur place.",
     url: canonicalUrl("/"),
   },
 }
@@ -134,10 +139,10 @@ export default function CasseVHULanding() {
             {/* Left side - Content and CTA */}
             <div>
               <p className="text-sm font-semibold uppercase tracking-wider text-white/80 mb-3">
-                Centre VHU agréé par la préfecture · Épaviste gratuit
+                Agrément Préfecture Centre VHU - Destruction Véhicule Conforme
               </p>
               <h1 className="text-4xl lg:text-5xl font-bold text-white mb-6 text-balance">
-                Enlèvement d'épaves gratuit partout en France
+                Enlèvement d'Épave Gratuit &amp; Centre VHU Agréé pour Voiture à la Casse
               </h1>
               <p className="text-xl text-white/90 mb-8 text-pretty">
                 Votre épaviste agréé VHU pour un service rapide, gratuit et 100% conforme. Nous assurons la prise en
@@ -172,7 +177,7 @@ export default function CasseVHULanding() {
                 </div>
                 <div className="flex items-center">
                   <CheckCircle className="w-4 h-4 mr-2 text-white" />
-                  <span>Enlèvement sous 48h</span>
+                  <span>Enlèvement sous 24 à 48h</span>
                 </div>
                 <div className="flex items-center">
                   <CheckCircle className="w-4 h-4 mr-2 text-white" />
@@ -193,6 +198,26 @@ export default function CasseVHULanding() {
             <h2 className="text-3xl lg:text-4xl font-bold text-foreground mb-4">Casse auto agréée VHU : quels véhicules récupérons-nous ?</h2>
             <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
               Notre centre VHU agréé prend en charge tous types de véhicules hors d'usage, quel que soit leur état. Épaviste professionnel, nous assurons l'enlèvement d'épave gratuit partout en France.
+            </p>
+            <p className="text-base text-muted-foreground max-w-3xl mx-auto mt-4">
+              Vous avez un{" "}
+              <Link href={internalUrl("/casse/utilitaire")} className="text-primary font-medium hover:underline">
+                utilitaire
+              </Link>
+              , une{" "}
+              <Link href={internalUrl("/casse/camionnette")} className="text-primary font-medium hover:underline">
+                camionnette
+              </Link>{" "}
+              ou une{" "}
+              <Link href={internalUrl("/casse/voiture-sans-permis")} className="text-primary font-medium hover:underline">
+                voiture sans permis
+              </Link>{" "}
+              à faire enlever&nbsp;? Chaque catégorie a ses particularités d'enlèvement.
+              Vous cherchez plutôt à savoir ce que vaut votre véhicule&nbsp;? Voici nos{" "}
+              <Link href={internalUrl("/prix-voiture-casse")} className="text-primary font-medium hover:underline">
+                prix voiture à la casse
+              </Link>
+              .
             </p>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
@@ -285,7 +310,7 @@ export default function CasseVHULanding() {
                   <div>
                     <h3 className="text-lg font-semibold mb-2">Enlèvement Gratuit</h3>
                     <p className="text-muted-foreground">
-                      Service rapide sous 24-48h partout en France, sans frais cachés. Notre équipe est prête à
+                      Service rapide sous 24 à 48h partout en France, sans frais cachés. Notre équipe est prête à
                       intervenir dans toute situation.
                     </p>
                   </div>
@@ -360,7 +385,7 @@ export default function CasseVHULanding() {
                 <div className="text-base md:text-lg opacity-90">Véhicules recyclés</div>
               </div>
               <div className="text-center">
-                <div className="text-2xl md:text-3xl lg:text-4xl font-bold mb-2">24h</div>
+                <div className="text-2xl md:text-3xl lg:text-4xl font-bold mb-2">24 à 48h</div>
                 <div className="text-base md:text-lg opacity-90">Délai d'intervention</div>
               </div>
               <div className="text-center">
@@ -378,10 +403,12 @@ export default function CasseVHULanding() {
 
           <div className="text-center mb-16 md:mb-0 ">
             <h2 className="text-3xl lg:text-4xl font-bold text-foreground mb-4">
-              Enlèvement d'épave gratuit : comment ça marche ?
+              Récup auto et enlèvement d'épave gratuit : comment ça marche ?
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Un processus simple en 4 étapes pour faire enlever votre épave gratuitement par un épaviste agréé. Certificat de destruction fourni sur place.
+              Un processus simple en 4 étapes pour vous débarrasser gratuitement de votre voiture avec un épaviste
+              agréé. Notre service de récup auto organise le transport, et vous repartez avec votre certificat de
+              destruction remis sur place.
             </p>
           </div>
 
@@ -437,7 +464,7 @@ export default function CasseVHULanding() {
                         <p className="text-sm text-muted-foreground mb-3 text-center leading-relaxed">
                           Nous fixons ensemble un créneau selon vos disponibilités.
                         </p>
-                        <div className="text-sm text-primary font-medium text-center">📅 24-48h max</div>
+                        <div className="text-sm text-primary font-medium text-center">📅 24 à 48h</div>
                       </CardContent>
                     </Card>
                   </div>
@@ -617,11 +644,11 @@ export default function CasseVHULanding() {
                       <CardContent className={`pt-3 h-full flex flex-col justify-center ${featured ? "sm:pt-6" : "sm:pt-4"}`}>
                         <MapPin className="w-8 h-8 sm:w-12 sm:h-12 text-primary mb-2 sm:mb-4" />
                         <h3 className={`font-bold mb-1 sm:mb-2 text-foreground group-hover:underline ${featured ? "text-lg sm:text-xl" : "text-sm sm:text-base"}`}>
-                          {region.name}
+                          {region.displayName}
                         </h3>
                         {featured && (
                           <p className="text-xs sm:text-sm text-muted-foreground mb-2 sm:mb-4">
-                            Épaviste agréé & centre VHU agréé • Intervention sous 24h
+                            Épaviste agréé & centre VHU agréé • Intervention sous 24 à 48h
                           </p>
                         )}
                       </CardContent>
@@ -638,7 +665,7 @@ export default function CasseVHULanding() {
                 {departments.map((dept) => (
                   <Link key={dept.slug} href={internalUrl(`/epaviste/${dept.slug}`)}>
                     <Button variant="outline" size="sm" className="rounded-full bg-transparent">
-                      {dept.name}
+                      {dept.displayName}
                     </Button>
                   </Link>
                 ))}

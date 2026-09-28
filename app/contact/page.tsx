@@ -4,7 +4,7 @@ import Image from "next/image"
 
 export const metadata: Metadata = {
     title: "Contact",
-    description: "Contactez Casse-VHU pour un enlèvement d'épave gratuit sous 24h partout en France. Épaviste agréé, certificat de destruction fourni. 06 30 30 20 53.",
+    description: "Contactez Casse-VHU pour un enlèvement d'épave gratuit sous 24 à 48h partout en France. Épaviste agréé, certificat de destruction fourni. 06 30 30 20 53.",
     alternates: {
         canonical: canonicalUrl("/contact"),
     },

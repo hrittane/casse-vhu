@@ -29,54 +29,106 @@ const zonesData = JSON.parse(
   fs.readFileSync(path.join(process.cwd(), "data", "zones.json"), "utf8")
 )
 
+const places = zonesData.places
+const retired = zonesData.retired ?? []
+
+const lastSegment = (path) => path.slice(path.lastIndexOf("/") + 1)
+
+/**
+ * Places that used to render a page of their own and now hand their ranking to
+ * a single surviving page, declared in the "retired" block of data/zones.json.
+ *
+ * The first four are the un-numbered spellings of departments the file listed
+ * twice, once as a "Région" row and once as a "Département" row, so "Vendée"
+ * and "Vendée (85)" rendered two URLs for one place. The last one is a
+ * five-city URL competing with the department page covering the same communes.
+ *
+ * They are kept as data rather than as a hand-written redirect list so that
+ * every spelling Google may hold for a retired place — the clean slug, the
+ * pre-accent-normalisation slug, and for a "Grandes communes" entry each
+ * mangled commune on its own — is derived from the same place, exactly as it
+ * was when the page still existed. Dropping that generation would 404 all 31 of
+ * them.
+ */
+const liveSlugs = new Set(places.map((place) => slugify(place.name)))
+const destinationBySlug = new Map(
+  retired.map((entry) => {
+    const source = slugify(entry.name)
+    const destination = slugify(entry.redirectsTo)
+    if (liveSlugs.has(source)) {
+      throw new Error(
+        `[next.config] cannot redirect /epaviste/${source}: data/zones.json still renders a page there.`
+      )
+    }
+    if (!liveSlugs.has(destination)) {
+      throw new Error(
+        `[next.config] retired place "${entry.name}" redirects to "${entry.redirectsTo}", ` +
+          `which data/zones.json does not render.`
+      )
+    }
+    return [source, destination]
+  })
+)
+
+// A retired place pointing at another retired place would produce a two-hop
+// chain, which the destination check above already rules out.
+const consolidationRedirects = [...destinationBySlug].map(([source, destination]) => ({
+  source: `/epaviste/${source}`,
+  destination: `/epaviste/${destination}`,
+  statusCode: 301,
+}))
+
 // Legacy slugs were produced before accents were normalised, so "Isère (38)"
 // became "is-re-38-" and "Fougères" became "foug-res". Google still holds those
 // broken URLs, so every one of them is permanently redirected to its clean
 // canonical /epaviste/<slug>. The same map is applied to /zones/ and /epaviste/
 // so neither prefix can serve a 200 duplicate of a zone page.
 const zoneRedirects = []
-const zoneTypes = ["Région", "Département", "Grandes communes"]
-const seenZoneSources = new Set()
+const seenZoneSources = new Set(
+  [...destinationBySlug.keys()].map((slug) => `/epaviste/${slug}`)
+)
 
-function addZoneRedirect(source, destination) {
+function addZoneRedirect(source, targetSlug) {
   if (seenZoneSources.has(source)) return
-  // A zone whose name contains no mangled characters ("le Nord", "Bretagne")
+  // A place whose name contains no mangled characters ("le Nord", "Bretagne")
   // slugs to itself. Emitting a redirect there would shadow its own clean page
   // and bounce visitors in a loop, so only genuinely different slugs are added.
-  const sourceSlug = source.slice(source.lastIndexOf("/") + 1)
-  if (sourceSlug === destination.slice(destination.lastIndexOf("/") + 1)) return
+  if (lastSegment(source) === targetSlug) return
   seenZoneSources.add(source)
-  zoneRedirects.push({ source, destination, statusCode: 301 })
+  zoneRedirects.push({ source, destination: `/epaviste/${targetSlug}`, statusCode: 301 })
 }
 
-for (const type of zoneTypes) {
-  for (const name of zonesData[type]) {
-    const clean = slugify(name)
-    const destination = `/epaviste/${clean}`
+function addPlaceRedirects({ name, type }, targetSlug) {
+  // The whole zone entry, mangled by the old slugifier (and the variant with
+  // an extra trailing dash, which the old slugifier also emitted).
+  const legacy = legacySlugify(name)
+  for (const prefix of ["/zones", "/epaviste"]) {
+    addZoneRedirect(`${prefix}/${legacy}`, targetSlug)
+    addZoneRedirect(`${prefix}/${legacy}-`, targetSlug)
+    addZoneRedirect(`${prefix}/${legacy}--`, targetSlug)
+  }
 
-    // The whole zone entry, mangled by the old slugifier (and the variant with
-    // an extra trailing dash, which the old slugifier also emitted).
-    const legacy = legacySlugify(name)
-    for (const prefix of ["/zones", "/epaviste"]) {
-      addZoneRedirect(`${prefix}/${legacy}`, destination)
-      addZoneRedirect(`${prefix}/${legacy}-`, destination)
-      addZoneRedirect(`${prefix}/${legacy}--`, destination)
-    }
-
-    // Single communes inside a "Grandes communes" entry: Google discovered
-    // "b-thune" and "foug-res" as standalone city URLs, so each mangled commune
-    // slug points back at the zone page that actually covers it.
-    if (type === "Grandes communes") {
-      for (const commune of name.split(",").map((c) => c.trim()).filter(Boolean)) {
-        const communeLegacy = legacySlugify(commune)
-        if (communeLegacy === slugify(commune)) continue
-        for (const prefix of ["/zones", "/epaviste"]) {
-          addZoneRedirect(`${prefix}/${communeLegacy}`, destination)
-          addZoneRedirect(`${prefix}/${communeLegacy}-`, destination)
-        }
+  // Single communes inside a "Grandes communes" entry: Google discovered
+  // "b-thune" and "foug-res" as standalone city URLs, so each mangled commune
+  // slug points back at the zone page that actually covers it.
+  if (type === "Grandes communes") {
+    for (const commune of name.split(",").map((c) => c.trim()).filter(Boolean)) {
+      const communeLegacy = legacySlugify(commune)
+      if (communeLegacy === slugify(commune)) continue
+      for (const prefix of ["/zones", "/epaviste"]) {
+        addZoneRedirect(`${prefix}/${communeLegacy}`, targetSlug)
+        addZoneRedirect(`${prefix}/${communeLegacy}-`, targetSlug)
       }
     }
   }
+}
+
+for (const place of places) {
+  addPlaceRedirects(place, slugify(place.name))
+}
+
+for (const entry of retired) {
+  addPlaceRedirects(entry, destinationBySlug.get(slugify(entry.name)))
 }
 
 const CANONICAL_HOST = "www.casse-vhu.fr"
@@ -108,6 +160,9 @@ const nextConfig = {
         destination: "/blog/prime-conversion-2026-conditions-demarches",
         statusCode: 301,
       },
+      // First so a consolidated URL never falls through to a legacy-slug rule
+      // with a different destination.
+      ...consolidationRedirects,
       ...zoneRedirects,
     ]
   },

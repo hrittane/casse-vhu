@@ -185,7 +185,7 @@ export default function CentreVhuAgreePage() {
                             {departments.map((dept) => (
                                 <Link key={dept.slug} href={internalUrl(`/epaviste/${dept.slug}`)}>
                                     <Button variant="outline" size="sm" className="rounded-full bg-transparent">
-                                        {dept.name}
+                                        {dept.displayName}
                                         <ArrowRight className="w-3 h-3 ml-2" />
                                     </Button>
                                 </Link>
@@ -244,7 +244,7 @@ export default function CentreVhuAgreePage() {
                     <section className="bg-gradient-to-br from-primary to-primary/80 text-primary-foreground rounded-2xl p-8 text-center">
                         <h2 className="text-3xl font-bold mb-4">Confiez votre véhicule à un centre VHU agréé</h2>
                         <p className="text-lg mb-8 opacity-90">
-                            Enlèvement gratuit, certificat de destruction fourni. Intervention sous 24h.
+                            Enlèvement gratuit, certificat de destruction fourni. Intervention sous 24 à 48h.
                         </p>
                         <div className="flex flex-col sm:flex-row gap-4 justify-center">
                             <Button size="lg" className="text-lg px-8 py-6 rounded-full bg-white text-primary hover:bg-white/90" asChild>

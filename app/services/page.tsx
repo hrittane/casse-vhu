@@ -2,8 +2,8 @@ import { SITE_URL, canonicalUrl, internalUrl } from "@/lib/site"
 import { Metadata } from "next"
 
 export const metadata: Metadata = {
-    title: "Épaviste agréé VHU : enlèvement d'épave gratuit sous 24h",
-    description: "Services d'enlèvement d'épave 100% gratuit sous 24h : épaviste agréé, centre VHU, démarches administratives et certificat de destruction fournis. 06 30 30 20 53.",
+    title: "Épaviste agréé VHU : enlèvement d'épave gratuit sous 24 à 48h",
+    description: "Services d'enlèvement d'épave 100% gratuit sous 24 à 48h : épaviste agréé, centre VHU, démarches administratives et certificat de destruction fournis. 06 30 30 20 53.",
     alternates: {
         canonical: canonicalUrl("/services"),
     },
@@ -35,7 +35,7 @@ export default function ServicesPage() {
         {
             "@type": "Service",
             "name": "Enlèvement Gratuit",
-            "description": "Service rapide sous 24-48h partout en France, sans frais cachés.",
+            "description": "Service rapide sous 24 à 48h partout en France, sans frais cachés.",
             "provider": {
                 "@type": "AutomotiveBusiness",
                 "@id": `${SITE_URL}/#organization`
@@ -136,7 +136,7 @@ export default function ServicesPage() {
                                     </div>
                                     <h3 className="text-xl font-bold text-center mb-3">Enlèvement Gratuit</h3>
                                     <p className="text-muted-foreground text-center">
-                                        Service rapide sous 24-48h partout en France, sans frais cachés. Notre équipe est prête à intervenir
+                                        Service rapide sous 24 à 48h partout en France, sans frais cachés. Notre équipe est prête à intervenir
                                         dans toute situation.
                                     </p>
                                 </CardContent>
